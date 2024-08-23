@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Wed Apr 10 15:31:40 2024\n"
+"POT-Creation-Date: Thu Aug 22 16:41:53 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -46,6 +46,32 @@ msgstr ""
 msgid "This last message appears if the level is solved."
 msgstr ""
 
+#: Game.Levels.DemoWorld.L02_intro
+msgid "Introduction to Calculus"
+msgstr ""
+
+#: Game.Levels.DemoWorld.L02_intro
+msgid "This text is shown as first message when the level is played.\n"
+"You can insert hints in the proof below. They will appear in this side panel\n"
+"depending on the proof a user provides."
+msgstr ""
+
+#: Game.Levels.DemoWorld.L02_intro
+msgid "You can either start using `«{h}»` or `«{g}»`."
+msgstr ""
+
+#: Game.Levels.DemoWorld.L02_intro
+msgid "You should use `«{h}»` now."
+msgstr ""
+
+#: Game.Levels.DemoWorld.L02_intro
+msgid "You should use `«{g}»` now."
+msgstr ""
+
+#: Game.Levels.DemoWorld.L02_intro
+msgid "This last message appears if the level is solved."
+msgstr ""
+
 #: Game.Levels.DemoWorld
 msgid "Demo World"
 msgstr ""
@@ -55,7 +81,7 @@ msgid "This introduction is shown before one enters level 1 of the demo world. U
 msgstr ""
 
 #: Game
-msgid "Hello World Game"
+msgid "Calculus Game"
 msgstr ""
 
 #: Game
@@ -64,12 +90,9 @@ msgid "This text appears on the starting page where one selects the world/level 
 msgstr ""
 
 #: Game
-msgid "Here you can put additional information about the game. It is accessible\n"
-"from the starting through the drop-down menu.\n"
+msgid "## Calculus Game\n"
 "\n"
-"For example: Game version, Credits, Link to Github and Zulip, etc.\n"
-"\n"
-"Use markdown."
+"This game is intended for a fun introduction to Lean4 and Calculus World."
 msgstr ""
 
 #: Game
