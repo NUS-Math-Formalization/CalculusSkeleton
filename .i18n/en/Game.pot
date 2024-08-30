@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Thu Aug 22 16:41:53 2024\n"
+"POT-Creation-Date: Fri Aug 23 16:18:17 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -39,6 +39,10 @@ msgid "You should use `«{h}»` now."
 msgstr ""
 
 #: Game.Levels.DemoWorld.L01_HelloWorld
+msgid "Test"
+msgstr ""
+
+#: Game.Levels.DemoWorld.L01_HelloWorld
 msgid "You should use `«{g}»` now."
 msgstr ""
 
@@ -69,6 +73,36 @@ msgid "You should use `«{g}»` now."
 msgstr ""
 
 #: Game.Levels.DemoWorld.L02_intro
+msgid "This last message appears if the level is solved."
+msgstr ""
+
+#: Game.Levels.DemoWorld.L03_test
+msgid "Hello World"
+msgstr ""
+
+#: Game.Levels.DemoWorld.L03_test
+msgid "This text is shown as first message when the level is played.\n"
+"You can insert hints in the proof below. They will appear in this side panel\n"
+"depending on the proof a user provides."
+msgstr ""
+
+#: Game.Levels.DemoWorld.L03_test
+msgid "You can either start using `«{h}»` or `«{g}»`."
+msgstr ""
+
+#: Game.Levels.DemoWorld.L03_test
+msgid "You should use `«{h}»` now."
+msgstr ""
+
+#: Game.Levels.DemoWorld.L03_test
+msgid "Test"
+msgstr ""
+
+#: Game.Levels.DemoWorld.L03_test
+msgid "You should use `«{g}»` now."
+msgstr ""
+
+#: Game.Levels.DemoWorld.L03_test
 msgid "This last message appears if the level is solved."
 msgstr ""
 
