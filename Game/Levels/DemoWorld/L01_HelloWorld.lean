@@ -1,4 +1,5 @@
 import Game.Metadata
+import Game.calculus_test
 
 World "DemoWorld"
 Level 1
