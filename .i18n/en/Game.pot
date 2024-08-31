@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Fri Aug 23 16:34:32 2024\n"
+"POT-Creation-Date: Sat Aug 31 16:39:29 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -39,6 +39,10 @@ msgid "You should use `«{h}»` now."
 msgstr ""
 
 #: Game.Levels.DemoWorld.L01_HelloWorld
+msgid "Test"
+msgstr ""
+
+#: Game.Levels.DemoWorld.L01_HelloWorld
 msgid "You should use `«{g}»` now."
 msgstr ""
 
@@ -72,12 +76,162 @@ msgstr ""
 msgid "This last message appears if the level is solved."
 msgstr ""
 
+#: Game.Levels.DemoWorld.L03_test
+msgid "Hello World"
+msgstr ""
+
+#: Game.Levels.DemoWorld.L03_test
+msgid "This text is shown as first message when the level is played.\n"
+"You can insert hints in the proof below. They will appear in this side panel\n"
+"depending on the proof a user provides."
+msgstr ""
+
+#: Game.Levels.DemoWorld.L03_test
+msgid "You can either start using `«{h}»` or `«{g}»`."
+msgstr ""
+
+#: Game.Levels.DemoWorld.L03_test
+msgid "You should use `«{h}»` now."
+msgstr ""
+
+#: Game.Levels.DemoWorld.L03_test
+msgid "Test"
+msgstr ""
+
+#: Game.Levels.DemoWorld.L03_test
+msgid "You should use `«{g}»` now."
+msgstr ""
+
+#: Game.Levels.DemoWorld.L03_test
+msgid "This last message appears if the level is solved."
+msgstr ""
+
 #: Game.Levels.DemoWorld
 msgid "Demo World"
 msgstr ""
 
 #: Game.Levels.DemoWorld
 msgid "This introduction is shown before one enters level 1 of the demo world. Use markdown."
+msgstr ""
+
+#: Game.Levels.Derivative.L01_Intro
+msgid "Introduction to Derivative"
+msgstr ""
+
+#: Game.Levels.Derivative.L01_Intro
+msgid "Differentiation of the identity map on ℝ is a known result in Mathlib4, so you can take advantage of this lemma, which is called `deriv_id''`. Besure to check its statement in the right panel. Use tatic `rw` to rewrite the goal or `apply` to apply the lemma."
+msgstr ""
+
+#: Game.Levels.Derivative.L01_Intro
+msgid "The derivative of Identity function $f(x) = x$ on ℝ is $1$"
+msgstr ""
+
+#: Game.Levels.Derivative.L02_Simple
+msgid "A Simple Example"
+msgstr ""
+
+#: Game.Levels.Derivative.L02_Simple
+msgid "Rewrite `deriv_add` to distribute the derivation. Note that you will need to show the differentiability for each add-term to make this lemma work."
+msgstr ""
+
+#: Game.Levels.Derivative.L02_Simple
+msgid "Here you need to deal with differentiability for $f(x)=x$. This is an identity map, use `differentiableAt_id'`. Please use tactic `exact` when give the lemma is exactly the proposed goal."
+msgstr ""
+
+#: Game.Levels.Derivative.L02_Simple
+msgid "Here you need to prove the differentiability for $f(x)=1$. This is a constant map, use `differentiableAt_const`. Don't forget to pass the constant as a parameter."
+msgstr ""
+
+#: Game.Levels.Derivative.L02_Simple
+msgid "You can try to differentiate either term «{x}» or term 1, respectly by `deriv_id''` or `deriv_const`."
+msgstr ""
+
+#: Game.Levels.Derivative.L02_Simple
+msgid "Rewrite to differentiate term 1 now."
+msgstr ""
+
+#: Game.Levels.Derivative.L02_Simple
+msgid "Use tactic `dsimp` to make it friendly."
+msgstr ""
+
+#: Game.Levels.Derivative.L02_Simple
+msgid "Rewrite `add_zero` to simplify «{x}» + 0."
+msgstr ""
+
+#: Game.Levels.Derivative.L02_Simple
+msgid "Rewrite to differentiate term «{x}» now."
+msgstr ""
+
+#: Game.Levels.Derivative.L02_Simple
+msgid "Rewrite an expression"
+msgstr ""
+
+#: Game.Levels.Derivative.L02_Simple
+msgid "Simplify a formula by definition"
+msgstr ""
+
+#: Game.Levels.Derivative.L02_Simple
+msgid "For any real number $x$, we have $x + 0 = x$"
+msgstr ""
+
+#: Game.Levels.Derivative.L02_Simple
+msgid "Identity map is always differentiable"
+msgstr ""
+
+#: Game.Levels.Derivative.L02_Simple
+msgid "Constant map is always differentiable"
+msgstr ""
+
+#: Game.Levels.Derivative.L02_Simple
+msgid "If map $f$ and $g$ are differentiable, then $(f + g)' = f' + g'$"
+msgstr ""
+
+#: Game.Levels.Derivative.L02_Simple
+msgid "$x' = 1$"
+msgstr ""
+
+#: Game.Levels.Derivative.L02_Simple
+msgid "For any constant $c$, $c' = 0$"
+msgstr ""
+
+#: Game.Levels.Derivative.L03_Square
+msgid "Differente Square"
+msgstr ""
+
+#: Game.Levels.Derivative.L03_Square
+msgid "Rewrite the formula using a combination of `derive_add` `derive_pow'` `derive_mul` `derive_mul`, `derive_id`, `derive_const`. You are now recommended to use `simp` to close the goal."
+msgstr ""
+
+#: Game.Levels.Derivative.L03_Square
+msgid "Now show all the differentiability conditions required by previous proof steps."
+msgstr ""
+
+#: Game.Levels.Derivative.L03_Square
+msgid ""
+msgstr ""
+
+#: Game.Levels.Derivative.L03_Square
+msgid ""
+msgstr ""
+
+#: Game.Levels.Derivative.L03_Square
+msgid ""
+msgstr ""
+
+#: Game.Levels.Derivative.L03_Square
+msgid ""
+msgstr ""
+
+#: Game.Levels.Derivative.L03_Square
+msgid ""
+msgstr ""
+
+#: Game.Levels.Derivative
+msgid "Derivative"
+msgstr ""
+
+#: Game.Levels.Derivative
+msgid "In this world, we will introduce how to prove simple results of derivative using Lean 4"
 msgstr ""
 
 #: Game
