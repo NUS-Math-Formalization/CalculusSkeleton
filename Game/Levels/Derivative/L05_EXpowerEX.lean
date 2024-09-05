@@ -13,7 +13,7 @@ Statement (x : ℝ) : deriv (fun x => Real.exp x ^ Real.exp x) (x : ℝ)
   = (Real.exp (x + x * Real.exp x)) * (x + 1) := by
   simp_rw [← Real.exp_mul]
   set g := fun x => x * Real.exp x
-  have : (fun x => Real.exp (x * Real.exp x)) = fun x => (Real.exp ∘ g) x := rfl
+  have : (fun x => Real.exp (x * Real.exp x)) = Real.exp ∘ g := rfl
   rw [this]
   rw [deriv.comp]
   rw [Real.deriv_exp]
