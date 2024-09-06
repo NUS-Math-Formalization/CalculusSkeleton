@@ -3,83 +3,133 @@ import Mathlib.Topology.Instances.ENNReal
 -- import Mathlib.Algebra.Order.Group.Abs
 -- import Mathlib.Order.Filter.Basic
 import Mathlib.Data.ENNReal.Basic
+import Mathlib.Logic.Basic
 open Filter Set
-
-example : Filter.Tendsto (fun (x : ENNReal) => 2 * x) (nhds 0) (nhds 0) := by
-  rw [ENNReal.tendsto_nhds_zero]
-  intro ε hε
-  rw [eventually_nhds_iff]
-  use Set.Ico 0 (ε/2)
-  constructor;
-  · simp; intro x hx;
-    calc
-      2 * x ≤ 2 * ε/2 := by
-        rw [mul_div_assoc]
-        rw [ENNReal.mul_le_mul_left];
-        · exact le_of_lt hx
-        simp; simp
-      _ = ε := by 
-        rw [mul_comm, ENNReal.mul_div_right_comm, ENNReal.div_mul_cancel]; 
-        simp; simp;
-  
-  . constructor
-    · exact ENNReal.isOpen_Ico_zero
-    · rw [Set.left_mem_Ico];
-      simp; 
-      exact ne_of_gt hε.gt
-
--- open Batteries.ExtendedBinder Lean Meta
-
-def limit (c : ℝ) (f : ℝ → ℝ) : Option EReal := sorry
-
-
-syntax (name := limit') "lim " term:40 " → " term:10 ", " term:70 " = " term:12 : term
-macro_rules (kind := limit')
-  | `(lim $x → $c, $r = $L) => `(Tendsto (fun ($x : ℝ) => ($r : ℝ)) (nhds $c) (nhds $L))
-
-
--- #check lim x → 0, (x + 1) = 1
-
-
-def HasLimit (f : ℝ → ℝ) (c L : ℝ) := Tendsto f (nhds c) (nhds L) 
-
 open Classical
-noncomputable def limit'' (f : ℝ → ℝ) (c : ℝ) : ℝ :=
-  if h : ∃ L, HasLimit f c L then Classical.choose h else 0
 
-lemma epsilon_delta_nhds_nhds (f : ℝ → ℝ) (c L : ℝ) : 
-  Tendsto f (nhds c) (nhds L) ↔ 
+
+noncomputable section LimDef
+
+def HasLimAt (f : ℝ → ℝ) (c : ℝ) := ∃ l₂, Tendsto f (nhds c) l₂
+
+def HasLimAtTop (f : ℝ → ℝ) := ∃ l₂, Tendsto f atTop l₂
+
+irreducible_def flim (f : ℝ → ℝ) (l₁ : Filter ℝ) : ℝ :=
+  if h : ∃ L, Tendsto f l₁ (nhds L) then h.choose else 0
+
+-- irreducible_def flim
+syntax "lim " term:40 " → " term:10 ", " term:70: term
+syntax "lim " term:40 " → ∞, " term:70: term
+syntax "lim " term:40 " → " term:10 ", " term:70 " = ∞": term
+syntax "lim " term:40 " → ∞, " term:70 " = ∞": term
+
+macro_rules
+  | `(lim $x → ∞, $r = ∞) => `(Tendsto (fun $x => $r) atTop atTop)
+  | `(lim $x → $c, $r) => `(flim (fun $x => $r) (nhds $c))
+  | `(lim $x → ∞, $r) =>  `(flim (fun $x => $r) atTop)
+  | `(lim $x → $c, $r = ∞) => `(Tendsto (fun $x => $r) (nhds $c) atTop)
+
+
+variable {c L : ℝ} {f : ℝ → ℝ}
+
+lemma epsilon_delta_nhds_nhds : Tendsto f (nhds c) (nhds L) ↔ 
   ∀ ε > 0, ∃ δ > 0, ∀ x, |x - c| < δ → |f x - L| < ε := by
   have NHB := nhds_basis_abs_sub_lt (α := ℝ)
   simp_rw [HasBasis.tendsto_iff (NHB c) (NHB L), mem_setOf_eq]
 
 
-lemma epsilon_delta_atTop_nhds (f : ℝ → ℝ) (L : ℝ) :
-  Tendsto f atTop (nhds L) ↔
+lemma lim_def_fin_fin (h : ∀ ε > 0, ∃ δ > 0, ∀ x, |x - c| < δ → |f x - L| < ε) :
+  lim x → c, f x = L := by
+  rw [← epsilon_delta_nhds_nhds] at h
+  have hL : ∃ L, Tendsto f (nhds c) (nhds L) := ⟨L, h⟩
+  rw [flim, dif_pos hL]
+  exact tendsto_nhds_unique hL.choose_spec h
+
+
+lemma epsilon_delta_atTop_nhds : Tendsto f atTop (nhds L) ↔
   ∀ ε > 0, ∃ N, ∀ x, x > N → |f x - L| < ε := by
   have THB := atTop_basis_Ioi (α := ℝ)
   have NHB := nhds_basis_abs_sub_lt (α := ℝ)
   simp_rw [HasBasis.tendsto_iff THB (NHB L), mem_Ioi, true_and, mem_setOf_eq]
 
 
-lemma epsilon_delta_nhds_atTop (f : ℝ → ℝ) (c : ℝ) :
-  Filter.Tendsto f (nhds c) atTop ↔ 
+lemma lim_def_inf_fin (h : ∀ ε > 0, ∃ N, ∀ x, x > N → |f x - L| < ε) :
+  lim x → ∞, f x = L := by
+  rw [← epsilon_delta_atTop_nhds] at h
+  have hL : ∃ L, Tendsto f atTop (nhds L) := ⟨L, h⟩
+  rw [flim, dif_pos hL]
+  exact tendsto_nhds_unique hL.choose_spec h
+
+
+lemma epsilon_delta_nhds_atTop : Tendsto f (nhds c) atTop ↔ 
   ∀ N : ℝ, ∃ δ > 0, ∀ x, |x - c| < δ → f x > N := by
   have THB := atTop_basis_Ioi (α := ℝ)
   have NHB := nhds_basis_abs_sub_lt (α := ℝ)
   simp_rw [HasBasis.tendsto_iff (NHB c) THB, mem_setOf, forall_true_left, mem_Ioi]
 
 
-lemma epsilon_delta_atTop_atTop (f : ℝ → ℝ) :
-  Filter.Tendsto f atTop atTop ↔
+lemma lim_def_fin_inf (h : ∀ N : ℝ, ∃ δ > 0, ∀ x, |x - c| < δ → f x > N ) :
+  lim x → c, f x = ∞ := epsilon_delta_nhds_atTop.mpr h
+
+
+lemma epsilon_delta_atTop_atTop : Tendsto f atTop atTop ↔
   ∀ N : ℝ, ∃ M, ∀ x, x > M → f x > N := by
   have THB := atTop_basis_Ioi (α := ℝ)
   simp_rw [HasBasis.tendsto_iff THB THB, true_and, forall_true_left, mem_Ioi]
 
 
+lemma lim_def_inf_inf (h : ∀ N : ℝ, ∃ M, ∀ x, x > M → f x > N) :
+  lim x → ∞, f x = ∞ := epsilon_delta_atTop_atTop.mpr h
+
+
+end LimDef
+
+variable {f f₁ f₂ : ℝ → ℝ}
+
+lemma HasLimAt_const (d : ℝ) : HasLimAt (fun x => d) c := sorry
+
+lemma HasLimAt_id : HasLimAt (fun x => x) c := sorry
+
+lemma HasLimAt_add (h₁ : HasLimAt f₁ c) (h₂ : HasLimAt f₂ c) :
+  HasLimAt (fun x => f₁ x + f₂ x) c := sorry
+
+lemma HasLimAt_mul (h₁ : HasLimAt f₁ c) (h₂ : HasLimAt f₂ c) : 
+  HasLimAt (fun x => f₁ x * f₂ x) c := sorry
+
+lemma HasLimAt_pow (k : ℕ) (h : HasLimAt f c) : HasLimAt (fun x => (f₁ x) ^ k) c := sorry
+
+lemma HasLimAt_mul_const (m : ℝ) (h : HasLimAt f c) : 
+  HasLimAt (fun x => m * x) c := sorry
+
+-- lemma HasLimAt_const : (HasLimAt)
+lemma lim_const (d : ℝ) : lim x → c, d = d := by sorry
+
+lemma lim_mul_const (m : ℝ) (h : HasLimAt f c) : 
+  lim x → c, m * f x = m * lim x → c, f x := sorry
+
+lemma lim_id : lim x → c, x = c := by sorry
+
+lemma lim_add (h₁ : HasLimAt f₁ c) (h₂ : HasLimAt f₂ c) : 
+  lim x → c, (f₁ x + f₂ x) = lim x → c, f₁ x + lim x → c, f₂ x := by sorry
+
+lemma lim_sub (h₁ : HasLimAt f₁ c) (h₂ : HasLimAt f₂ c) : 
+  lim x → c, (f₁ x - f₂ x) = lim x → c, f₁ x - lim x → c, f₂ x := by sorry
+
+lemma lim_div (h₁ : HasLimAt f₁ c) (h₂ : HasLimAt f₂ c) 
+  (h₀ : lim x → c, f₂ x ≠ 0) : 
+  lim x → c, (f₁ x + f₂ x) = lim x → c, f₁ x + lim x → c, f₂ x := by sorry
+
+lemma lim_mul (h₁ : HasLimAt f₁ c) (h₂ : HasLimAt f₂ c) : 
+  lim x → c, (f₁ x + f₂ x) = lim x → c, f₁ x + lim x → c, f₂ x := by sorry
+
+lemma lim_pow (k : ℕ) (h : HasLimAt f c) : 
+  lim x → c, (f x) ^ k = (lim x → c, f x) ^ k := by sorry
+
+
 /-- Notation rewrite -/
 example : lim x → 0, 2 * x = 0 := by
-  simp [epsilon_delta_nhds_nhds]
+  apply lim_def_fin_fin
+  simp
   intro ε hε
   use ε / 2
   constructor;
@@ -89,4 +139,19 @@ example : lim x → 0, 2 * x = 0 := by
       _ = 2 * |x| := by rw [abs_mul, abs_two]
       _ < ε := by linarith 
 
-
+/-- Computational proof -/
+example : lim x → 0, (x ^ 2 + 3 * x + 1) = 1 := by
+  rw [lim_add, lim_add, lim_pow 2, lim_id, lim_mul_const 3, lim_id, lim_const]
+  group
+  pick_goal 5
+  apply HasLimAt_add
+  apply HasLimAt_pow (f := fun x => x) 2
+  pick_goal 2
+  apply HasLimAt_mul_const (f := fun x => x)
+  pick_goal 5
+  apply HasLimAt_pow (f := fun x => x) 2
+  pick_goal 6
+  apply HasLimAt_mul_const (f := fun x => x)
+  pick_goal 7
+  exact HasLimAt_const 1
+  all_goals exact HasLimAt_id  
