@@ -9,6 +9,12 @@ Level 5
 
 Title "exp to the exp"
 
+-- the following are proven in level 4, so this level is just an application of chain rule
+lemma deriv_xexpx (x : ℝ) :
+  deriv (fun x => x * Real.exp x) (x : ℝ) = (x + 1) * Real.exp x := by sorry
+
+lemma xexpx_differentiable (x : ℝ) : DifferentiableAt ℝ (fun x => x * Real.exp x) x := by sorry
+
 Statement (x : ℝ) : deriv (fun x => Real.exp x ^ Real.exp x) (x : ℝ)
   = (Real.exp (x + x * Real.exp x)) * (x + 1) := by
   simp_rw [← Real.exp_mul]
@@ -17,30 +23,13 @@ Statement (x : ℝ) : deriv (fun x => Real.exp x ^ Real.exp x) (x : ℝ)
   rw [this]
   rw [deriv.comp]
   rw [Real.deriv_exp]
-  rw [deriv_mul]
-  rw [deriv_id'']
-  rw [one_mul]
-  rw [deriv_exp]
-  rw [deriv_id'']
-  rw [mul_one]
+  rw [deriv_xexpx]
+  rw [mul_comm (x + 1) (Real.exp x)]
+  rw [← mul_assoc]
+  rw [mul_comm (Real.exp (g x))]
   rw [Real.exp_add]
-  rw [Real.exp_mul]
-  rw [mul_add, mul_add]
-  rw [add_comm]
-  congr 1
-  rw [mul_comm]
-  nth_rw 3 [mul_comm]
-  rw [mul_assoc]
-  rw [mul_one]
-  rw [mul_comm]
-  exact differentiableAt_id'
-  exact differentiableAt_id'
-  exact Real.differentiableAt_exp
-  exact Real.differentiableAt_exp
-  apply DifferentiableAt.mul
-  exact differentiableAt_id'
-  exact Real.differentiableAt_exp
 
-NewTactic nth_rw congr
+  exact Real.differentiableAt_exp
+  exact xexpx_differentiable x
 
 -- add the theorems later
