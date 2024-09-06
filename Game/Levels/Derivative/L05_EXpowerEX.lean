@@ -17,6 +17,7 @@ lemma xexpx_differentiable (x : ℝ) : DifferentiableAt ℝ (fun x => x * Real.e
 
 Statement (x : ℝ) : deriv (fun x => Real.exp x ^ Real.exp x) (x : ℝ)
   = (Real.exp (x + x * Real.exp x)) * (x + 1) := by
+  -- need some hints to guide students to define g and prove a lemma as follows.
   simp_rw [← Real.exp_mul]
   set g := fun x => x * Real.exp x
   have : (fun x => Real.exp (x * Real.exp x)) = Real.exp ∘ g := rfl
@@ -32,4 +33,17 @@ Statement (x : ℝ) : deriv (fun x => Real.exp x ^ Real.exp x) (x : ℝ)
   exact Real.differentiableAt_exp
   exact xexpx_differentiable x
 
--- add the theorems later
+
+/-- The function $f(x) = xe^x$ is differentiable everywhere on $ℝ$ -/
+TheoremDoc xexpx_differentiable as "xexpx_differentiable" in "Derivative"
+
+/-- $(xe^x)'=(x + 1)e^x$ -/
+TheoremDoc deriv_xexpx as "deriv_xexpx" in "Derivative"
+
+/-- Chain Rule: $(f ∘ g)'(x)=f'(g(x))g'(x)$ -/
+TheoremDoc deriv.comp as "deriv.comp" in "Derivative"
+
+-- for some reasons i cannot put have as a new tactic lul
+NewTactic set rfl
+
+NewTheorem xexpx_differentiable deriv_xexpx deriv.comp
