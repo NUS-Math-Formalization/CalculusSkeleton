@@ -2,6 +2,7 @@ msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
 <<<<<<< HEAD
+<<<<<<< HEAD
 "POT-Creation-Date: Sat Aug 31 22:45:28 2024\n"
 =======
 <<<<<<< HEAD
@@ -10,6 +11,9 @@ msgstr "Project-Id-Version: Game v4.7.0\n"
 "POT-Creation-Date: Fri Aug 23 16:34:32 2024\n"
 >>>>>>> c3aedc8 (initial commit)
 >>>>>>> 2f71c32 (update .gitignore)
+=======
+"POT-Creation-Date: Tue Sep 10 13:56:37 2024\n"
+>>>>>>> 112e5cb (update limit)
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
