@@ -1,4 +1,7 @@
 import Game.Levels.Limit.Basic
+import Game.Levels.Limit.Inequalities
+
+open Real
 
 section Computation
 
@@ -7,6 +10,7 @@ variable {f f₁ f₂ : ℝ → ℝ}
 lemma HasLimAt_const (d : ℝ) : HasLimAt (fun x => d) c := sorry
 
 lemma HasLimAt_id : HasLimAt (fun x => x) c := sorry
+
 
 lemma HasLimAt_add (h₁ : HasLimAt f₁ c) (h₂ : HasLimAt f₂ c) :
   HasLimAt (fun x => f₁ x + f₂ x) c := sorry
@@ -43,3 +47,15 @@ lemma lim_pow (k : ℕ) (h : HasLimAt f c) :
   lim x → c, (f x) ^ k = (lim x → c, f x) ^ k := by sorry
 
 end Computation
+
+section L02_Consequence
+
+lemma HasLimAt_two_mul_zero : HasLimAt (fun x => 2 * x) 0 := sorry
+
+lemma HasLimAt_sin_zero : HasLimAt sin 0 := sorry
+
+lemma lim_sin_zero : lim x → 0, sin x = 0 := sorry
+
+lemma lim_two_mul_zero : lim x → 0, 2 * x = 0 := sorry
+
+section L02_Consequence
