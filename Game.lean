@@ -1,6 +1,6 @@
-import Game.Levels.DemoWorld
+-- import Game.Levels.DemoWorld
 import Game.Levels.Derivative
-
+import Game.Levels.Limit
 -- Here's what we'll put on the title screen
 Title "Calculus Game"
 Introduction
