@@ -12,4 +12,4 @@ Level 10
 
 Title "TBA"
 
--- The derivative of frac{(x-1)^4}{(x^2 +2x)^5}
+-- The derivative of frac{1}{(x+1/x)^2}
