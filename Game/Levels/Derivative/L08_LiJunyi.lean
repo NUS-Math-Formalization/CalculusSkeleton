@@ -11,3 +11,5 @@ World "Derivative"
 Level 8
 
 Title "TBA"
+
+-- The derivative of frac {x^3 + x}{x^4 -2}
