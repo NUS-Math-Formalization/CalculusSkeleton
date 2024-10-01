@@ -13,7 +13,7 @@ def my_differentiable (f : ℝ → ℝ) (c : ℝ) := HasLimAt (fun x => (f x - f
 
 variable {c y y1 y2 : ℝ} {f g : ℝ → ℝ}
 
-lemma add_func : (fun x => (f x - f c) / (x - c) + (g x - g c) / (x - c))
+private lemma add_pre : (fun x => (f x - f c) / (x - c) + (g x - g c) / (x - c))
   = (fun x => ((f + g) x - (f + g) c) / (x - c)) := by
   funext
   simp only [Pi.add_apply]
@@ -24,7 +24,7 @@ lemma add_func : (fun x => (f x - f c) / (x - c) + (g x - g c) / (x - c))
 lemma my_differentiable_add (hf : my_differentiable f c) (hg : my_differentiable g c) :
   my_differentiable (f + g) c := by
   rw [my_differentiable] at *
-  rw [← add_func]
+  rw [← add_pre]
   apply HasLimAt_add
   exact hf; exact hg
 
@@ -37,7 +37,7 @@ lemma my_deriv_add (hf : my_differentiable f c) (hg : my_differentiable g c) :
   rcases hfg with ⟨l12, hfg⟩
   rw [epsilon_delta_nhds_nhds_deleted] at *
   repeat rw [my_deriv]
-  rw [← add_func, lim_add]
+  rw [← add_pre, lim_add]
   rw [HasLimAt]
   use l1
   rw [epsilon_delta_nhds_nhds_deleted]
