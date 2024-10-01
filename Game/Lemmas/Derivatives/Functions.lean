@@ -5,20 +5,29 @@ import Game.Lemmas.Derivatives.Basic
 -- prove derivatives of different functions here...
 -- polynomial, exp, ln, trig, inverse trig. that's all :)
 
-lemma my_has_deriv_id (c : ℝ) : my_has_deriv (fun x => x) c 1 := by
-  rw [my_has_deriv]
-  set f := fun (x : ℝ) => (x - c) / (x - c)
-  set g := fun (_ : ℝ) => (1 : ℝ)
-  apply my_limit_replacement_rule_deleted f g
-  . exact tendsto_const_nhds
-  . use 1
-    constructor
-    . norm_num
-    . intro x hx
-      rcases hx with ⟨hx0, _⟩
-      apply div_self
-      exact abs_pos.mp hx0
+variable {c : ℝ}
 
-lemma my_deriv_id (c : ℝ) : my_deriv (fun x => x) c = 1 := by
-  apply my_deriv_eq (fun x => x) c 1
-  exact my_has_deriv_id c
+private lemma id_pre : ∃ δ > 0, ∀ (x : ℝ), 0 < |x - c| ∧ |x - c| < δ → (x - c) / (x - c) = 1 := by
+  use 1
+  constructor
+  . norm_num
+  . intro x h
+    apply div_self
+    exact abs_pos.mp h.left
+
+lemma my_differentiable_id : my_differentiable (fun x => x) c := by
+  rw [my_differentiable]
+  set f := fun x => (x - c) / (x - c)
+  set g := fun (_ : ℝ) => (1 : ℝ)
+  have l1 : HasLimAt g c := HasLimAt_const 1
+  apply HasLimAt_replacement_rule l1
+  exact id_pre
+
+lemma my_deriv_id : my_deriv (fun x => x) c = 1 := by
+  rw [my_deriv]
+  set f := fun x => (x - c) / (x - c)
+  set g := fun (_ : ℝ) => (1 : ℝ)
+  have l1 : HasLimAt g c := HasLimAt_const 1
+  rw [lim_replacement_rule_fin_fin l1]
+  . exact lim_const 1
+  . exact id_pre
