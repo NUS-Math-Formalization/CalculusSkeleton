@@ -3,6 +3,7 @@ import Game.Lemmas.Limits.LimitLaws
 import Game.Lemmas.Derivatives.Basic
 
 -- prove derivatives of different functions here...
+-- polynomial, exp, ln, trig, inverse trig. that's all :)
 
 lemma my_has_deriv_id (c : ℝ) : my_has_deriv (fun x => x) c 1 := by
   rw [my_has_deriv]

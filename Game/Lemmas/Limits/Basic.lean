@@ -49,6 +49,8 @@ lemma my_limit_atTop_unique (f : ℝ → ℝ) (c L M : ℝ) (hL: Tendsto f atTop
 
 -- etc...
 
+
+-- equivalence between epsilon delta definition and filter definition
 lemma epsilon_delta_nhds_nhds_deleted (f : ℝ → ℝ) (c L : ℝ) :
   Tendsto f (nhdsWithin c {c}ᶜ) (nhds L) ↔
   ∀ ε > 0, ∃ δ > 0, ∀ x, 0 < |x - c| ∧ |x - c| < δ → |f x - L| < ε := by
@@ -78,3 +80,9 @@ lemma epsilon_delta_atTop_atTop (f : ℝ → ℝ) :
   ∀ N : ℝ, ∃ M, ∀ x, x > M → f x > N := by
   have THB := atTop_basis_Ioi (α := ℝ)
   simp_rw [HasBasis.tendsto_iff THB THB, true_and, forall_true_left, mem_Ioi]
+
+
+-- there's still one-sided limits to handle lol
+-- use the following notations, again need punctured neighbourhoods
+-- `𝓝[<] x`: the filter `nhdsWithin x (Set.Iio x)` of punctured left-neighborhoods of `x`;
+-- `𝓝[>] x`: the filter `nhdsWithin x (Set.Ioi x)` of punctured right-neighborhoods of `x`;

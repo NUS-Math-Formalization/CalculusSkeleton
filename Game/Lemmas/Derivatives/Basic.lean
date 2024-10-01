@@ -47,4 +47,16 @@ lemma my_deriv_add (f g : ℝ → ℝ) {c : ℝ} (hf : my_differentiable f c)
   set y1 := my_deriv f c
   set y2 := my_deriv g c
   apply my_deriv_eq
-  sorry
+  rw [my_differentiable] at *
+  have l1 : my_has_deriv f c y1 := by
+    rcases hf with ⟨y1', _⟩
+    have : y1 = y1' := my_deriv_eq f c y1' h
+    rw [this]; exact h
+  have l2 : my_has_deriv g c y2 := by
+    rcases hg with ⟨y2', _⟩
+    have : y2 = y2' := my_deriv_eq g c y2' h
+    rw [this]; exact h
+  apply my_has_deriv_add
+  exact l1; exact l2
+
+  -- etc... sub, scalar mult, product rule, quotient rule, chain rule, inverse rule
