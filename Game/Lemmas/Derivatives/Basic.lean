@@ -13,6 +13,8 @@ def my_differentiable (f : ℝ → ℝ) (c : ℝ) := HasLimAt (fun x => (f x - f
 
 variable {c y y1 y2 : ℝ} {f g : ℝ → ℝ}
 
+-- smth smth 'left' and 'right' differentiability
+
 private lemma add_pre : (fun x => (f x - f c) / (x - c) + (g x - g c) / (x - c))
   = (fun x => ((f + g) x - (f + g) c) / (x - c)) := by
   funext
