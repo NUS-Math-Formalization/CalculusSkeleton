@@ -42,7 +42,6 @@ macro_rules
   | `(lim $x → $c⁺ , $r = ∞) => `(Tendsto (fun $x => $r) (nhdsWithin $c (Set.Ioi $c)) atTop)
 
 
-
 variable {c L : ℝ} {f : ℝ → ℝ}
 
 lemma nhds_basis_abs_sub_lt_deleted (a : ℝ) :
@@ -57,25 +56,6 @@ lemma nhds_basis_abs_sub_lt_deleted (a : ℝ) :
     exact sub_ne_zero
   rw [this]
   apply nhdsWithin_hasBasis (nhds_basis_abs_sub_lt (α := ℝ) a) ({a}ᶜ)
-
--- uhh idk how to prove this :(
-lemma nhds_basis_left (a : ℝ) :
-  (nhdsWithin a (Set.Iio a)).HasBasis (fun ε : ℝ => 0 < ε) fun ε => { b | 0 < a - b ∧ a - b < ε }
-  := by
-  have : (fun ε => { b | 0 < a - b ∧ a - b < ε }) = (fun ε => Set.Ioo (a - ε) a) := by
-    funext ε; ext x
-    simp only [sub_pos, mem_setOf_eq, mem_Ioo]
-    rw [and_comm]
-    simp only [and_congr_left_iff]
-    intro
-    exact sub_lt_comm
-  rw [this]
-  have ord : ∃ b, b < a := by use (a - 1); norm_num
-  have : (HasBasis (nhdsWithin a (Iio a)) (fun x => x < a) fun x => Ioo x a) ↔
-    HasBasis (nhdsWithin a (Iio a)) (fun ε => 0 < ε) fun ε => Ioo (a - ε) a := by
-    sorry
-  rw [← this]
-  apply nhdsWithin_Iio_basis' (α := ℝ) ord
 
 
 lemma epsilon_delta_nhds_nhds_deleted : Tendsto f (nhdsWithin c {c}ᶜ) (nhds L) ↔
@@ -118,14 +98,6 @@ lemma epsilon_delta_nhds_nhds_left : Tendsto f (nhdsWithin c (Set.Iio c)) (nhds 
     . intro u u₁ u₂
       apply δh; linarith; linarith
 
-/--
-lemma epsilon_delta_nhds_nhds_left' (f : ℝ → ℝ) (c L : ℝ) :
-  Tendsto f (nhdsWithin c (Set.Iio c)) (nhds L) ↔
-  ∀ ε > 0, ∃ δ > 0, ∀ x, 0 < c - x ∧ c - x < δ → |f x - L| < ε := by
-  have NHBL := nhds_basis_left c
-  have NHB := nhds_basis_abs_sub_lt (α := ℝ)
-  simp_rw [HasBasis.tendsto_iff (NHBL) (NHB L), mem_setOf_eq]
--/
 
 lemma left_lim_def_fin_fin (h : ∀ ε > 0, ∃ δ > 0, ∀ x, 0 < c - x ∧ c - x < δ → |f x - L| < ε) :
   lim x → c⁻ , f x = L := by
