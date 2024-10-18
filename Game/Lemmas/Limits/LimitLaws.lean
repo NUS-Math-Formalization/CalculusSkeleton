@@ -88,7 +88,7 @@ lemma left_lim_eq_right_lim (h₁ : HasLeftLimAt f c) (h₂ : HasRightLimAt f c)
 
 -- one direction is similar to above, the other direction is easy.
 lemma left_lim_eq_right_lim' (h₁ : HasLeftLimAt f c) (h₂ : HasRightLimAt f c) (h₃ : HasLimAt f c):
-  (lim x → c⁻, f x = L ∧ lim x → c⁺, f x = L) ↔ lim x → c , f x = L := by sorry
+  (lim x → c⁻, f x = L ∧ lim x → c⁺, f x = L) ↔ lim x → c, f x = L := by sorry
 
 
 -- then subsequently we can just prove the one-sided version to imply the two-sided version
