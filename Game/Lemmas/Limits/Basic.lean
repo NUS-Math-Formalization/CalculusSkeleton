@@ -26,20 +26,20 @@ syntax "lim " term:40 " → " term:10 ", " term:70: term
 syntax "lim " term:40 " → ∞, " term:70: term
 syntax "lim " term:40 " → " term:10 ", " term:70 " = ∞": term
 syntax "lim " term:40 " → ∞, " term:70 " = ∞": term
-syntax "lim " term:40 " → " term:10 "⁺ , " term:70: term
-syntax "lim " term:40 " → " term:10 "⁻ , " term:70: term
-syntax "lim " term:40 " → " term:10 "⁺ , " term:70 " = ∞": term
-syntax "lim " term:40 " → " term:10 "⁻ , " term:70 " = ∞": term
+syntax "lim " term:40 " → " term:10 "⁺, " term:70: term
+syntax "lim " term:40 " → " term:10 "⁻, " term:70: term
+syntax "lim " term:40 " → " term:10 "⁺, " term:70 " = ∞": term
+syntax "lim " term:40 " → " term:10 "⁻, " term:70 " = ∞": term
 
 macro_rules
   | `(lim $x → ∞, $r = ∞) => `(Tendsto (fun $x => $r) atTop atTop)
   | `(lim $x → $c, $r) => `(flim (fun $x => $r) (nhdsWithin $c {($c)}ᶜ))
   | `(lim $x → ∞, $r) =>  `(flim (fun $x => $r) atTop)
   | `(lim $x → $c, $r = ∞) => `(Tendsto (fun $x => $r) (nhdsWithin $c {($c)}ᶜ) atTop)
-  | `(lim $x → $c⁺ , $r) => `(flim (fun $x => $r) (nhdsWithin $c (Set.Ioi $c)))
-  | `(lim $x → $c⁻ , $r) => `(flim (fun $x => $r) (nhdsWithin $c (Set.Iio $c)))
-  | `(lim $x → $c⁻ , $r = ∞) => `(Tendsto (fun $x => $r) (nhdsWithin $c (Set.Iio $c)) atTop)
-  | `(lim $x → $c⁺ , $r = ∞) => `(Tendsto (fun $x => $r) (nhdsWithin $c (Set.Ioi $c)) atTop)
+  | `(lim $x → $c⁺, $r) => `(flim (fun $x => $r) (nhdsWithin $c (Set.Ioi $c)))
+  | `(lim $x → $c⁻, $r) => `(flim (fun $x => $r) (nhdsWithin $c (Set.Iio $c)))
+  | `(lim $x → $c⁻, $r = ∞) => `(Tendsto (fun $x => $r) (nhdsWithin $c (Set.Iio $c)) atTop)
+  | `(lim $x → $c⁺, $r = ∞) => `(Tendsto (fun $x => $r) (nhdsWithin $c (Set.Ioi $c)) atTop)
 
 
 variable {c L : ℝ} {f : ℝ → ℝ}
@@ -100,7 +100,7 @@ lemma epsilon_delta_nhds_nhds_left : Tendsto f (nhdsWithin c (Set.Iio c)) (nhds 
 
 
 lemma left_lim_def_fin_fin (h : ∀ ε > 0, ∃ δ > 0, ∀ x, 0 < c - x ∧ c - x < δ → |f x - L| < ε) :
-  lim x → c⁻ , f x = L := by
+  lim x → c⁻, f x = L := by
   rw [← epsilon_delta_nhds_nhds_left] at h
   have hL : ∃ L, Tendsto f (nhdsWithin c (Set.Iio c)) (nhds L) := ⟨L, h⟩
   rw [flim, dif_pos hL]
@@ -112,7 +112,7 @@ lemma epsilon_delta_nhds_nhds_right : Tendsto f (nhdsWithin c (Set.Ioi c)) (nhds
 
 
 lemma right_lim_def_fin_fin (h : ∀ ε > 0, ∃ δ > 0, ∀ x, 0 < x - c ∧ x - c < δ → |f x - L| < ε) :
-  lim x → c⁺ , f x = L := by sorry
+  lim x → c⁺, f x = L := by sorry
 
 
 lemma epsilon_delta_atTop_nhds : Tendsto f atTop (nhds L) ↔
@@ -144,9 +144,9 @@ lemma lim_def_fin_inf (h : ∀ N : ℝ, ∃ δ > 0, ∀ x, 0 < |x - c| ∧ |x - 
 lemma epsilon_delta_nhds_atTop_left : Tendsto f (nhdsWithin c (Set.Iio c)) atTop ↔
   ∀ N : ℝ, ∃ δ > 0, ∀ x, 0 < c - x ∧ c - x < δ → f x > N := by sorry
 
-
+-- Clarence: I think this should be flipped and iff'ed
 lemma left_lim_def_fin_inf (h : ∀ N : ℝ, ∃ δ > 0, ∀ x, 0 < c - x ∧ c - x < δ → f x > N) :
-  lim x → c⁻ , f x = ∞ := by sorry
+  lim x → c⁻, f x = ∞ := by sorry
 
 
 lemma epsilon_delta_nhds_atTop_right : Tendsto f (nhdsWithin c (Set.Ioi c)) atTop ↔
@@ -154,7 +154,7 @@ lemma epsilon_delta_nhds_atTop_right : Tendsto f (nhdsWithin c (Set.Ioi c)) atTo
 
 
 lemma right_lim_def_fin_inf (h : ∀ N : ℝ, ∃ δ > 0, ∀ x, 0 < x - c ∧ x - c < δ → f x > N) :
-  lim x → c⁺ , f x = ∞ := by sorry
+  lim x → c⁺, f x = ∞ := by sorry
 
 
 lemma epsilon_delta_atTop_atTop : Tendsto f atTop atTop ↔
