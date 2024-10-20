@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Sat Aug 31 22:45:28 2024\n"
+"POT-Creation-Date: Fri Oct 18 16:58:17 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -18,100 +18,6 @@ msgstr ""
 
 #: GameServer.RpcHandlers
 msgid "intermediate goal solved! 🎉"
-msgstr ""
-
-#: Game.Levels.DemoWorld.L01_HelloWorld
-msgid "Hello World"
-msgstr ""
-
-#: Game.Levels.DemoWorld.L01_HelloWorld
-msgid "This text is shown as first message when the level is played.\n"
-"You can insert hints in the proof below. They will appear in this side panel\n"
-"depending on the proof a user provides."
-msgstr ""
-
-#: Game.Levels.DemoWorld.L01_HelloWorld
-msgid "You can either start using `«{h}»` or `«{g}»`."
-msgstr ""
-
-#: Game.Levels.DemoWorld.L01_HelloWorld
-msgid "You should use `«{h}»` now."
-msgstr ""
-
-#: Game.Levels.DemoWorld.L01_HelloWorld
-msgid "Test"
-msgstr ""
-
-#: Game.Levels.DemoWorld.L01_HelloWorld
-msgid "You should use `«{g}»` now."
-msgstr ""
-
-#: Game.Levels.DemoWorld.L01_HelloWorld
-msgid "This last message appears if the level is solved."
-msgstr ""
-
-#: Game.Levels.DemoWorld.L02_intro
-msgid "Introduction to Calculus"
-msgstr ""
-
-#: Game.Levels.DemoWorld.L02_intro
-msgid "This text is shown as first message when the level is played.\n"
-"You can insert hints in the proof below. They will appear in this side panel\n"
-"depending on the proof a user provides."
-msgstr ""
-
-#: Game.Levels.DemoWorld.L02_intro
-msgid "You can either start using `«{h}»` or `«{g}»`."
-msgstr ""
-
-#: Game.Levels.DemoWorld.L02_intro
-msgid "You should use `«{h}»` now."
-msgstr ""
-
-#: Game.Levels.DemoWorld.L02_intro
-msgid "You should use `«{g}»` now."
-msgstr ""
-
-#: Game.Levels.DemoWorld.L02_intro
-msgid "This last message appears if the level is solved."
-msgstr ""
-
-#: Game.Levels.DemoWorld.L03_test
-msgid "Hello World"
-msgstr ""
-
-#: Game.Levels.DemoWorld.L03_test
-msgid "This text is shown as first message when the level is played.\n"
-"You can insert hints in the proof below. They will appear in this side panel\n"
-"depending on the proof a user provides."
-msgstr ""
-
-#: Game.Levels.DemoWorld.L03_test
-msgid "You can either start using `«{h}»` or `«{g}»`."
-msgstr ""
-
-#: Game.Levels.DemoWorld.L03_test
-msgid "You should use `«{h}»` now."
-msgstr ""
-
-#: Game.Levels.DemoWorld.L03_test
-msgid "Test"
-msgstr ""
-
-#: Game.Levels.DemoWorld.L03_test
-msgid "You should use `«{g}»` now."
-msgstr ""
-
-#: Game.Levels.DemoWorld.L03_test
-msgid "This last message appears if the level is solved."
-msgstr ""
-
-#: Game.Levels.DemoWorld
-msgid "Demo World"
-msgstr ""
-
-#: Game.Levels.DemoWorld
-msgid "This introduction is shown before one enters level 1 of the demo world. Use markdown."
 msgstr ""
 
 #: Game.Levels.Derivative.L01_Intro
@@ -232,6 +138,94 @@ msgstr ""
 
 #: Game.Levels.Derivative
 msgid "In this world, we will introduce how to prove simple results of derivative using Lean 4"
+msgstr ""
+
+#: Game.Levels.Limit.L01_Introduction
+msgid "Use `simp` to simplify zeros."
+msgstr ""
+
+#: Game.Levels.Limit.L01_Introduction
+msgid "Use `intro` to obtain restrictions of ε"
+msgstr ""
+
+#: Game.Levels.Limit.L01_Introduction
+msgid "Find a suitable δ now, and insert it into place by `use`"
+msgstr ""
+
+#: Game.Levels.Limit.L01_Introduction
+msgid "This inequality is easy. You can solve it manually or try `linarith` for some automation."
+msgstr ""
+
+#: Game.Levels.Limit.L01_Introduction
+msgid "This inequality is a little bit hard. Use a `calc` block."
+msgstr ""
+
+#: Game.Levels.Limit.L01_Introduction
+msgid "The definitive equivalence for limits in finite case"
+msgstr ""
+
+#: Game.Levels.Limit.L01_Introduction
+msgid "$ |m * x| = |m| * |x| $"
+msgstr ""
+
+#: Game.Levels.Limit.L01_Introduction
+msgid "$ |2| = 2 $"
+msgstr ""
+
+#: Game.Levels.Limit.L02_Sin
+msgid "Apply definition now"
+msgstr ""
+
+#: Game.Levels.Limit.L02_Sin
+msgid "How can you choose the bound here?"
+msgstr ""
+
+#: Game.Levels.Limit.L02_Sin
+msgid "Use `constructor` to split the goal!"
+msgstr ""
+
+#: Game.Levels.Limit.L02_Sin
+msgid "Apply the inequality here."
+msgstr ""
+
+#: Game.Levels.Limit.L02_Sin
+msgid "$|sin(x)| \\leq |x|$"
+msgstr ""
+
+#: Game.Levels.Limit.L03_Add
+msgid "What you proved in the previous level have been summarized into lemmas, try to use these lemmas to tackle this problem."
+msgstr ""
+
+#: Game.Levels.Limit.L03_Add
+msgid "Recall `deriv_add`. Use `lim_add` to deal with the addition of limits"
+msgstr ""
+
+#: Game.Levels.Limit.L03_Add
+msgid "TODO"
+msgstr ""
+
+#: Game.Levels.Limit.L03_Add
+msgid "TODO"
+msgstr ""
+
+#: Game.Levels.Limit.L03_Add
+msgid "TODO"
+msgstr ""
+
+#: Game.Levels.Limit.L03_Add
+msgid "TODO"
+msgstr ""
+
+#: Game.Levels.Limit.L03_Add
+msgid "TODO"
+msgstr ""
+
+#: Game.Levels.Limit
+msgid "Limit"
+msgstr ""
+
+#: Game.Levels.Limit
+msgid "In this world, you will know limit in Mathematics."
 msgstr ""
 
 #: Game
