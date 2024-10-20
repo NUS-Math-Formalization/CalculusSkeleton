@@ -22,24 +22,33 @@ irreducible_def flim (f : ℝ → ℝ) (l₁ : Filter ℝ) : ℝ :=
   if h : ∃ L, Tendsto f l₁ (nhds L) then h.choose else 0
 
 -- irreducible_def flim (add lim at bot as well as lim to bot)
-syntax "lim " term:40 " → " term:10 ", " term:70: term
-syntax "lim " term:40 " → ∞, " term:70: term
-syntax "lim " term:40 " → " term:10 ", " term:70 " = ∞": term
-syntax "lim " term:40 " → ∞, " term:70 " = ∞": term
-syntax "lim " term:40 " → " term:10 "⁺ , " term:70: term
-syntax "lim " term:40 " → " term:10 "⁻ , " term:70: term
-syntax "lim " term:40 " → " term:10 "⁺ , " term:70 " = ∞": term
-syntax "lim " term:40 " → " term:10 "⁻ , " term:70 " = ∞": term
+notation:max "lim " x:40 " → ∞, " r:70 "= ∞" =>
+  Tendsto (fun x => r) atTop atTop
+notation:max "lim " x:40 " → " c:10 ", " r:70 =>
+  flim (fun x => r) (nhdsWithin c {(c)}ᶜ)
+notation:max "lim " x:40 " → ∞, " r:70 =>
+  flim (fun x => r) atTop
+notation:max "lim " x:40 " → " c:10 ", " r:70 " = ∞" =>
+  Tendsto (fun x => r) (nhdsWithin c {(c)}ᶜ) atTop
+notation:max "lim " x:40 " → " c:10 "⁺ , " r:70 =>
+  flim (fun x => r) (nhdsWithin c (Set.Ioi c))
+notation:max "lim " x:40 " → " c:10 "⁻ , " r:70 =>
+  flim (fun x => r) (nhdsWithin c (Set.Iio c))
+notation:max "lim " x:40 " → " c:10 "⁺ , " r:70 " = ∞" =>
+  Tendsto (fun x => r) (nhdsWithin c (Set.Iio c)) atTop
+notation:max "lim " x:40 " → " c:10 "⁻ , " r:70 " = ∞" =>
+  Tendsto (fun x => r) (nhdsWithin c (Set.Ioi c)) atTop
 
-macro_rules
-  | `(lim $x → ∞, $r = ∞) => `(Tendsto (fun $x => $r) atTop atTop)
-  | `(lim $x → $c, $r) => `(flim (fun $x => $r) (nhdsWithin $c {($c)}ᶜ))
-  | `(lim $x → ∞, $r) =>  `(flim (fun $x => $r) atTop)
-  | `(lim $x → $c, $r = ∞) => `(Tendsto (fun $x => $r) (nhdsWithin $c {($c)}ᶜ) atTop)
-  | `(lim $x → $c⁺ , $r) => `(flim (fun $x => $r) (nhdsWithin $c (Set.Ioi $c)))
-  | `(lim $x → $c⁻ , $r) => `(flim (fun $x => $r) (nhdsWithin $c (Set.Iio $c)))
-  | `(lim $x → $c⁻ , $r = ∞) => `(Tendsto (fun $x => $r) (nhdsWithin $c (Set.Iio $c)) atTop)
-  | `(lim $x → $c⁺ , $r = ∞) => `(Tendsto (fun $x => $r) (nhdsWithin $c (Set.Ioi $c)) atTop)
+-- syntax "lim " term:40 " → " term:10 "⁺ , " term:70: term
+-- syntax "lim " term:40 " → " term:10 "⁻ , " term:70: term
+-- syntax "lim " term:40 " → " term:10 "⁺ , " term:70 " = ∞": term
+-- syntax "lim " term:40 " → " term:10 "⁻ , " term:70 " = ∞": term
+
+-- macro_rules
+--   | `(lim $x → $c⁺ , $r) => `(flim (fun $x => $r) (nhdsWithin $c (Set.Ioi $c)))
+--   | `(lim $x → $c⁻ , $r) => `(flim (fun $x => $r) (nhdsWithin $c (Set.Iio $c)))
+--   | `(lim $x → $c⁻ , $r = ∞) => `(Tendsto (fun $x => $r) (nhdsWithin $c (Set.Iio $c)) atTop)
+--   | `(lim $x → $c⁺ , $r = ∞) => `(Tendsto (fun $x => $r) (nhdsWithin $c (Set.Ioi $c)) atTop)
 
 
 variable {c L : ℝ} {f : ℝ → ℝ}

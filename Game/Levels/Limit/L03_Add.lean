@@ -1,7 +1,7 @@
 import Game.Metadata
-import Game.Levels.Limit.Basic
-import Game.Levels.Limit.Lemmas
-import Game.Levels.Limit.Inequalities
+import Game.Lemmas.Limits.Basic
+import Game.Lemmas.Limits.Lemmas
+import Game.Lemmas.Inequalities
 
 open Real
 

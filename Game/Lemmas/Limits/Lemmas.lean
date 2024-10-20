@@ -1,5 +1,5 @@
-import Game.Levels.Limit.Basic
-import Game.Levels.Limit.Inequalities
+import Game.Lemmas.Limits.Basic
+import Game.Lemmas.Inequalities
 
 open Real
 
