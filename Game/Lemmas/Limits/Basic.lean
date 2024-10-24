@@ -1,8 +1,7 @@
 import Mathlib.Data.Real.EReal
 import Mathlib.Topology.Instances.ENNReal
--- import Mathlib.Algebra.Order.Group.Abs
--- import Mathlib.Order.Filter.Basic
 import Mathlib.Data.ENNReal.Basic
+
 open Filter Set Classical Topology
 
 noncomputable section LimDef
@@ -21,7 +20,6 @@ def HasLimAtTop (f : ℝ → ℝ) := ∃ (l₂ : ℝ), Tendsto f atTop (nhds l�
 irreducible_def flim (f : ℝ → ℝ) (l₁ : Filter ℝ) : ℝ :=
   if h : ∃ L, Tendsto f l₁ (nhds L) then h.choose else 0
 
--- irreducible_def flim (add lim at bot as well as lim to bot)
 notation:max "lim " x:40 " → ∞, " r:70 "= ∞" =>
   Tendsto (fun x => r) atTop atTop
 notation:max "lim " x:40 " → " c:10 ", " r:70 =>
@@ -38,17 +36,6 @@ notation:max "lim " x:40 " → " c:10 "⁺, " r:70 " = ∞" =>
   Tendsto (fun x => r) (𝓝[<] c) atTop
 notation:max "lim " x:40 " → " c:10 "⁻, " r:70 " = ∞" =>
   Tendsto (fun x => r) (𝓝[>] c) atTop
-
--- syntax "lim " term:40 " → " term:10 "⁺ , " term:70: term
--- syntax "lim " term:40 " → " term:10 "⁻ , " term:70: term
--- syntax "lim " term:40 " → " term:10 "⁺ , " term:70 " = ∞": term
--- syntax "lim " term:40 " → " term:10 "⁻ , " term:70 " = ∞": term
-
--- macro_rules
---   | `(lim $x → $c⁺ , $r) => `(flim (fun $x => $r) (nhdsWithin $c (Set.Ioi $c)))
---   | `(lim $x → $c⁻ , $r) => `(flim (fun $x => $r) (nhdsWithin $c (Set.Iio $c)))
---   | `(lim $x → $c⁻ , $r = ∞) => `(Tendsto (fun $x => $r) (nhdsWithin $c (Set.Iio $c)) atTop)
---   | `(lim $x → $c⁺ , $r = ∞) => `(Tendsto (fun $x => $r) (nhdsWithin $c (Set.Ioi $c)) atTop)
 
 
 variable {c L : ℝ} {f : ℝ → ℝ}
@@ -153,7 +140,7 @@ lemma lim_def_fin_inf (h : ∀ N : ℝ, ∃ δ > 0, ∀ x, 0 < |x - c| ∧ |x - 
 lemma epsilon_delta_nhds_atTop_left : Tendsto f (nhdsWithin c (Set.Iio c)) atTop ↔
   ∀ N : ℝ, ∃ δ > 0, ∀ x, 0 < c - x ∧ c - x < δ → f x > N := by sorry
 
-
+-- Clarence: I think this should be flipped and iff'ed
 lemma left_lim_def_fin_inf (h : ∀ N : ℝ, ∃ δ > 0, ∀ x, 0 < c - x ∧ c - x < δ → f x > N) :
   lim x → c⁻, f x = ∞ := by sorry
 
