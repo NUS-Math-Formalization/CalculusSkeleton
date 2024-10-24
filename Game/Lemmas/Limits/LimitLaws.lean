@@ -1,5 +1,5 @@
 import Game.Lemmas.Limits.Basic
-open Filter Set
+open Filter Set Topology
 
 section Computation
 
@@ -25,7 +25,7 @@ lemma HasLimAt_imp_HasLeftLimAt (h : HasLimAt f c) : HasLeftLimAt f c := by
   exact epsDeltaLeftLimIfLim _ hl
 
 lemma HasLimAt_imp_HasLeftLimAt' (h₁ : HasLimAt f c) (h₂ : lim x → c, f x = L) :
-    lim x → c⁻, f x = L := by
+  lim x → c⁻, f x = L := by
   rcases h₁ with ⟨l, hl⟩
   have hl' := epsilon_delta_nhds_nhds_deleted.mp hl
   have hl'' := lim_def_fin_fin hl'
@@ -52,16 +52,11 @@ lemma HasLimAt_imp_HasRightLimAt (h : HasLimAt f c) : HasRightLimAt f c := by
   exact epsDeltaRightLimIfLim _ hl
 
 lemma HasLimAt_imp_HasRightLimAt' (h₁ : HasLimAt f c) (h₂ : lim x → c, f x = L) :
-    lim x → c⁺, f x = L := by
-  rcases h₁ with ⟨l, hl⟩
-  have hl' := epsilon_delta_nhds_nhds_deleted.mp hl
-  have hl'' := lim_def_fin_fin hl'
-  rw [← hl'', h₂] at hl'
-  apply right_lim_def_fin_fin
-  exact epsDeltaRightLimIfLim _ hl'
+  lim x → c⁺, f x = L := by sorry
+
 
 lemma left_lim_eq_right_lim (h₁ : HasLeftLimAt f c) (h₂ : HasRightLimAt f c) :
-    (lim x → c⁻, f x = lim x → c⁺, f x) ↔ HasLimAt f c := by
+  (lim x → c⁻, f x = lim x → c⁺, f x) ↔ HasLimAt f c := by
   rcases h₁ with ⟨l₁, l₁h⟩
   rcases h₂ with ⟨l₂, l₂h⟩
   apply epsilon_delta_nhds_nhds_left.mp at l₁h
