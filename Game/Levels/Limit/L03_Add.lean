@@ -1,9 +1,10 @@
 import Game.Metadata
 import Game.Lemmas.Limits.Basic
 import Game.Lemmas.Limits.Lemmas
+import Game.Lemmas.Limits.LimitLaws
 import Game.Lemmas.Inequalities
 
-open Real
+open Real Topology
 
 World "Limit"
 

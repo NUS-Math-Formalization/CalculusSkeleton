@@ -7,7 +7,7 @@ World "Limit"
 
 Level 2
 
-open Real
+open Real Topology
 
 Statement : lim x → 0, sin x = 0 := by
   Hint "Apply definition now"

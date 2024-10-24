@@ -1,5 +1,5 @@
 import Game.Lemmas.Limits.Basic
-open Filter Set
+open Filter Set Topology
 
 section Computation
 
@@ -27,7 +27,7 @@ lemma HasLimAt_imp_HasLeftLimAt (h : HasLimAt f c) : HasLeftLimAt f c := by
       constructor; linarith; linarith
 
 lemma HasLimAt_imp_HasLeftLimAt' (h₁ : HasLimAt f c) (h₂ : lim x → c, f x = L) :
-  lim x → c⁻ , f x = L := by
+  lim x → c⁻, f x = L := by
   rcases h₁ with ⟨l, hl⟩
   have hl' := epsilon_delta_nhds_nhds_deleted.mp hl
   have hl'' := lim_def_fin_fin hl'
@@ -53,11 +53,11 @@ lemma HasLimAt_imp_HasRightLimAt (h : HasLimAt f c) : HasRightLimAt f c := by so
 
 
 lemma HasLimAt_imp_HasRightLimAt' (h₁ : HasLimAt f c) (h₂ : lim x → c, f x = L) :
-  lim x → c⁺ , f x = L := by sorry
+  lim x → c⁺, f x = L := by sorry
 
 
 lemma left_lim_eq_right_lim (h₁ : HasLeftLimAt f c) (h₂ : HasRightLimAt f c) :
-  (lim x → c⁻ , f x = lim x → c⁺ , f x) ↔ HasLimAt f c := by
+  (lim x → c⁻, f x = lim x → c⁺, f x) ↔ HasLimAt f c := by
   rcases h₁ with ⟨l₁, l₁h⟩
   rcases h₂ with ⟨l₂, l₂h⟩
   have l₁h' := epsilon_delta_nhds_nhds_left.mp l₁h
@@ -107,7 +107,7 @@ lemma left_lim_eq_right_lim (h₁ : HasLeftLimAt f c) (h₂ : HasRightLimAt f c)
 
 -- one direction is similar to above, the other direction is easy.
 lemma left_lim_eq_right_lim' (h₁ : HasLeftLimAt f c) (h₂ : HasRightLimAt f c) (h₃ : HasLimAt f c):
-  (lim x → c⁻ , f x = L ∧ lim x → c⁺ , f x = L) ↔ lim x → c , f x = L := by sorry
+  (lim x → c⁻, f x = L ∧ lim x → c⁺, f x = L) ↔ lim x → c , f x = L := by sorry
 
 
 -- then subsequently we can just prove the one-sided version to imply the two-sided version
@@ -120,12 +120,12 @@ lemma HasLeftLimAt_const (d : ℝ) : HasLeftLimAt (fun x => d) c := by
 
 lemma HasRightLimAt_const (d : ℝ) : HasRightLimAt (fun x => d) c := sorry
 
-lemma leftlim_const (d : ℝ) : lim x → c⁻ , d = d := by
+lemma leftlim_const (d : ℝ) : lim x → c⁻, d = d := by
   apply left_lim_def_fin_fin
   rw [← epsilon_delta_nhds_nhds_left]
   exact tendsto_const_nhds
 
-lemma rightlim_const (d : ℝ) : lim x → c⁺ , d = d := by sorry
+lemma rightlim_const (d : ℝ) : lim x → c⁺, d = d := by sorry
 
 lemma HasLimAt_const (d : ℝ) : HasLimAt (fun x => d) c := by
   apply (left_lim_eq_right_lim (HasLeftLimAt_const d) (HasRightLimAt_const d)).mp

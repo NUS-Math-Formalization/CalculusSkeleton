@@ -6,7 +6,7 @@ World "Limit"
 
 Level 1
 
-open BigOperators
+open BigOperators Topology
 
 
 Statement : lim x → 0, 2 * x = 0 := by
