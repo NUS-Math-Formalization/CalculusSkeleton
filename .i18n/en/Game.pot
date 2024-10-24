@@ -1,0 +1,252 @@
+msgid ""
+msgstr "Project-Id-Version: Game v4.7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: Thu Oct 24 16:57:04 2024\n"
+"Last-Translator: \n"
+"Language-Team: none\n"
+"Language: en\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit"
+
+#: GameServer.RpcHandlers
+msgid "level completed! 🎉"
+msgstr ""
+
+#: GameServer.RpcHandlers
+msgid "level completed with warnings… 🎭"
+msgstr ""
+
+#: GameServer.RpcHandlers
+msgid "intermediate goal solved! 🎉"
+msgstr ""
+
+#: Game.Levels.Derivative.L01_Intro
+msgid "Introduction to Derivative"
+msgstr ""
+
+#: Game.Levels.Derivative.L01_Intro
+msgid "Differentiation of the identity map on ℝ is a known result in Mathlib4, so you can take advantage of this lemma, which is called `deriv_id''`. Besure to check its statement in the right panel. Use tatic `rw` to rewrite the goal or `apply` to apply the lemma."
+msgstr ""
+
+#: Game.Levels.Derivative.L01_Intro
+msgid "The derivative of Identity function $f(x) = x$ on ℝ is $1$"
+msgstr ""
+
+#: Game.Levels.Derivative.L02_Simple
+msgid "A Simple Example"
+msgstr ""
+
+#: Game.Levels.Derivative.L02_Simple
+msgid "Rewrite `deriv_add` to distribute the derivation. Note that you will need to show the differentiability for each add-term to make this lemma work."
+msgstr ""
+
+#: Game.Levels.Derivative.L02_Simple
+msgid "Here you need to deal with differentiability for $f(x)=x$. This is an identity map, use `differentiableAt_id'`. Please use tactic `exact` when give the lemma is exactly the proposed goal."
+msgstr ""
+
+#: Game.Levels.Derivative.L02_Simple
+msgid "Here you need to prove the differentiability for $f(x)=1$. This is a constant map, use `differentiableAt_const`. Don't forget to pass the constant as a parameter."
+msgstr ""
+
+#: Game.Levels.Derivative.L02_Simple
+msgid "You can try to differentiate either term «{x}» or term 1, respectly by `deriv_id''` or `deriv_const`."
+msgstr ""
+
+#: Game.Levels.Derivative.L02_Simple
+msgid "Rewrite to differentiate term 1 now."
+msgstr ""
+
+#: Game.Levels.Derivative.L02_Simple
+msgid "Use tactic `dsimp` to make it friendly."
+msgstr ""
+
+#: Game.Levels.Derivative.L02_Simple
+msgid "Rewrite `add_zero` to simplify «{x}» + 0."
+msgstr ""
+
+#: Game.Levels.Derivative.L02_Simple
+msgid "Rewrite to differentiate term «{x}» now."
+msgstr ""
+
+#: Game.Levels.Derivative.L02_Simple
+msgid "Rewrite an expression"
+msgstr ""
+
+#: Game.Levels.Derivative.L02_Simple
+msgid "Simplify a formula by definition"
+msgstr ""
+
+#: Game.Levels.Derivative.L02_Simple
+msgid "For any real number $x$, we have $x + 0 = x$"
+msgstr ""
+
+#: Game.Levels.Derivative.L02_Simple
+msgid "Identity map is always differentiable"
+msgstr ""
+
+#: Game.Levels.Derivative.L02_Simple
+msgid "Constant map is always differentiable"
+msgstr ""
+
+#: Game.Levels.Derivative.L02_Simple
+msgid "If map $f$ and $g$ are differentiable, then $(f + g)' = f' + g'$"
+msgstr ""
+
+#: Game.Levels.Derivative.L02_Simple
+msgid "$x' = 1$"
+msgstr ""
+
+#: Game.Levels.Derivative.L02_Simple
+msgid "For any constant $c$, $c' = 0$"
+msgstr ""
+
+#: Game.Levels.Derivative.L03_Square
+msgid "Differente Square"
+msgstr ""
+
+#: Game.Levels.Derivative.L03_Square
+msgid "Rewrite the formula using a combination of `derive_add` `derive_pow'` `derive_mul` `derive_mul`, `derive_id`, `derive_const`. You are now recommended to use `simp` to close the goal."
+msgstr ""
+
+#: Game.Levels.Derivative.L03_Square
+msgid "Now show all the differentiability conditions required by previous proof steps."
+msgstr ""
+
+#: Game.Levels.Derivative.L03_Square
+msgid ""
+msgstr ""
+
+#: Game.Levels.Derivative.L03_Square
+msgid ""
+msgstr ""
+
+#: Game.Levels.Derivative.L03_Square
+msgid ""
+msgstr ""
+
+#: Game.Levels.Derivative.L03_Square
+msgid ""
+msgstr ""
+
+#: Game.Levels.Derivative.L03_Square
+msgid ""
+msgstr ""
+
+#: Game.Levels.Derivative
+msgid "Derivative"
+msgstr ""
+
+#: Game.Levels.Derivative
+msgid "In this world, we will introduce how to prove simple results of derivative using Lean 4"
+msgstr ""
+
+#: Game.Levels.Limit.L01_Introduction
+msgid "Use `simp` to simplify zeros."
+msgstr ""
+
+#: Game.Levels.Limit.L01_Introduction
+msgid "Use `intro` to obtain restrictions of ε"
+msgstr ""
+
+#: Game.Levels.Limit.L01_Introduction
+msgid "Find a suitable δ now, and insert it into place by `use`"
+msgstr ""
+
+#: Game.Levels.Limit.L01_Introduction
+msgid "This inequality is easy. You can solve it manually or try `linarith` for some automation."
+msgstr ""
+
+#: Game.Levels.Limit.L01_Introduction
+msgid "This inequality is a little bit hard. Use a `calc` block."
+msgstr ""
+
+#: Game.Levels.Limit.L01_Introduction
+msgid "The definitive equivalence for limits in finite case"
+msgstr ""
+
+#: Game.Levels.Limit.L01_Introduction
+msgid "$ |m * x| = |m| * |x| $"
+msgstr ""
+
+#: Game.Levels.Limit.L01_Introduction
+msgid "$ |2| = 2 $"
+msgstr ""
+
+#: Game.Levels.Limit.L02_Sin
+msgid "Apply definition now"
+msgstr ""
+
+#: Game.Levels.Limit.L02_Sin
+msgid "How can you choose the bound here?"
+msgstr ""
+
+#: Game.Levels.Limit.L02_Sin
+msgid "Use `constructor` to split the goal!"
+msgstr ""
+
+#: Game.Levels.Limit.L02_Sin
+msgid "Apply the inequality here."
+msgstr ""
+
+#: Game.Levels.Limit.L02_Sin
+msgid "$|sin(x)| \\leq |x|$"
+msgstr ""
+
+#: Game.Levels.Limit.L03_Add
+msgid "What you proved in the previous level have been summarized into lemmas, try to use these lemmas to tackle this problem."
+msgstr ""
+
+#: Game.Levels.Limit.L03_Add
+msgid "Recall `deriv_add`. Use `lim_add` to deal with the addition of limits"
+msgstr ""
+
+#: Game.Levels.Limit.L03_Add
+msgid "TODO"
+msgstr ""
+
+#: Game.Levels.Limit.L03_Add
+msgid "TODO"
+msgstr ""
+
+#: Game.Levels.Limit.L03_Add
+msgid "TODO"
+msgstr ""
+
+#: Game.Levels.Limit.L03_Add
+msgid "TODO"
+msgstr ""
+
+#: Game.Levels.Limit.L03_Add
+msgid "TODO"
+msgstr ""
+
+#: Game.Levels.Limit
+msgid "Limit"
+msgstr ""
+
+#: Game.Levels.Limit
+msgid "In this world, you will know limit in Mathematics."
+msgstr ""
+
+#: Game
+msgid "Calculus Game"
+msgstr ""
+
+#: Game
+msgid "This text appears on the starting page where one selects the world/level to play.\n"
+"You can use markdown."
+msgstr ""
+
+#: Game
+msgid "## Calculus Game\n"
+"\n"
+"This game is intended for a fun introduction to Lean4 and Calculus World."
+msgstr ""
+
+#: Game
+msgid "Game Template"
+msgstr ""
+
+#: Game
+msgid "You should use this game as a template for your own game and add your own levels."
+msgstr ""

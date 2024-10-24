@@ -1,10 +1,12 @@
 -- import Game.Levels.DemoWorld
 import Game.Levels.Derivative
 import Game.Levels.Limit
+
 -- Here's what we'll put on the title screen
 Title "Calculus Game"
 Introduction
 "
+
 This text appears on the starting page where one selects the world/level to play.
 You can use markdown.
 "

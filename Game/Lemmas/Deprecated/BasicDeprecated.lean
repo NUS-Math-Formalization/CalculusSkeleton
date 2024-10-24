@@ -18,21 +18,25 @@ irreducible_def flim (f : ℝ → ℝ) (l₁ : Filter ℝ) : ℝ :=
   if h : ∃ L, Tendsto f l₁ (nhds L) then h.choose else 0
 
 -- irreducible_def flim
-syntax "lim " term:40 " → " term:10 ", " term:70: term
-syntax "lim " term:40 " → ∞, " term:70: term
-syntax "lim " term:40 " → " term:10 ", " term:70 " = ∞": term
-syntax "lim " term:40 " → ∞, " term:70 " = ∞": term
 
-macro_rules
-  | `(lim $x → ∞, $r = ∞) => `(Tendsto (fun $x => $r) atTop atTop)
-  | `(lim $x → $c, $r) => `(flim (fun $x => $r) (nhds $c))
-  | `(lim $x → ∞, $r) =>  `(flim (fun $x => $r) atTop)
-  | `(lim $x → $c, $r = ∞) => `(Tendsto (fun $x => $r) (nhds $c) atTop)
+-- syntax "lim " term:40 " → ∞, " term:70: term
+-- syntax "lim " term:40 " → " term:10 ", " term:70 " = ∞": term
+-- syntax "lim " term:40 " → ∞, " term:70 " = ∞": term
 
+-- macro_rules
+--   | `(lim $x → ∞, $r = ∞) => `(Tendsto (fun $x => $r) atTop atTop)
+--   | `(lim $x → $c, $r) => `(flim (fun $x => $r) (nhds $c))
+--   | `(lim $x → ∞, $r) =>  `(flim (fun $x => $r) atTop)
+--   | `(lim $x → $c, $r = ∞) => `(Tendsto (fun $x => $r) (nhds $c) atTop)
+
+notation:max "lim " x:40 " → ∞, " r:70 "= ∞" => Tendsto (fun x => r) atTop atTop
+notation:max "lim " x:40 " → " c:10 ", " r:70 => flim (fun x => r) (nhds c)
+notation:max "lim " x:40 " → ∞, " r:70 => flim (fun x => r) atTop
+notation:max "lim " x:40 " → " c:10 ", " r:70 " = ∞" => Tendsto (fun x => r) (nhds c) atTop
 
 variable {c L : ℝ} {f : ℝ → ℝ}
 
-lemma epsilon_delta_nhds_nhds : Tendsto f (nhds c) (nhds L) ↔ 
+lemma epsilon_delta_nhds_nhds : Tendsto f (nhds c) (nhds L) ↔
   ∀ ε > 0, ∃ δ > 0, ∀ x, |x - c| < δ → |f x - L| < ε := by
   have NHB := nhds_basis_abs_sub_lt (α := ℝ)
   simp_rw [HasBasis.tendsto_iff (NHB c) (NHB L), mem_setOf_eq]
@@ -61,7 +65,7 @@ lemma lim_def_inf_fin (h : ∀ ε > 0, ∃ N, ∀ x, x > N → |f x - L| < ε) :
   exact tendsto_nhds_unique hL.choose_spec h
 
 
-lemma epsilon_delta_nhds_atTop : Tendsto f (nhds c) atTop ↔ 
+lemma epsilon_delta_nhds_atTop : Tendsto f (nhds c) atTop ↔
   ∀ N : ℝ, ∃ δ > 0, ∀ x, |x - c| < δ → f x > N := by
   have THB := atTop_basis_Ioi (α := ℝ)
   have NHB := nhds_basis_abs_sub_lt (α := ℝ)
@@ -82,4 +86,3 @@ lemma lim_def_inf_inf (h : ∀ N : ℝ, ∃ M, ∀ x, x > M → f x > N) :
   lim x → ∞, f x = ∞ := epsilon_delta_atTop_atTop.mpr h
 
 end LimDef
-

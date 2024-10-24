@@ -1,12 +1,12 @@
 import Game.Metadata
 import Mathlib
-import Game.Levels.Limit.Basic
+import Game.Lemmas.Limits.Basic
 
 World "Limit"
 
 Level 1
 
-open BigOperators
+open BigOperators Topology
 
 
 Statement : lim x → 0, 2 * x = 0 := by
@@ -20,7 +20,7 @@ Statement : lim x → 0, 2 * x = 0 := by
   constructor
   · Hint "This inequality is easy. You can solve it manually or try `linarith` for some automation."
     linarith
-  · intro x hx
+  · intro x _ hx
     Hint "This inequality is a little bit hard. Use a `calc` block."
     calc
       _ = 2 * |x| := by rw [abs_mul, abs_two]
@@ -37,5 +37,3 @@ TheoremDoc abs_two as "abs_two" in "Equalities"
 
 NewTactic apply rw exact simp use intro constructor linarith
 NewTheorem lim_def_fin_fin abs_two abs_mul
-
-
