@@ -2,7 +2,7 @@ import Mathlib.Analysis.Calculus.Deriv.Basic
 import Mathlib.Analysis.SpecialFunctions.Pow.Real
 import Mathlib.Tactic
 import Game.Metadata
-
+import Game.Lemmas.Derivatives.DiffAt
 
 World "Derivative"
 
@@ -10,11 +10,7 @@ Level 11
 
 Title "Derivative of (x-1)^4/(x^2+2x)^5"
 
-
 -- The derivative of frac{(x-1)^4}{(x^2 +2x)^5}
-
-
-
 Statement (x : ℝ) (hx1 : (x^2 + 2*x)^5 ≠ 0) :
 deriv (fun x : ℝ => (x-1)^4 / (x^2 + 2*x)^5) x
 = (4*(x-1)^ 3 * (x^2 + 2*x)^5 - (x - 1)^4 * (5*(x^2 + 2*x)^4 * (2*x + 2))) / ((x^2 + 2*x)^5) ^ 2 := by
@@ -51,25 +47,11 @@ deriv (fun x : ℝ => (x-1)^4 / (x^2 + 2*x)^5) x
   Hint "use simp to reduce to the final answer"
   simp
   Hint "Now to prove the differentiability conditions"
-  exact differentiableAt_id
-  exact differentiableAt_pow _
-  Hint "Use DifferentiableAt.const_mul for functions multiplied with a constant"
-  apply DifferentiableAt.const_mul; exact differentiableAt_id
-  Hint "Remember this is just the function u^5 but evaluated at a different value instead of just x"
-  apply differentiableAt_pow
-  Hint "Use the lemma we proved for differentiability of (x^2 + 2*x)"
-  exact diff_g₂
-  Hint "Same as before, this is just proving differentiability of function u^4 evaluated at some different point"
-  apply differentiableAt_pow
-  apply DifferentiableAt.sub_const; exact differentiableAt_id
-  Hint "For this, we need to use DifferentiableAt.comp, which requires us to rewrite into a function composition again"
-  rw [top]
-  Hint "Other than that, just have to prove that both functions in the composition are differentiable"
-  apply DifferentiableAt.comp; apply differentiableAt_pow; apply DifferentiableAt.sub_const; exact differentiableAt_id
-  rw [bottom]
-  apply DifferentiableAt.comp; apply differentiableAt_pow; exact diff_g₂
-  Hint "Finally, use our assumption that we do not divide by zero"
+  differentiability
   exact hx1
+
+/-- Reduce DifferentiableAt statements to easier assumptions -/
+TacticDoc differentiability
 
 /-- Chain Rule: $(f ∘ g)'(x)=f'(g(x))g'(x)$ -/
 TheoremDoc deriv.comp as "deriv.comp" in "Derivative"
@@ -82,3 +64,5 @@ TheoremDoc DifferentiableAt.mul as "DifferentiableAt.mul" in "Differentiable"
 
 /-- Product Rule: $(c * g)'(x) =  c * g'(x))$ -/
 TheoremDoc DifferentiableAt.const_mul as "DifferentiableAt.const_mul" in "Differentiable"
+
+NewTactic differentiability
