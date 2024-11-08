@@ -20,15 +20,16 @@ case hg
 x : ℝ
 ⊢ DifferentiableAt ℝ (fun x => 1) x
 # Example Output
-Rewrite deriv_add to distribute the derivation. Note that you will need to show the differentiability for each add-term to make this lemma work.
+Rewrite deriv_add to distribute the derivation. Note that you will need to show the differentiability for each summand to make this lemma work.
 
 # Your input
 ## State before the tactic
 x : ℝ
-⊢ deriv (fun x => Real.exp x ^ Real.exp x) x = Real.exp (x + x * Real.exp x) * (x + 1) ## Tactic used
+⊢ deriv (fun x => Real.exp x ^ Real.exp x) x = Real.exp (x + x * Real.exp x) * (x + 1)
+## Tactic used
 simp_rw [← Real.exp_mul]
 ## Reference
-theorem exp_mul (x y : ℝ) : exp (x * y) = exp x ^ y *
-*## State after the tactic** *
-*x : ℝ *
-*⊢ deriv (fun x => Real.exp (x * Real.exp x)) x = Real.exp (x + x * Real.exp x) * (x + 1)
+theorem exp_mul (x y : ℝ) : exp (x * y) = exp x ^ y
+## State after the tactic
+x : ℝ
+⊢ deriv (fun x => Real.exp (x * Real.exp x)) x = Real.exp (x + x * Real.exp x) * (x + 1)
