@@ -1,6 +1,3 @@
-import Mathlib.Analysis.Calculus.Deriv.Basic
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
-import Mathlib.Tactic
 import Game.Metadata
 
 
@@ -43,6 +40,7 @@ deriv (fun x : ℝ => (x-1)^4 / (x^2 + 2*x)^5) x
   rw [deriv_sub_const, deriv_id'']
   Hint "For deriv(x^2 + 2*x), use deriv_add, deriv_const_mul, deriv_id''"
   rw [deriv_add]
+  Hint "Apply the `deriv_pow` rule to differentiate expressions of the form $x^n$. This will help simplify the derivative of $x^2$ within the given expression."
   rw [deriv_pow]
   rw [deriv_const_mul, deriv_id'']
   Hint "use simp to reduce to the final answer"

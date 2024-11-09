@@ -1,5 +1,6 @@
 import GameServer.Commands
 import Mathlib
+import Game.Generator.Basic
 
 /-! Use this file to add things that should be available in all levels.
 

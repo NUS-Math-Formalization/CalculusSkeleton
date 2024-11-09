@@ -112,6 +112,7 @@ def getOllamaAPI : IO API := do
   let model      := (← IO.getEnv "LLMLEAN_MODEL").getD "wellecks/ntpctx-llama3-8b"
   let promptKind := (← IO.getEnv "LLMLEAN_PROMPT").getD "instruction"
   let apiKey     := (← IO.getEnv "LLMLEAN_API_KEY").getD ""
+  -- let apiKey     := ""
   let api : API := {
     model := model,
     baseUrl := url,
