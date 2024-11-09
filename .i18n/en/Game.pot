@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Fri Oct 25 17:10:54 2024\n"
+"POT-Creation-Date: Sat Nov  9 12:47:27 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -210,7 +210,32 @@ msgid "The sine function is differentiable."
 msgstr ""
 
 #: Game.Levels.Derivative.L07_FanXinyuan
-msgid "TBA"
+msgid "The derivative of x^3 + 2x + 4"
+msgstr ""
+
+#: Game.Levels.Derivative.L07_FanXinyuan
+msgid "This level is definitely within your reach! Just think back to the similar challenges you've already conquered—those same techniques will help you here. You've got this!"
+msgstr ""
+
+#: Game.Levels.Derivative.L07_FanXinyuan
+msgid "First thing first, Looking at this long string of 'additions', don't you just want to break it apart? That's exactly right! Let's split it into smaller pieces - this will make our work so much easier!"
+msgstr ""
+
+#: Game.Levels.Derivative.L07_FanXinyuan
+msgid "Recall how we handle powers, constant multiples, and constants!"
+msgstr ""
+
+#: Game.Levels.Derivative.L07_FanXinyuan
+msgid "Take a closer look at our 'Goal' - numbers and variables scattered everywhere...\n"
+"it's quite a mess, isn't it? There's a magical tactic that can clean and 'simplify' this up for us - can you guess what it is?"
+msgstr ""
+
+#: Game.Levels.Derivative.L07_FanXinyuan
+msgid "Now show all the differentiability conditions required by previous proof steps."
+msgstr ""
+
+#: Game.Levels.Derivative.L07_FanXinyuan
+msgid "When using compound differentiability lemmas like 'const_mul', take note how to spell the lemma, some letters needs capitalisation."
 msgstr ""
 
 #: Game.Levels.Derivative.L08_LiJunyi
@@ -278,21 +303,122 @@ msgid "Congratulations! We now have our final goal : `Denominator can't be ZERO`
 msgstr ""
 
 #: Game.Levels.Derivative.L09_KunYu
-msgid "TBA"
+msgid "The derivative of sin(sin(sin (x)))"
+msgstr ""
+
+#: Game.Levels.Derivative.L09_KunYu
+msgid "This is an application of 'Composite Function Derivative', firstly you need to let lean figure out what is the composite function which means you need to set sin(sinx) as function g, which means that we need to turn the goal into : derivative of sin(sin(sin x)) = derivative of sin ∘ g"
+msgstr ""
+
+#: Game.Levels.Derivative.L09_KunYu
+msgid "To make the sin(sin x) into the function g, you need to try tactic: set g := fun x => ..."
+msgstr ""
+
+#: Game.Levels.Derivative.L09_KunYu
+msgid "Remind that sin in lean should be typed as Real.sin"
+msgstr ""
+
+#: Game.Levels.Derivative.L09_KunYu
+msgid "To prove sin(sin(sin x)) = sin ∘ g, use the have and fun x tactic : have : (fun x => Real.sin (Real.sin (Real.sin x))) = Real.sin ∘ g"
+msgstr ""
+
+#: Game.Levels.Derivative.L09_KunYu
+msgid "Notice that there is a tap between two sin : Real.sin ( Real.sin ( Real.sin x ) ))"
+msgstr ""
+
+#: Game.Levels.Derivative.L09_KunYu
+msgid "Now the goal turn into proving: deriv (Real.sin ∘ g) x = Real.cos x * Real.cos (Real.sin x) * Real.cos (Real.sin (Real.sin x))"
+msgstr ""
+
+#: Game.Levels.Derivative.L09_KunYu
+msgid "Rewrite the assumption"
+msgstr ""
+
+#: Game.Levels.Derivative.L09_KunYu
+msgid "Now to prove : deriv (Real.sin ∘ g) = deriv (g) * deriv (Real.sin (g)), use the deriv.comp tactic"
+msgstr ""
+
+#: Game.Levels.Derivative.L09_KunYu
+msgid "Now the goal are : Proving sin'(x)=cos'(x) and proving g'= cos(x)*cos(sin(x)); Use the Real.deriv_sin tactic"
+msgstr ""
+
+#: Game.Levels.Derivative.L09_KunYu
+msgid "To prove g'= cos(x)*cos(sin(x)), the logic of proving is the same and now suppose we already have the tactic 'deriv_sinsinx'"
+msgstr ""
+
+#: Game.Levels.Derivative.L09_KunYu
+msgid "The remaining problem is just use commutativity of multiplication"
+msgstr ""
+
+#: Game.Levels.Derivative.L09_KunYu
+msgid "Now the left two goal is to prove functions sinx and sin(sinx) are differentiable, and you can use the tactic 'Real.differentiableAt_sin' and 'sinsinx_differentiable x'"
 msgstr ""
 
 #: Game.Levels.Derivative.L10_PangBo
-msgid "TBA"
+msgid "derivative of frac{1}{(x+1/x)^2}"
+msgstr ""
+
+#: Game.Levels.Derivative.L10_PangBo
+msgid "Since we're differentiating a fraction, apply the quotient rule with `deriv_div`."
+msgstr ""
+
+#: Game.Levels.Derivative.L10_PangBo
+msgid "The numerator is a constant (1), so differentiating it gives zero."
+msgstr ""
+
+#: Game.Levels.Derivative.L10_PangBo
+msgid "Apply the chain rule on the denominator, which is (x + 1/x)^2. Start by differentiating the outer square function."
+msgstr ""
+
+#: Game.Levels.Derivative.L10_PangBo
+msgid "Now, use the chain rule for the inner function (x + 1/x), starting with the sum rule."
+msgstr ""
+
+#: Game.Levels.Derivative.L10_PangBo
+msgid "Differentiate x to get 1."
+msgstr ""
+
+#: Game.Levels.Derivative.L10_PangBo
+msgid "The derivative of 1/x is -1/x^2. Simplify using `deriv_inv`."
+msgstr ""
+
+#: Game.Levels.Derivative.L10_PangBo
+msgid "Use the lemma `divEQ` to simplify the expression to the desired form."
+msgstr ""
+
+#: Game.Levels.Derivative.L10_PangBo
+msgid "Simplify the expression further with algebraic tactics like `ring_nf`."
+msgstr ""
+
+#: Game.Levels.Derivative.L10_PangBo
+msgid "To apply the quotient rule, you need to prove the differentiability of each component. Start with `x` being differentiable."
+msgstr ""
+
+#: Game.Levels.Derivative.L10_PangBo
+msgid "Next, show that 1/x is differentiable by using `DifferentiableAt.inv` and that x is differentiable."
+msgstr ""
+
+#: Game.Levels.Derivative.L10_PangBo
+msgid "Prove differentiability of the inner function (x + 1/x) by showing each part is differentiable."
+msgstr ""
+
+#: Game.Levels.Derivative.L10_PangBo
+msgid "Handle differentiability of the constant function 1 with `differentiableAt_const`."
+msgstr ""
+
+#: Game.Levels.Derivative.L10_PangBo
+msgid "Show differentiability of the squared expression (x + 1/x)^2."
+msgstr ""
+
+#: Game.Levels.Derivative.L10_PangBo
+msgid "Finally, use the hypothesis `h1` to complete the proof."
 msgstr ""
 
 #: Game.Levels.Derivative.L11_DanielLow
 msgid "Derivative of (x-1)^4/(x^2+2x)^5"
-msgid "Derivative of (x-1)^4/(x^2+2x)^5"
 msgstr ""
 
 #: Game.Levels.Derivative.L11_DanielLow
-msgid "##Introduction\n"
-"$\\frac{(x-1)^4}{(x^2+2x)^5}$We want to use function composition so first we define several functions, one each for (u^4), (x-1), (u^5), (x^2+2x)"
 msgid "##Introduction\n"
 "$\\frac{(x-1)^4}{(x^2+2x)^5}$We want to use function composition so first we define several functions, one each for (u^4), (x-1), (u^5), (x^2+2x)"
 msgstr ""
@@ -490,16 +616,13 @@ msgid "Calculus Game"
 msgstr ""
 
 #: Game
-msgid "This text appears on the starting page where one selects the world/level to play.
-\n"
+msgid "This text appears on the starting page where one selects the world/level to play.\n"
 "You can use markdown."
 msgstr ""
 
 #: Game
-msgid "## Calculus Game
-\n"
-"
-\n"
+msgid "## Calculus Game\n"
+"\n"
 "This game is intended for a fun introduction to Lean4 and Calculus World."
 msgstr ""
 
