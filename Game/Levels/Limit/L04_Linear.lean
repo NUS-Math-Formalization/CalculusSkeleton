@@ -1,17 +1,15 @@
 import Game.Metadata
-import Mathlib
 import Game.Lemmas.Limits.Basic
+
+open Topology
+
+Introduction "This level is about using the ε, δ definition to prove that lim_{x → 2} (-8x + 7) = -9. This level is done by Daniel Low."
 
 World "Limit"
 
 Level 4
-lemma h0 (x:ℝ): (-8*x + 7- -9) =16-8*x:= by
-  ring
-lemma hk :|-8|=8:= by
-  exact rfl
 
--- use the ε, δ definition to prove that lim_{x → 2} (-8x + 7) = -9
-Statement:  lim x → 2, (-8*x + 7) = -9 := by
+Statement:  lim x → 2, (-8 * x + 7) = -9 := by
   apply lim_def_fin_fin
   intro ε hε
   use ε/8

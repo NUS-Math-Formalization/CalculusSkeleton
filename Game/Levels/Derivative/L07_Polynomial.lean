@@ -1,9 +1,3 @@
-import Mathlib.Analysis.Calculus.Deriv.Basic
-import Mathlib.Analysis.Calculus.Deriv.Inv
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Deriv
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
-import Mathlib.Data.Complex.Exponential
-import Mathlib.Tactic
 import Game.Metadata
 
 World "Derivative"
@@ -11,6 +5,8 @@ World "Derivative"
 Level 7
 
 Title "The derivative of x^3 + 2x + 4"
+
+Introduction "This level is about finding the derivative of the function $x^3 + 2x + 4$. This level is done by Fang Xinyuan."
 
 -- The derivative of x^3 + 2x + 4
 Statement (x : ℝ) : deriv (fun x => x ^ 3 + 2 * x + 4) (x : ℝ) = 3 * x^2 + 2 := by

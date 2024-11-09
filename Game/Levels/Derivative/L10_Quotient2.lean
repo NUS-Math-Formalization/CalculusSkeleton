@@ -1,14 +1,12 @@
-import Mathlib.Analysis.Calculus.Deriv.Basic
-import Mathlib.Analysis.Calculus.Deriv.Inv
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Deriv
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
-import Mathlib.Data.Complex.Exponential
-import Mathlib.Tactic
 import Game.Metadata
 
 World "Derivative"
+
 Level 10
+
 Title "derivative of frac{1}{(x+1/x)^2}"
+
+Introduction "This level is about finding the derivative of the function $\\frac{1}{(x + \\frac{1}{x})^2}$. This level is done by Pang Bo."
 
 open Real
 
@@ -59,4 +57,3 @@ Statement (x : ℝ) (hx : x ≠ 0) (h1 : (x + 1/x)^2 ≠ 0): deriv (fun x => 1 /
   exact hx
   Hint "Finally, use the hypothesis `h1` to complete the proof."
   exact h1
-

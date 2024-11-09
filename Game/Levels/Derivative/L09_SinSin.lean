@@ -1,26 +1,21 @@
-import Mathlib.Analysis.Calculus.Deriv.Basic
-import Mathlib.Tactic
 import Game.Metadata
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Deriv
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
-
 
 World "Derivative"
 
 Level 9
 
 Title "The derivative of sin(sin(sin (x)))"
+
+Introduction "This level is about finding the derivative of the function $sin(sin(sin(x)))$. This level is done by Kun Yu."
+
 lemma deriv_sinsinx (x : ℝ) :
   deriv (fun x => Real.sin ( Real.sin x )) (x : ℝ) = Real.cos x * Real.cos (Real.sin x) := by
-
-
   set g := fun x => Real.sin x
   have : (fun x => Real.sin (Real.sin x)) = Real.sin ∘ g := rfl
   rw[this]
   rw[deriv.comp]
   rw[Real.deriv_sin]
   rw[mul_comm]
-
   exact Real.differentiableAt_sin
   exact Real.differentiableAt_sin
 
@@ -50,11 +45,3 @@ Statement (x : ℝ) : deriv (fun x => Real.sin ( Real.sin ( Real.sin x ) ) ) (x 
  Hint "Now the left two goal is to prove functions sinx and sin(sinx) are differentiable, and you can use the tactic 'Real.differentiableAt_sin' and 'sinsinx_differentiable x' "
  exact Real.differentiableAt_sin
  exact sinsinx_differentiable x
-
-
-
-
-
-
-
--- The derivative of sin(sin(sin (x)))
