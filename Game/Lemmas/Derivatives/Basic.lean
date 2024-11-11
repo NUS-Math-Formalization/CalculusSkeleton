@@ -5,7 +5,7 @@ open Filter Set Classical
 
 -- prove basic properties of derivatives here...
 
-def my_has_deriv (f : ℝ → ℝ) (c y : ℝ) := lim x → c, (f x - f c) / (x - c) = y
+def my_has_deriv (f : ℝ → ℝ) (c y : ℝ) := lim x → c, ((f x - f c) / (x - c)) = y
 
 noncomputable def my_deriv (f : ℝ → ℝ) (c : ℝ) : ℝ := lim x → c, (f x - f c) / (x - c)
 

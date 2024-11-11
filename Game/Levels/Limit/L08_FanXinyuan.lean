@@ -17,7 +17,7 @@ lemma factorCancel (x: ℝ) (h0: x+2 ≠ 0): (2*x-1)*(x+2)/ (x+2) = 2*x-1 :=by
 
 --|2*x-1-1|(h0: x+2 ≠ 0)
 -- use the ε, δ definition to prove that lim_{x → 1} frac {2x^2 + 3x - 2}{ x+2} =1
-Statement : lim x → 1,  (2*x^2 + 3*x - 2)/(x+2) = 1 := by
+Statement : (lim x → 1,  (2*x^2 + 3*x - 2)/(x+2)) = 1 := by
 /-Statement : (h0: x+2 ≠ 0) tendsto (λ x, (2 * x ^ 2 + 3 * x - 2) / (x + 2)) (𝓝 1) (𝓝 1) := by-/
   apply lim_def_fin_fin
   intro ε hε

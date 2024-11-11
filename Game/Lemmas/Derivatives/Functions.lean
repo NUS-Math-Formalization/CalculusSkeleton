@@ -1,4 +1,4 @@
-import Game.Lemmas.Limits.Basic
+import Game.Lemmas.Limits.Basic_
 import Game.Lemmas.Limits.LimitLaws
 import Game.Lemmas.Derivatives.Basic
 

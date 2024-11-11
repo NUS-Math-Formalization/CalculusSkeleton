@@ -9,7 +9,7 @@ Level 1
 open BigOperators Topology
 open scoped Topology
 
-Statement : lim x → 0, 2 * x = 0 := by
+Statement : (lim x:ℝ → 0, (2 * x))= 0 := by
   apply lim_def_fin_fin
   Hint "Use `simp` to simplify zeros."
   simp

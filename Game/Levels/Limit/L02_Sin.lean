@@ -24,7 +24,7 @@ Some testing on delib
 
 namespace CGame
 
-Statement : lim x → 0, sin x = 0 := by
+Statement : (lim x → 0, sin x) = 0 := by
   Hint "Apply definition `lim_def_fin_fin` to rewrite the problem into the ε δ language "
   apply lim_def_fin_fin
   Hint "Now `intro` the $\\epsilon$ and its assumption."

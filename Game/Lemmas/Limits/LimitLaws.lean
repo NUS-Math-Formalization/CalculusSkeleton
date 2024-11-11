@@ -29,8 +29,8 @@ lemma HasLimAt_imp_HasLeftLimAt (h : HasLimAt f c) : HasLeftLimAt f c := by
   rw [epsilon_delta_nhds_nhds_left]
   exact epsDeltaLeftLimIfLim _ hl
 
-lemma HasLimAt_imp_HasLeftLimAt' (h₁ : HasLimAt f c) (h₂ : lim x → c, f x = L) :
-  lim x → c⁻, f x = L := by
+lemma HasLimAt_imp_HasLeftLimAt' (h₁ : HasLimAt f c) (h₂ : (lim x → c, f x) = L) :
+  (lim x → c⁻, f x) = L := by
   rcases h₁ with ⟨l, hl⟩
   have hl' := epsilon_delta_nhds_nhds_deleted.mp hl
   have hl'' := lim_def_fin_fin hl'
@@ -56,12 +56,12 @@ lemma HasLimAt_imp_HasRightLimAt (h : HasLimAt f c) : HasRightLimAt f c := by
   rw [epsilon_delta_nhds_nhds_right]
   exact epsDeltaRightLimIfLim _ hl
 
-lemma HasLimAt_imp_HasRightLimAt' (h₁ : HasLimAt f c) (h₂ : lim x → c, f x = L) :
-  lim x → c⁺, f x = L := by sorry
+lemma HasLimAt_imp_HasRightLimAt' (h₁ : HasLimAt f c) (h₂ : (lim x → c, f x) = L) :
+  (lim x → c⁺, f x) = L := by sorry
 
 
 lemma left_lim_eq_right_lim (h₁ : HasLeftLimAt f c) (h₂ : HasRightLimAt f c) :
-  (lim x → c⁻, f x = lim x → c⁺, f x) ↔ HasLimAt f c := by
+  ((lim x → c⁻, f x) = (lim x → c⁺, f x)) ↔ HasLimAt f c := by
   rcases h₁ with ⟨l₁, l₁h⟩
   rcases h₂ with ⟨l₂, l₂h⟩
   apply epsilon_delta_nhds_nhds_left.mp at l₁h
@@ -88,7 +88,7 @@ lemma left_lim_eq_right_lim (h₁ : HasLeftLimAt f c) (h₂ : HasRightLimAt f c)
 
 -- one direction is similar to above, the other direction is easy.
 lemma left_lim_eq_right_lim' (h₁ : HasLeftLimAt f c) (h₂ : HasRightLimAt f c) (h₃ : HasLimAt f c):
-  (lim x → c⁻, f x = L ∧ lim x → c⁺, f x = L) ↔ lim x → c, f x = L := by sorry
+  ((lim x → c⁻, f x) = L ∧ (lim x → c⁺, f x)= L) ↔ lim x → c, f x = L := by sorry
 
 
 -- then subsequently we can just prove the one-sided version to imply the two-sided version
@@ -101,12 +101,12 @@ lemma HasLeftLimAt_const (d : ℝ) : HasLeftLimAt (fun x => d) c := by
 
 lemma HasRightLimAt_const (d : ℝ) : HasRightLimAt (fun x => d) c := sorry
 
-lemma leftlim_const (d : ℝ) : lim (x:ℝ) → c⁻, d = d := by
+lemma leftlim_const (d : ℝ) : (lim x: ℝ → c⁻, d) = d := by
   apply left_lim_def_fin_fin
   rw [← epsilon_delta_nhds_nhds_left]
   exact tendsto_const_nhds
 
-lemma rightlim_const (d : ℝ) : lim (x:ℝ) → c⁺, d = d := by sorry
+lemma rightlim_const (d : ℝ) : (lim x: ℝ → c⁺, d) = d := by sorry
 
 lemma HasLimAt_const (d : ℝ) : HasLimAt (fun x => d) c := by
   apply (left_lim_eq_right_lim (HasLeftLimAt_const d) (HasRightLimAt_const d)).mp
@@ -114,7 +114,7 @@ lemma HasLimAt_const (d : ℝ) : HasLimAt (fun x => d) c := by
   have right := @rightlim_const c d
   rw [left, right]
 
-lemma lim_const (d : ℝ) : lim (x:ℝ) → c, d = d := (left_lim_eq_right_lim' (HasLeftLimAt_const d)
+lemma lim_const (d : ℝ) : lim x:ℝ → c, d = d := (left_lim_eq_right_lim' (HasLeftLimAt_const d)
   (HasRightLimAt_const d) (HasLimAt_const d)).mp (And.intro (leftlim_const d) (rightlim_const d))
 
 lemma HasLimAt_id : HasLimAt (fun x => x) c := sorry
@@ -134,10 +134,10 @@ lemma HasLimAt_mul_const (m : ℝ) (h : HasLimAt f c) :
 lemma lim_mul_const (m : ℝ) (h : HasLimAt f c) :
   lim x → c, m * f x = m * lim x → c, f x := sorry
 
-lemma lim_id : lim x → c, x = c := by sorry
+lemma lim_id : (lim x:ℝ → c, x) = c := by sorry
 
 lemma lim_add (h₁ : HasLimAt f₁ c) (h₂ : HasLimAt f₂ c) :
-  lim x → c, (f₁ x + f₂ x) = lim x → c, f₁ x + lim x → c, f₂ x := by sorry
+  (lim x → c, (f₁ x + f₂ x)) = (lim x → c, f₁ x) + lim x → c, f₂ x := by sorry
 
 lemma lim_sub (h₁ : HasLimAt f₁ c) (h₂ : HasLimAt f₂ c) :
   lim x → c, (f₁ x - f₂ x) = lim x → c, f₁ x - lim x → c, f₂ x := by sorry
@@ -156,7 +156,7 @@ lemma lim_pow (k : ℕ) (h : HasLimAt f c) :
 lemma leftlim_mul_const (m : ℝ) (h : HasLeftLimAt f c) :
   lim x → c⁻, m * f x = m * lim x → c⁻, f x := sorry
 
-lemma leftlim_id : lim x → c⁻, x = c := by sorry
+lemma leftlim_id : (lim x:ℝ → c⁻, x) = c := by sorry
 
 lemma leftlim_add (h₁ : HasLeftLimAt f₁ c) (h₂ : HasLeftLimAt f₂ c) :
   lim x → c⁻, (f₁ x + f₂ x) = lim x → c⁻, f₁ x + lim x → c⁻, f₂ x := by sorry
@@ -218,13 +218,13 @@ lemma HasLimAt_replacement_rule (hL : HasLimAt f₂ c)
 
 lemma lim_replacement_rule_fin_fin (hL : HasLimAt f₂ c)
   (hf₁f₂ : ∃ δ > 0, ∀ x, 0 < |x - c| ∧ |x - c| < δ → f₁ x = f₂ x) :
-  lim x → c, f₁ x = lim x → c, f₂ x := by
+  (lim x → c, f₁ x) = (lim x → c, f₂ x) := by
   have l1 := replacement_rule_pre hL hf₁f₂
-  have l2 : lim x → c, (f₁ - f₂) x = 0 := by
+  have l2 : (lim x → c, (f₁ - f₂) x) = 0 := by
     apply lim_def_fin_fin
     exact (epsilon_delta_nhds_nhds_deleted).mp l1
   have : (fun x => f₁ x) = (fun x => (f₁ - f₂) x + f₂ x) := (add_eq_of_eq_sub rfl).symm
-  have l3 : lim x → c, f₁ x = lim x → c, (f₁ - f₂) x + lim x → c, f₂ x := by
+  have l3 : (lim x → c, f₁ x) = (lim x → c, (f₁ - f₂) x) + (lim x → c, f₂ x) := by
     nth_rw 1 [this]
     rw [lim_add]
     . use 0
