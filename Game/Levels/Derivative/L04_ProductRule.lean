@@ -14,6 +14,7 @@ Statement (x : ℝ) : deriv (fun x => x * Real.exp x) (x : ℝ) = (x + 1) * Real
   rw [deriv_mul]
   Hint "To differentiate the exponential function, use `Real.deriv_exp`."
   rw [Real.deriv_exp]
+  Hint "Rewrite using `deriv_id'` to simplify the derivative of the identity function. This will replace the derivative of $x$ with 1, helping to simplify the expression."
   rw [deriv_id'']
   ring_nf
 

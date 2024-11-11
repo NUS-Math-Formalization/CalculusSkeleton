@@ -1,6 +1,3 @@
-import Mathlib.Analysis.Calculus.Deriv.Basic
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
-import Mathlib.Tactic
 import Game.Metadata
 
 
@@ -10,16 +7,13 @@ Level 11
 
 Title "Derivative of (x-1)^4/(x^2+2x)^5"
 
-
--- The derivative of frac{(x-1)^4}{(x^2 +2x)^5}
-
+Introduction "This level is about finding the derivative of the function $\\frac\\{(x-1)^4}\\{(x^2+2x)^5}$. This level is done by Daniel Low."
 
 
 Statement (x : ℝ) (hx1 : (x^2 + 2*x)^5 ≠ 0) :
 deriv (fun x : ℝ => (x-1)^4 / (x^2 + 2*x)^5) x
 = (4*(x-1)^ 3 * (x^2 + 2*x)^5 - (x - 1)^4 * (5*(x^2 + 2*x)^4 * (2*x + 2))) / ((x^2 + 2*x)^5) ^ 2 := by
-  Hint "##Introduction
-  $\\frac\{(x-1)^4}\{(x^2+2x)^5}$We want to use function composition so first we define several functions, one each for (u^4), (x-1), (u^5), (x^2+2x)"
+  Hint "$\\frac\{(x-1)^4}\{(x^2+2x)^5}$We want to use function composition so first we define several functions, one each for (u^4), (x-1), (u^5), (x^2+2x)"
   set f₁ := (fun u : ℝ  => u^4); set g₁ := (fun x : ℝ  => x - 1)
   set f₂ := (fun u : ℝ  => u^5); set g₂ := (fun x : ℝ  => x^2 + 2*x)
   Hint "Prove some lemmas to show that (x-1)^4 is a composition of two functions, and do the same for (x^2 + 2*x)^5, using rfl to prove"
@@ -46,6 +40,7 @@ deriv (fun x : ℝ => (x-1)^4 / (x^2 + 2*x)^5) x
   rw [deriv_sub_const, deriv_id'']
   Hint "For deriv(x^2 + 2*x), use deriv_add, deriv_const_mul, deriv_id''"
   rw [deriv_add]
+  Hint "Apply the `deriv_pow` rule to differentiate expressions of the form $x^n$. This will help simplify the derivative of $x^2$ within the given expression."
   rw [deriv_pow]
   rw [deriv_const_mul, deriv_id'']
   Hint "use simp to reduce to the final answer"

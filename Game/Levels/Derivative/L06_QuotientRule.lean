@@ -33,6 +33,7 @@ Statement (x : ℝ) : deriv (fun x => (Real.sin x) / (x ^ 2 + 1)) (x : ℝ) =
 
   Hint "To show that $x ^ 2 + 1 ≠ 0,$ you can show $x ^ 2 + 1 ≥ 1$ instead."
   have : x ^ 2 + 1 ≥ 1 := by
+    Hint "To show that $x^2 + 1 \\geq 1$, we can use the tactic `apply le_add_of_nonneg_left`. This tactic will reduce the problem to proving that the left term $x^2$ is non-negative, which is straightforward since the square of any real number is always non-negative."
     apply le_add_of_nonneg_left
     exact sq_nonneg x
   linarith

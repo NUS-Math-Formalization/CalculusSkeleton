@@ -16,7 +16,8 @@ Introduction "What you proved in the previous level have been summarized into le
 Statement : lim x → 0, (sin x + 2 * x) = 0 := by
   Hint "Recall `deriv_add`. Use `lim_add` to deal with the addition of limits"
   rw [lim_add]
-  · rw [lim_two_mul_zero, lim_sin_zero]; simp
+  · Hint "Rewrite the limits using `lim_two_mul_zero` and `lim_sin_zero` to evaluate the limits of $2x$ and $\\sin x$ as $x$ approaches 0. This will simplify the expression to $0 + 0 = 0$, which is trivially true."
+    rw [lim_two_mul_zero, lim_sin_zero]; simp
   · exact HasLimAt_sin_zero
   · exact HasLimAt_two_mul_zero
 
