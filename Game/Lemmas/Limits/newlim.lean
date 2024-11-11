@@ -111,24 +111,6 @@ def delabTendsto : Delab := whenPPOption Lean.getPPNotation  <| withOverApp 5 do
   | `(fun $x:ident => $body) => `(lim $(x) → $nb, $body = $L )
   | _ => none
 
-/-
-def delabTendsto : Delab := whenPPOption Lean.getPPNotation  do
-  let x := (← SubExpr.getExpr).getAppArgs --| failure
-  `((← Lean.PrettyPringer.delab x))
--/
-
-/-
-@[delab app.Tendsto]
-def delabTendsto : Delab := whenPPOption Lean.getPPNotation <| withOverApp 5 do
-  logInfo m!"(← SubExpr.getExpr).getAppNumArgs"
-  let #[_,_,ff,nb,L] := (← SubExpr.getExpr).getAppArgs --| failure
-  let ff ←  Lean.PrettyPrinter.delab ff
-  let nb ←  delabenhd <| (← Lean.PrettyPrinter.delab nb)
-  let L ←  delabenhdrhs <| (← Lean.PrettyPrinter.delab L)
-  match ff with
-  | `(fun $x:ident => $body) => `(lim $(x) → $nb, $body = L)
-  | _ => none
--/
 
 open Classical
 
@@ -148,15 +130,9 @@ variable (h : ℕ → ℕ)
 #check lim x → 100⁺, f x = 100
 #check lim x → c⁻, f x = -0
 #check lim x → ∞, g x = -∞
---#check llim c⁻ = c
---#check llim ∞ = c
---#check llim -∞ = c
 
 
-
-
-/-
-noncomputable section LimDef
+noncomputable section LimLemmas
 open Filter Set Classical Topology
 
 -- to fix: change to functions defined on intervals
@@ -168,65 +144,6 @@ def HasRightLimAt (f : ℝ → ℝ) (c : ℝ) := ∃ (l₂ : ℝ), Tendsto f (nh
 
 def HasLimAtTop (f : ℝ → ℝ) := ∃ (l₂ : ℝ), Tendsto f atTop (nhds l₂)
 
--- add HasLimAtBot
-
-irreducible_def flim (f : α → ℝ) (l₁ : Filter α) : ℝ :=
-  if h : ∃ L, Tendsto f l₁ (nhds L) then h.choose else 0
-
-#check ({(0:ℝ)}ᶜ : Set ℝ )
-
-/- Note that for sequence, there is only one meaningful filter which is atTop.
-  So for sequance lim, we do not specify the direction!
-  -/
-scoped[Topology] notation:max "lim " x:40 ", " r:70 =>
-  flim (fun (x:ℕ) => r) atTop
-scoped[Topology] notation:max "lim " x:40 ", " r:70 " = ∞" =>
-  Tendsto (fun (x:ℕ) => r) atTop atTop
-
-
-scoped[Topology] notation:max "lim " x:40 " → ∞, " r:70 "= ∞" =>
-  Tendsto (fun x => r) atTop atTop
-scoped[Topology] notation:max "lim " x:40 " → " c:10 ", " r:70 =>
-  flim (fun x => r) (𝓝[≠] c)
-scoped[Topology] notation:max "lim " x:40 " → ∞, " r:70 =>
-  flim (fun x => r) atTop
-scoped[Topology] notation:max "lim " x:40 " → " c:10 ", " r:70 " = ∞" =>
-  Tendsto (fun x => r) (𝓝[≠] c) atTop
-scoped[Topology] notation:max "lim " x:40 " → " c:10 "⁺, " r:70 =>
-  flim (fun x => r)  (𝓝[>] c)
-scoped[Topology] notation:max "lim " x:40 " → " c:10 "⁻, " r:70 =>
-  flim (fun x => r) (𝓝[<] c)
-scoped[Topology] notation:max "lim " x:40 " → " c:10 "⁺, " r:70 " = ∞" =>
-  Tendsto (fun x => r) (𝓝[>] c) atTop
-scoped[Topology] notation:max "lim " x:40 " → " c:10 "⁻, " r:70 " = ∞" =>
-  Tendsto (fun x => r) (𝓝[<] c) atTop
-
-
---end LimDef
---#check nhdsWithin
---open Filter Set Classical Topology
-/-
-notation:max "lim " x:40 " → ∞, " r:70 "= ∞" =>
-  Filter.Tendsto (fun x => r) Filter.atTop Filter.atTop
-notation:max "lim " x:40 " → " c:10 ", " r:70 =>
-  flim (fun x => r) (nhdsWithin c  {c}ᶜ)
-notation:max "lim " x:40 " → ∞, " r:70 =>
-  flim (fun x => r) Filter.atTop
-notation:max "lim " x:40 " → " c:10 ", " r:70 " = ∞" =>
-  Filter.Tendsto (fun x => r) (nhdsWithin c  {c}ᶜ) Filter.atTop
-notation:max "lim " x:40 " → " c:10 "⁺, " r:70 =>
-  flim (fun x => r)  (nhdsWithin c  (Set.Ioi c))
-notation:max "lim " x:40 " → " c:10 "⁻, " r:70 =>
-  flim (fun x => r) (nhdsWithin c  (Set.Iio c))
-notation:max "lim " x:40 " → " c:10 "⁺, " r:70 " = ∞" =>
-  Filter.Tendsto (fun x => r) (nhdsWithin c  (Set.Ioi c)) Filter.atTop
-notation:max "lim " x:40 " → " c:10 "⁻, " r:70 " = ∞" =>
-  Filter.Tendsto (fun x => r) (nhdsWithin c  (Set.Iio c)) Filter.atTop
-
--/
-
---section LimDef
---open Filter Set Classical Topology
 
 
 variable {c L : ℝ} {f : ℝ → ℝ}
@@ -251,13 +168,13 @@ lemma epsilon_delta_nhds_nhds_deleted : Tendsto f (nhdsWithin c {c}ᶜ) (nhds L)
   have NHB := nhds_basis_abs_sub_lt (α := ℝ)
   simp_rw [HasBasis.tendsto_iff (NHBD) (NHB L), mem_setOf_eq]
 
-
 lemma lim_def_fin_fin (h : ∀ ε > 0, ∃ δ > 0, ∀ x, 0 < |x - c| ∧ |x - c| < δ → |f x - L| < ε) :
-  lim x → c, f x = L := by
+  (lim x → c, f x) = L := by
   rw [← epsilon_delta_nhds_nhds_deleted] at h
   have hL : ∃ L, Tendsto f (nhdsWithin c {c}ᶜ) (nhds L) := ⟨L, h⟩
   rw [flim, dif_pos hL]
   exact tendsto_nhds_unique hL.choose_spec h
+
 
 
 lemma epsilon_delta_nhds_nhds_left : Tendsto f (nhdsWithin c (Set.Iio c)) (nhds L) ↔
@@ -287,7 +204,7 @@ lemma epsilon_delta_nhds_nhds_left : Tendsto f (nhdsWithin c (Set.Iio c)) (nhds 
 
 
 lemma left_lim_def_fin_fin (h : ∀ ε > 0, ∃ δ > 0, ∀ x, 0 < c - x ∧ c - x < δ → |f x - L| < ε) :
-  lim x → c⁻, f x = L := by
+  (lim x → c⁻, f x) = L := by
   rw [← epsilon_delta_nhds_nhds_left] at h
   have hL : ∃ L, Tendsto f (nhdsWithin c (Set.Iio c)) (nhds L) := ⟨L, h⟩
   rw [flim, dif_pos hL]
@@ -310,7 +227,7 @@ lemma epsilon_delta_atTop_nhds : Tendsto f atTop (nhds L) ↔
 
 
 lemma lim_def_inf_fin (h : ∀ ε > 0, ∃ N, ∀ x, x > N → |f x - L| < ε) :
-  lim x → ∞, f x = L := by
+  (lim x → ∞, f x) = L := by
   rw [← epsilon_delta_atTop_nhds] at h
   have hL : ∃ L, Tendsto f atTop (nhds L) := ⟨L, h⟩
   rw [flim, dif_pos hL]
@@ -354,56 +271,4 @@ lemma lim_def_inf_inf (h : ∀ N : ℝ, ∃ M, ∀ x, x > M → f x > N) :
   lim x → ∞, f x = ∞ := epsilon_delta_atTop_atTop.mpr h
 
 
-@[app_unexpander flim]
-def flim.unexpander : Lean.PrettyPrinter.Unexpander
-  | `($n $f $c) =>
-      match f with
-     | `(fun $x:ident => $body)=>
-        match c with
-        | `(𝓝[≠] $a) => `(lim $x → $a,  $body)
-        | `(𝓝[>] $a) => `(lim $x → $a⁺,  $body)
-        | `(𝓝[<] $a) => `(lim $x → $a⁻,  $body)
-        | `(nhdsWithin $a $b ) =>
-          match b with
-          | `(Set.Ioi $a) => `(lim $x → $a⁺,  $body)
-          | `(Set.Iio $a) => `(lim $x → $a⁻,  $body)
-          | `($_ᶜ) => `(lim $x → $a,  $body)
-          | _ => `(lim $x → $a $b,  $body)
-        | `(atTop) =>  `(lim $x → ∞,  $body)
-        | `($a) => `(lim $x → $a,  $body)
-     | `($f) =>
-        let x:= Lean.mkIdent `x
-        match c with
-        | `(𝓝[≠] $a) => `(lim $x → $a,  ($f $x))
-        | `(𝓝[>] $a) => `(lim $x → $a⁺, ($f $x))
-        | `(𝓝[<] $a) => `(lim $x → $a⁻, ($f $x))
-        | `(nhdsWithin $a $b ) =>
-          match b with
-          | `(Set.Ioi $a) => `(lim $x → $a⁺, ($f $x))
-          | `(Set.Iio $a) => `(lim $x → $a⁻, ($f $x))
-          | `($_ᶜ) => `(lim $x → $a,  ($f $x))
-          | _ => `(lim $x → $a $b,   ($f $x))
-        | _ => `(lim $x → $c,   ($f $x))
-  | `($a) => `($a)
-
-#check right_lim_def_fin_inf
-#check lim_def_inf_inf
-#check flim (id) (𝓝[≠] 1)
-
-open Nat
-example  : lim n, (1:ℝ)/(n+1:ℝ) = 0 := by
-  rw [flim]
-  have NHB := nhds_basis_abs_sub_lt (α := ℝ)
-  have : Tendsto (fun n => 1 / ((n:ℝ) + 1)) atTop (𝓝 0) := by
-    apply (HasBasis.tendsto_iff (atTop_basis) (NHB 0)).2
-    intro ε he
-    use 1/ε + 1
-    simp
-    intro x
-    sorry
-  simp
-  sorry
-
-
-end LimDef
--/
+end LimLemmas

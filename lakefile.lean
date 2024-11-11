@@ -33,7 +33,7 @@ you can use `require mathlib from git "[URL]" @ leanVersion`
 
 
 require mathlib from git "https://github.com/leanprover-community/mathlib4.git" @ leanVersion
-
+require llmlean from git "https://github.com/NUS-Math-Formalization/llmlean.git" @ leanVersion
 
 /-! # END USER SECTION -/
 
