@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Sun Oct 27 00:08:02 2024\n"
+"POT-Creation-Date: Thu Oct 31 17:09:18 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -355,7 +355,12 @@ msgid "This inequality is a little bit hard. Use a `calc` block."
 msgstr ""
 
 #: Game.Levels.Limit.L01_Introduction
-msgid "The definitive equivalence for limits in finite case"
+msgid "The defintion of limits in the finite case:\n"
+"\n"
+"  For a function $f$, $\\lim_{x\\to c} f (x) = L$ if and only if\n"
+"  for every $\\epsilon >0 $, there is $\\delta >0$ such that\n"
+"  for every $x$ with $0< | x - c |< \\delta$ the inequality\n"
+"  $ | f (x) - L | < \\epsilon$ holds."
 msgstr ""
 
 #: Game.Levels.Limit.L01_Introduction
@@ -383,11 +388,11 @@ msgid "How can you choose the bound here?"
 msgstr ""
 
 #: Game.Levels.Limit.L02_Sin
-msgid "We would like to use the inequality $|\\sin x| ≤ |x|$."
+msgid "Hint: Consider using  the inequality $|\\sin x| ≤ |x|$."
 msgstr ""
 
 #: Game.Levels.Limit.L02_Sin
-msgid "Use `constructor` to split the goal!"
+msgid "Use `constructor` or `And.intro` to split the goal!"
 msgstr ""
 
 #: Game.Levels.Limit.L02_Sin
@@ -404,6 +409,18 @@ msgstr ""
 
 #: Game.Levels.Limit.L02_Sin
 msgid "$a \\leq b$ and $b< c$ imples $a < c$"
+msgstr ""
+
+#: Game.Levels.Limit.L02_Sin
+msgid ""
+msgstr ""
+
+#: Game.Levels.Limit.L02_Sin
+msgid ""
+msgstr ""
+
+#: Game.Levels.Limit.L02_Sin
+msgid ""
 msgstr ""
 
 #: Game.Levels.Limit.L03_Add

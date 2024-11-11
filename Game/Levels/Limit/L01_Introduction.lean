@@ -26,7 +26,13 @@ Statement : lim x → 0, 2 * x = 0 := by
       _ = 2 * |x| := by rw [abs_mul, abs_two]
       _ < ε := by linarith
 
-/-- The definitive equivalence for limits in finite case  -/
+/-- The defintion of limits in the finite case:
+
+  For a function $f$, $\lim_{x\to c} f (x) = L$ if and only if
+  for every $\epsilon >0 $, there is $\delta >0$ such that
+  for every $x$ with $0< | x - c |< \delta$ the inequality
+  $ | f (x) - L | < \epsilon$ holds.
+ -/
 TheoremDoc lim_def_fin_fin as "lim_def_fin_fin" in "Definition"
 
 /-- $ |m * x| = |m| * |x| $ -/

@@ -1,3 +1,8 @@
+
+import Mathlib.Data.Real.EReal
+import Mathlib.Topology.Instances.ENNReal
+import Mathlib.Data.ENNReal.Basic
+
 import Game.Lemmas.Limits.Basic
 open Filter Set Topology
 
@@ -96,12 +101,12 @@ lemma HasLeftLimAt_const (d : ℝ) : HasLeftLimAt (fun x => d) c := by
 
 lemma HasRightLimAt_const (d : ℝ) : HasRightLimAt (fun x => d) c := sorry
 
-lemma leftlim_const (d : ℝ) : lim x → c⁻, d = d := by
+lemma leftlim_const (d : ℝ) : lim (x:ℝ) → c⁻, d = d := by
   apply left_lim_def_fin_fin
   rw [← epsilon_delta_nhds_nhds_left]
   exact tendsto_const_nhds
 
-lemma rightlim_const (d : ℝ) : lim x → c⁺, d = d := by sorry
+lemma rightlim_const (d : ℝ) : lim (x:ℝ) → c⁺, d = d := by sorry
 
 lemma HasLimAt_const (d : ℝ) : HasLimAt (fun x => d) c := by
   apply (left_lim_eq_right_lim (HasLeftLimAt_const d) (HasRightLimAt_const d)).mp
@@ -109,7 +114,7 @@ lemma HasLimAt_const (d : ℝ) : HasLimAt (fun x => d) c := by
   have right := @rightlim_const c d
   rw [left, right]
 
-lemma lim_const (d : ℝ) : lim x → c, d = d := (left_lim_eq_right_lim' (HasLeftLimAt_const d)
+lemma lim_const (d : ℝ) : lim (x:ℝ) → c, d = d := (left_lim_eq_right_lim' (HasLeftLimAt_const d)
   (HasRightLimAt_const d) (HasLimAt_const d)).mp (And.intro (leftlim_const d) (rightlim_const d))
 
 lemma HasLimAt_id : HasLimAt (fun x => x) c := sorry

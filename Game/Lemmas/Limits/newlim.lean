@@ -88,6 +88,7 @@ def delabenhdrhs : TSyntax `term → DelabM (TSyntax `enhb) := fun C =>
 @[delab app.flim]
 def delabflim : Delab := whenPPOption Lean.getPPNotation <| withOverApp 6 do
   let #[_,_,_,_,ff,nb] := (← SubExpr.getExpr).getAppArgs | failure
+  --dbg_trace f!"{ff}, aaaa {nb}"
   let ff ←  Lean.PrettyPrinter.delab ff
   let nb ←  Lean.PrettyPrinter.delab nb
   let nb ← delabenhd nb

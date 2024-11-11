@@ -32,9 +32,9 @@ Statement : lim x → 0, sin x = 0 := by
   Hint "You always can use `simp` to simplify the goal. "
   simp
   Hint "How can you choose the bound here?"
-  Hint "We would like to use the inequality $|\\sin x| ≤ |x|$."
+  Hint "Hint: Consider using  the inequality $|\\sin x| ≤ |x|$."
   use ε
-  Hint "Use `constructor` to split the goal!"
+  Hint "Use `constructor` or `And.intro` to split the goal!"
   constructor
   · Hint "Close the goal using assumption."
     assumption
@@ -54,5 +54,8 @@ TheoremDoc CGame.abs_sin_le_abs as "abs_sin_le_abs" in "Inequalities"
 /-- $a \leq b$ and $b< c$ imples $a < c$ -/
 TheoremDoc CGame.lt_of_le_of_lt as "lt_of_le_of_lt" in "Inequalities"
 
+TheoremDoc And.intro as "And.intro" in "Logic"
+TheoremDoc Or.inl as "Or.inl" in "Logic"
+TheoremDoc Or.inr as "Or.inr" in "Logic"
 
-NewTheorem CGame.abs_sin_le_abs CGame.lt_of_le_of_lt
+NewTheorem CGame.abs_sin_le_abs CGame.lt_of_le_of_lt And.intro Or.inl Or.inr
