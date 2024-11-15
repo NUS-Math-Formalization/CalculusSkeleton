@@ -7,18 +7,18 @@ open Filter Set Classical Topology
 noncomputable section LimDef
 
 -- to fix: change to functions defined on intervals
-def HasLimAt (f : ℝ → ℝ) (c : ℝ) := ∃ (l₂ : ℝ), Tendsto f (nhdsWithin c {c}ᶜ) (nhds l₂)
+def HasLimAtFilter (f : ℝ → ℝ) (l₁ : Filter ℝ) := ∃ (L : ℝ), Tendsto f l₁ (𝓝 L)
 
-def HasLeftLimAt (f : ℝ → ℝ) (c : ℝ) := ∃ (l₂ : ℝ), Tendsto f (nhdsWithin c (Set.Iio c)) (nhds l₂)
+def HasLimAt (f : ℝ → ℝ) (c : ℝ) := HasLimAtFilter f (𝓝[≠] c)
+def HasLeftLimAt (f : ℝ → ℝ) (c : ℝ) := HasLimAtFilter f (𝓝[<] c)
+def HasRightLimAt (f : ℝ → ℝ) (c : ℝ) := HasLimAtFilter f (𝓝[>] c)
 
-def HasRightLimAt (f : ℝ → ℝ) (c : ℝ) := ∃ (l₂ : ℝ), Tendsto f (nhdsWithin c (Set.Ioi c)) (nhds l₂)
-
-def HasLimAtTop (f : ℝ → ℝ) := ∃ (l₂ : ℝ), Tendsto f atTop (nhds l₂)
+-- def HasLimAtTop (f : ℝ → ℝ) := ∃ (l₂ : ℝ), Tendsto f atTop (𝓝 L₂)
 
 -- add HasLimAtBot
 
 irreducible_def flim (f : ℝ → ℝ) (l₁ : Filter ℝ) : ℝ :=
-  if h : ∃ L, Tendsto f l₁ (nhds L) then h.choose else 0
+  if h : HasLimAtFilter f l₁ then h.choose else 0
 
 notation:max "lim " x:40 " → ∞, " r:70 "= ∞" =>
   Tendsto (fun x => r) atTop atTop
@@ -41,7 +41,7 @@ notation:max "lim " x:40 " → " c:10 "⁻, " r:70 " = ∞" =>
 variable {c L : ℝ} {f : ℝ → ℝ}
 
 lemma nhds_basis_abs_sub_lt_deleted (a : ℝ) :
-    (nhdsWithin a {a}ᶜ).HasBasis (fun ε : ℝ => 0 < ε) fun ε => { b | 0 < |b - a| ∧ |b - a| < ε }
+    (𝓝[≠] a).HasBasis (fun ε : ℝ => 0 < ε) fun ε => { b | 0 < |b - a| ∧ |b - a| < ε }
     := by
   have : (fun ε => { b | 0 < |b - a| ∧ |b - a| < ε }) = (fun ε => {b | |b - a| < ε} ∩ {a}ᶜ) := by
     funext ε; ext x
@@ -54,7 +54,7 @@ lemma nhds_basis_abs_sub_lt_deleted (a : ℝ) :
   apply nhdsWithin_hasBasis (nhds_basis_abs_sub_lt (α := ℝ) a) ({a}ᶜ)
 
 
-lemma epsilon_delta_nhds_nhds_deleted : Tendsto f (nhdsWithin c {c}ᶜ) (nhds L) ↔
+lemma epsilon_delta_nhds_nhds_deleted : Tendsto f (𝓝[≠] c) (𝓝 L) ↔
   ∀ ε > 0, ∃ δ > 0, ∀ x, 0 < |x - c| ∧ |x - c| < δ → |f x - L| < ε := by
   have NHBD := nhds_basis_abs_sub_lt_deleted c
   have NHB := nhds_basis_abs_sub_lt (α := ℝ)
@@ -64,12 +64,12 @@ lemma epsilon_delta_nhds_nhds_deleted : Tendsto f (nhdsWithin c {c}ᶜ) (nhds L)
 lemma lim_def_fin_fin (h : ∀ ε > 0, ∃ δ > 0, ∀ x, 0 < |x - c| ∧ |x - c| < δ → |f x - L| < ε) :
   lim x → c, f x = L := by
   rw [← epsilon_delta_nhds_nhds_deleted] at h
-  have hL : ∃ L, Tendsto f (nhdsWithin c {c}ᶜ) (nhds L) := ⟨L, h⟩
-  rw [flim, dif_pos hL]
+  have hL : ∃ L, Tendsto f (𝓝[≠] c) (𝓝 L) := ⟨L, h⟩
+  simp_rw [flim, HasLimAtFilter, dif_pos hL]
   exact tendsto_nhds_unique hL.choose_spec h
 
 
-lemma epsilon_delta_nhds_nhds_left : Tendsto f (nhdsWithin c (Set.Iio c)) (nhds L) ↔
+lemma epsilon_delta_nhds_nhds_left : Tendsto f (𝓝[<] c) (𝓝 L) ↔
   ∀ ε > 0, ∃ δ > 0, ∀ x, 0 < c - x ∧ c - x < δ → |f x - L| < ε := by
   have : ∃ b, b < c := by use (c - 1); norm_num
   have NHBL := nhdsWithin_Iio_basis' (α := ℝ) this
@@ -98,12 +98,12 @@ lemma epsilon_delta_nhds_nhds_left : Tendsto f (nhdsWithin c (Set.Iio c)) (nhds 
 lemma left_lim_def_fin_fin (h : ∀ ε > 0, ∃ δ > 0, ∀ x, 0 < c - x ∧ c - x < δ → |f x - L| < ε) :
   lim x → c⁻, f x = L := by
   rw [← epsilon_delta_nhds_nhds_left] at h
-  have hL : ∃ L, Tendsto f (nhdsWithin c (Set.Iio c)) (nhds L) := ⟨L, h⟩
-  rw [flim, dif_pos hL]
+  have hL : ∃ L, Tendsto f (𝓝[<] c) (𝓝 L) := ⟨L, h⟩
+  simp_rw [flim, HasLimAtFilter, dif_pos hL]
   exact tendsto_nhds_unique hL.choose_spec h
 
 
-lemma epsilon_delta_nhds_nhds_right : Tendsto f (nhdsWithin c (Set.Ioi c)) (nhds L) ↔
+lemma epsilon_delta_nhds_nhds_right : Tendsto f ((𝓝[>] c)) (𝓝 L) ↔
   ∀ ε > 0, ∃ δ > 0, ∀ x, 0 < x - c ∧ x - c < δ → |f x - L| < ε := by sorry
 
 
@@ -111,7 +111,7 @@ lemma right_lim_def_fin_fin (h : ∀ ε > 0, ∃ δ > 0, ∀ x, 0 < x - c ∧ x 
   lim x → c⁺, f x = L := by sorry
 
 
-lemma epsilon_delta_atTop_nhds : Tendsto f atTop (nhds L) ↔
+lemma epsilon_delta_atTop_nhds : Tendsto f atTop (𝓝 L) ↔
   ∀ ε > 0, ∃ N, ∀ x, x > N → |f x - L| < ε := by
   have THB := atTop_basis_Ioi (α := ℝ)
   have NHB := nhds_basis_abs_sub_lt (α := ℝ)
@@ -121,12 +121,12 @@ lemma epsilon_delta_atTop_nhds : Tendsto f atTop (nhds L) ↔
 lemma lim_def_inf_fin (h : ∀ ε > 0, ∃ N, ∀ x, x > N → |f x - L| < ε) :
   lim x → ∞, f x = L := by
   rw [← epsilon_delta_atTop_nhds] at h
-  have hL : ∃ L, Tendsto f atTop (nhds L) := ⟨L, h⟩
-  rw [flim, dif_pos hL]
+  have hL : ∃ L, Tendsto f atTop (𝓝 L) := ⟨L, h⟩
+  simp_rw [flim, HasLimAtFilter, dif_pos hL]
   exact tendsto_nhds_unique hL.choose_spec h
 
 
-lemma epsilon_delta_nhds_atTop_deleted : Tendsto f (nhdsWithin c {c}ᶜ) atTop ↔
+lemma epsilon_delta_nhds_atTop_deleted : Tendsto f (𝓝[≠] c) atTop ↔
   ∀ N : ℝ, ∃ δ > 0, ∀ x, 0 < |x - c| ∧ |x - c| < δ → f x > N := by
   have THB := atTop_basis_Ioi (α := ℝ)
   have NHBD := nhds_basis_abs_sub_lt_deleted c
@@ -137,7 +137,7 @@ lemma lim_def_fin_inf (h : ∀ N : ℝ, ∃ δ > 0, ∀ x, 0 < |x - c| ∧ |x - 
   lim x → c, f x = ∞ := epsilon_delta_nhds_atTop_deleted.mpr h
 
 
-lemma epsilon_delta_nhds_atTop_left : Tendsto f (nhdsWithin c (Set.Iio c)) atTop ↔
+lemma epsilon_delta_nhds_atTop_left : Tendsto f (𝓝[<] c) atTop ↔
   ∀ N : ℝ, ∃ δ > 0, ∀ x, 0 < c - x ∧ c - x < δ → f x > N := by sorry
 
 -- Clarence: I think this should be flipped and iff'ed
@@ -145,7 +145,7 @@ lemma left_lim_def_fin_inf (h : ∀ N : ℝ, ∃ δ > 0, ∀ x, 0 < c - x ∧ c 
   lim x → c⁻, f x = ∞ := by sorry
 
 
-lemma epsilon_delta_nhds_atTop_right : Tendsto f (nhdsWithin c (Set.Ioi c)) atTop ↔
+lemma epsilon_delta_nhds_atTop_right : Tendsto f ((𝓝[>] c)) atTop ↔
   ∀ N : ℝ, ∃ δ > 0, ∀ x, 0 < x - c ∧ x - c < δ → f x > N := by sorry
 
 

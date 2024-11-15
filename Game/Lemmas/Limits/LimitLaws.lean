@@ -89,12 +89,12 @@ lemma left_lim_eq_right_lim' (h₁ : HasLeftLimAt f c) (h₂ : HasRightLimAt f c
 -- then subsequently we can just prove the one-sided version to imply the two-sided version
 -- example:
 
-lemma HasLeftLimAt_const (d : ℝ) : HasLeftLimAt (fun x => d) c := by
-  simp only [HasLeftLimAt]
+lemma HasLeftLimAt_const (d : ℝ) : HasLimAtFilter (fun x => d) (𝓝[<] c) := by
+  simp only [HasLimAtFilter]
   use d
   exact tendsto_const_nhds
 
-lemma HasRightLimAt_const (d : ℝ) : HasRightLimAt (fun x => d) c := sorry
+lemma HasRightLimAt_const (d : ℝ) : HasLimAtFilter (fun x => d) (𝓝[>] c) := sorry
 
 lemma leftlim_const (d : ℝ) : lim x → c⁻, d = d := by
   apply left_lim_def_fin_fin
@@ -123,7 +123,7 @@ lemma HasLimAt_mul (h₁ : HasLimAt f₁ c) (h₂ : HasLimAt f₂ c) :
 lemma HasLimAt_pow (k : ℕ) (h : HasLimAt f c) : HasLimAt (fun x => (f₁ x) ^ k) c := sorry
 
 lemma HasLimAt_mul_const (m : ℝ) (h : HasLimAt f c) :
-  HasLimAt (fun x => m * x) c := sorry
+  HasLimAtFilter (fun x => m * x) (𝓝[≠] c) := sorry
 
 
 lemma lim_mul_const (m : ℝ) (h : HasLimAt f c) :
@@ -153,17 +153,17 @@ lemma leftlim_mul_const (m : ℝ) (h : HasLeftLimAt f c) :
 
 lemma leftlim_id : lim x → c⁻, x = c := by sorry
 
-lemma leftlim_add (h₁ : HasLeftLimAt f₁ c) (h₂ : HasLeftLimAt f₂ c) :
+lemma leftlim_add (h₁ : HasLimAtFilter f₁ (𝓝[<] c)) (h₂ : HasLimAtFilter f₂ (𝓝[<] c)) :
   lim x → c⁻, (f₁ x + f₂ x) = lim x → c⁻, f₁ x + lim x → c⁻, f₂ x := by sorry
 
-lemma leftlim_sub (h₁ : HasLeftLimAt f₁ c) (h₂ : HasLeftLimAt f₂ c) :
+lemma leftlim_sub (h₁ : HasLimAtFilter f₁ (𝓝[<] c)) (h₂ : HasLimAtFilter f₂ (𝓝[<] c)) :
   lim x → c⁻, (f₁ x - f₂ x) = lim x → c⁻, f₁ x - lim x → c⁻, f₂ x := by sorry
 
-lemma leftlim_div (h₁ : HasLeftLimAt f₁ c) (h₂ : HasLeftLimAt f₂ c)
+lemma leftlim_div (h₁ : HasLimAtFilter f₁ (𝓝[<] c)) (h₂ : HasLimAtFilter f₂ (𝓝[<] c))
   (h₀ : lim x → c⁻, f₂ x ≠ 0) :
   lim x → c⁻, (f₁ x / f₂ x) = (lim x → c⁻, f₁ x) / (lim x → c⁻, f₂ x) := by sorry
 
-lemma leftlim_mul (h₁ : HasLeftLimAt f₁ c) (h₂ : HasLeftLimAt f₂ c) :
+lemma leftlim_mul (h₁ : HasLimAtFilter f₁ (𝓝[<] c)) (h₂ : HasLimAtFilter f₂ (𝓝[<] c)) :
   lim x → c⁻, (f₁ x * f₂ x) = (lim x → c⁻, f₁ x) * (lim x → c⁻, f₂ x) := by sorry
 
 lemma leftlim_pow (k : ℕ) (h : HasLeftLimAt f c) :

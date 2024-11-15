@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Sat Nov  9 14:04:05 2024\n"
+"POT-Creation-Date: Fri Nov 15 15:43:05 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -109,6 +109,22 @@ msgid "Rewrite the formula using a combination of `derive_add` `derive_pow'` `de
 msgstr ""
 
 #: Game.Levels.Derivative.L03_Square
+msgid "Use `rw [deriv_add]` to break down the derivative of the sum into the sum of derivatives. This step simplifies the expression by distributing the derivative across the terms $x^2$ and $3x$, making it easier to evaluate each part separately."
+msgstr ""
+
+#: Game.Levels.Derivative.L03_Square
+msgid "The goal is to prove the expression involving derivatives. Start by applying the `rw` tactic with the lemmas `deriv_mul` and `deriv_id'` to manipulate the derivatives. This will expand the derivative of the product and simplify the derivative of the identity function, making the expression more manageable."
+msgstr ""
+
+#: Game.Levels.Derivative.L03_Square
+msgid "To simplify the goal involving constants and their derivatives, apply `rw [deriv_const]`. This will replace the derivative of any constant function with zero, simplifying the expression."
+msgstr ""
+
+#: Game.Levels.Derivative.L03_Square
+msgid "To simplify the given expression and move closer to the desired form, use the `simp` tactic. This will automatically handle straightforward arithmetic simplifications and identities, such as evaluating constants and removing zero terms, to help achieve the target expression."
+msgstr ""
+
+#: Game.Levels.Derivative.L03_Square
 msgid "Now show all the differentiability conditions required by previous proof steps."
 msgstr ""
 
@@ -145,6 +161,10 @@ msgid "To differentiate the exponential function, use `Real.deriv_exp`."
 msgstr ""
 
 #: Game.Levels.Derivative.L04_ProductRule
+msgid "Rewrite using `deriv_id'` to simplify the derivative of the identity function. This will replace the derivative of $x$ with 1, helping to simplify the expression."
+msgstr ""
+
+#: Game.Levels.Derivative.L04_ProductRule
 msgid "To show the exponential function is differentiable, use `Real.differentiableAt_exp`."
 msgstr ""
 
@@ -162,6 +182,30 @@ msgstr ""
 
 #: Game.Levels.Derivative.L05_EXpowerEX
 msgid "exp to the exp"
+msgstr ""
+
+#: Game.Levels.Derivative.L05_EXpowerEX
+msgid "To solve the goal involving the derivative of an exponential function, use `simp_rw [Real.exp_mul]` to rewrite the expression. This will help transform $ \\exp(x) ^ \\exp(x) $ into $ \\exp(x \\cdot \\exp(x)) $, making it easier to differentiate."
+msgstr ""
+
+#: Game.Levels.Derivative.L05_EXpowerEX
+msgid "Introduce a new function `g` defined as `g(x) = x * Real.exp x`. This will help simplify the expression for the derivative by allowing us to focus on `Real.exp (g(x))`. This step is setting up the problem for easier manipulation and differentiation."
+msgstr ""
+
+#: Game.Levels.Derivative.L05_EXpowerEX
+msgid "Introduce an auxiliary fact using `have` to recognize that the function $ \\exp(x \\cdot \\exp(x)) $ can be expressed as the composition $ \\exp \\circ g $, where $ g(x) = x \\cdot \\exp(x) $. This simplification can help clarify the structure of the function for differentiation."
+msgstr ""
+
+#: Game.Levels.Derivative.L05_EXpowerEX
+msgid "To tackle the goal involving the derivative of a composition of functions, use `rw [deriv.comp]`. This will apply the chain rule, allowing you to express the derivative of the composition as the product of the derivative of the outer function evaluated at the inner function and the derivative of the inner function itself."
+msgstr ""
+
+#: Game.Levels.Derivative.L05_EXpowerEX
+msgid "Apply the rewrite rule `mul_comm` to swap the multiplication order in the expression $((x + 1) \\cdot \\exp(x))$. This will help align the left-hand side of the equation with the right-hand side by changing it to $(\\exp(x) \\cdot (x + 1))$."
+msgstr ""
+
+#: Game.Levels.Derivative.L05_EXpowerEX
+msgid "To simplify the expression on the left-hand side of the equation, use the `rw [mul_comm]` tactic. This tactic applies the commutative property of multiplication to reorder the terms, swapping `Real.exp (g x)` and `Real.exp x`."
 msgstr ""
 
 #: Game.Levels.Derivative.L05_EXpowerEX
@@ -194,6 +238,10 @@ msgstr ""
 
 #: Game.Levels.Derivative.L06_QuotientRule
 msgid "To show that $x ^ 2 + 1 ≠ 0,$ you can show $x ^ 2 + 1 ≥ 1$ instead."
+msgstr ""
+
+#: Game.Levels.Derivative.L06_QuotientRule
+msgid "To show that $x^2 + 1 \\geq 1$, we can use the tactic `apply le_add_of_nonneg_left`. This tactic will reduce the problem to proving that the left term $x^2$ is non-negative, which is straightforward since the square of any real number is always non-negative."
 msgstr ""
 
 #: Game.Levels.Derivative.L06_QuotientRule
@@ -483,6 +531,10 @@ msgid "For deriv(x^2 + 2*x), use deriv_add, deriv_const_mul, deriv_id''"
 msgstr ""
 
 #: Game.Levels.Derivative.L11_Quotient3
+msgid "Apply the `deriv_pow` rule to differentiate expressions of the form $x^n$. This will help simplify the derivative of $x^2$ within the given expression."
+msgstr ""
+
+#: Game.Levels.Derivative.L11_Quotient3
 msgid "use simp to reduce to the final answer"
 msgstr ""
 
@@ -603,6 +655,10 @@ msgid "Recall `deriv_add`. Use `lim_add` to deal with the addition of limits"
 msgstr ""
 
 #: Game.Levels.Limit.L03_Add
+msgid "Rewrite the limits using `lim_two_mul_zero` and `lim_sin_zero` to evaluate the limits of $2x$ and $\\sin x$ as $x$ approaches 0. This will simplify the expression to $0 + 0 = 0$, which is trivially true."
+msgstr ""
+
+#: Game.Levels.Limit.L03_Add
 msgid "TODO"
 msgstr ""
 
@@ -650,9 +706,9 @@ msgid "## Calculus Game\n"
 msgstr ""
 
 #: Game
-msgid "Game Template"
+msgid "An experimental game for Calculus in Lean4"
 msgstr ""
 
 #: Game
-msgid "You should use this game as a template for your own game and add your own levels."
+msgid "This game is intended for a fun introduction to Lean4 and Calculus World."
 msgstr ""
