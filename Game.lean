@@ -19,10 +19,10 @@ This game is intended for a fun introduction to Lean4 and Calculus World.
 
 /-! Information to be displayed on the servers landing page. -/
 Languages "English"
-CaptionShort "Game Template"
-CaptionLong "You should use this game as a template for your own game and add your own levels."
+CaptionShort "An experimental game for Calculus in Lean4"
+CaptionLong "This game is intended for a fun introduction to Lean4 and Calculus World."
 -- Prerequisites "" -- add this if your game depends on other games
--- CoverImage "images/cover.png"
+CoverImage "images/cover_test.jpg"
 
 /-! Build the game. Show's warnings if it found a problem with your game. -/
 MakeGame
