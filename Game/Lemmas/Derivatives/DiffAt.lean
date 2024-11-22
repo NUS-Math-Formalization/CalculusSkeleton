@@ -32,15 +32,15 @@ macro "derivit" : tactic => `(tactic|(
     rw [deriv_const] |
     rw [deriv_inv] |
     rw [deriv_pow] |
-    rw [← Function.comp_def] |
-    rw [deriv.comp] |
     rw [deriv_div] |
     rw [deriv_const_mul] |
     rw [deriv_sub_const] |
     rw [Real.deriv_const'] |
-    rw [Real.deriv_eq] |
     rw [Real.deriv_sin] |
     rw [Real.deriv_cos] |
+    rw [← Function.comp_def] |
+    rw [deriv.comp] |
+
 
     simp_all
   )))
