@@ -1,6 +1,7 @@
 import GameServer.Commands
 import Mathlib
 import Game.Generator.Basic
+import Game.Lemmas.Derivatives.DiffAt
 
 /-! Use this file to add things that should be available in all levels.
 
