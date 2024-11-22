@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Fri Nov 22 15:36:31 2024\n"
+"POT-Creation-Date: Fri Nov 22 17:42:24 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -225,11 +225,35 @@ msgid "Quotient Rule"
 msgstr ""
 
 #: Game.Levels.Derivative.L06_QuotientRule
-msgid "To apply the quotient rule, use `deriv_div`"
+msgid "Our current goal is: $$ ( \\frac{\\sin x}{x^2 + 1} )' = \\frac{ \\cos x \\cdot (x^2 + 1) - \\sin x \\cdot 2x }{ (x^2 + 1)^2 }.$$ To apply the quotient rule, use `deriv_div`"
 msgstr ""
 
 #: Game.Levels.Derivative.L06_QuotientRule
-msgid "To differentiate the sine function, use `Real.deriv_sin`"
+msgid "Our current goal is: $$ \\frac{ (\\sin x)' \\cdot (x^2 + 1) - \\sin x \\cdot (x^2 + 1)' }{ (x^2 + 1)^2 } = \\frac{ \\cos x \\cdot (x^2 + 1) - \\sin x \\cdot 2x }{ (x^2 + 1)^2 }.$$ To differentiate the sine function, use `Real.deriv_sin`"
+msgstr ""
+
+#: Game.Levels.Derivative.L06_QuotientRule
+msgid "Our current goal is: $$ \\frac{ \\cos x \\cdot (x^2 + 1) - \\sin x \\cdot ( (x^2 + 1)' ) }{ (x^2 + 1)^2 } = \\frac{ \\cos x \\cdot (x^2 + 1) - \\sin x \\cdot 2x }{ (x^2 + 1)^2 }.$$ Rewrite the derivative using `deriv_add` to separate it into two distinct derivatives. This helps in dealing with each part of the sum individually, making it easier to simplify and solve the expression."
+msgstr ""
+
+#: Game.Levels.Derivative.L06_QuotientRule
+msgid "Our current goal is: $$ \\frac{ \\cos x \\cdot (x^2 + 1) - \\sin x \\cdot ( (x^2)' + (1)' ) }{ (x^2 + 1)^2 } = \\frac{ \\cos x \\cdot (x^2 + 1) - \\sin x \\cdot 2x }{ (x^2 + 1)^2 }.$$ To simplify the expression involving the derivative of a power function, apply the rewrite rule `deriv_pow'`. This will expand the derivative of $x^2$ into $2x$, aligning it with the target expression."
+msgstr ""
+
+#: Game.Levels.Derivative.L06_QuotientRule
+msgid "Our current goal is: $$ \\frac{ \\cos x \\cdot (x^2 + 1) - \\sin x \\cdot ( 2 x^1 + (1)' ) }{ (x^2 + 1)^2 } = \\frac{ \\cos x \\cdot (x^2 + 1) - \\sin x \\cdot 2x }{ (x^2 + 1)^2 }.$$ Rewrite using `deriv_const` to simplify the derivative of a constant function to zero. This will help reduce the expression involving the derivative of the constant term in the numerator."
+msgstr ""
+
+#: Game.Levels.Derivative.L06_QuotientRule
+msgid "Our current goal is: $$ \\frac{ \\cos x \\cdot (x^2 + 1) - \\sin x \\cdot ( 2 x^1 + 0 ) }{ (x^2 + 1)^2 } = \\frac{ \\cos x \\cdot (x^2 + 1) - \\sin x \\cdot 2x }{ (x^2 + 1)^2 }.$$ Utilize the `ring_nf` tactic to simplify and normalize polynomial-like expressions. This tactic can help in equating complex expressions by reducing them to a canonical form. In this scenario, it assists in recognizing and eliminating unnecessary terms to verify the equality."
+msgstr ""
+
+#: Game.Levels.Derivative.L06_QuotientRule
+msgid "To prove the differentiability at a point for the function $x \\mapsto x^2$, use the `exact` tactic with the lemma `differentiableAt_pow 2`. This will directly establish that $x^2$ is differentiable at any real number $x$."
+msgstr ""
+
+#: Game.Levels.Derivative.L06_QuotientRule
+msgid "Use the tactic `exact differentiableAt_const 1` to conclude that the function $f(x) = 1$ is differentiable at any point $x$ in $\\mathbb{R}$. This tactic directly applies the fact that constant functions are differentiable everywhere."
 msgstr ""
 
 #: Game.Levels.Derivative.L06_QuotientRule
@@ -237,11 +261,23 @@ msgid "To show differentiability of the sine function, use `Real.differentiableA
 msgstr ""
 
 #: Game.Levels.Derivative.L06_QuotientRule
-msgid "To show that $x ^ 2 + 1 ≠ 0,$ you can show $x ^ 2 + 1 ≥ 1$ instead."
+msgid "To prove the differentiability of a sum of functions, use `apply DifferentiableAt.add`. This tactic splits the goal into proving the differentiability of each individual function, which in this case are $x^2$ and $1$."
+msgstr ""
+
+#: Game.Levels.Derivative.L06_QuotientRule
+msgid "To show that $x ^ 2 + 1 ≠ 0,$ you can show $x ^ 2 + 1 ≥ 1$ instead. Use `have : x ^ 2 + 1 ≥ 1` to introduce the assumption."
 msgstr ""
 
 #: Game.Levels.Derivative.L06_QuotientRule
 msgid "To show that $x^2 + 1 \\geq 1$, we can use the tactic `apply le_add_of_nonneg_left`. This tactic will reduce the problem to proving that the left term $x^2$ is non-negative, which is straightforward since the square of any real number is always non-negative."
+msgstr ""
+
+#: Game.Levels.Derivative.L06_QuotientRule
+msgid "`exact sq_nonneg x` shows that the square of a real number is nonnegative, use this to solve this goal!"
+msgstr ""
+
+#: Game.Levels.Derivative.L06_QuotientRule
+msgid "To complete the computation, we use `linarith` to solve the goal with the witness `this`."
 msgstr ""
 
 #: Game.Levels.Derivative.L06_QuotientRule
@@ -270,24 +306,75 @@ msgid "This level is definitely within your reach! Just think back to the simila
 msgstr ""
 
 #: Game.Levels.Derivative.L07_Polynomial
-msgid "First thing first, Looking at this long string of 'additions', don't you just want to break it apart? That's exactly right! Let's split it into smaller pieces - this will make our work so much easier!"
+msgid "Our current goal is: $$ \\left( x^3 + 2x + 4 \\right)' = 3x^2 + 2.$$ First thing first, Looking at this long string of 'additions', don't you just want to break it apart? That's exactly right! Let's split it into smaller pieces - this will make our work so much easier!"
 msgstr ""
 
 #: Game.Levels.Derivative.L07_Polynomial
-msgid "Recall how we handle powers, constant multiples, and constants!"
+msgid "Our current goal is: $$ \\left( x^3 + 2x \\right)' + \\left( 4 \\right)' = 3 x^2 + 2. $$"
 msgstr ""
 
 #: Game.Levels.Derivative.L07_Polynomial
-msgid "Take a closer look at our 'Goal' - numbers and variables scattered everywhere...\n"
-"it's quite a mess, isn't it? There's a magical tactic that can clean and 'simplify' this up for us - can you guess what it is?"
+msgid "Our current goal is: $$ \\left( x^3 \\right)' + \\left( 2x \\right)' + \\left( 4 \\right)' = 3 x^2 + 2. $$ Recall how we handle powers, constant multiples, and constants! Use the `rw [deriv_pow]` tactic to rewrite the derivative of the power function. This simplifies the expression $ (x^3) ^ \\prime $ to $ 3 \\cdot x^2 $, making it easier to handle the rest of the expression."
 msgstr ""
 
 #: Game.Levels.Derivative.L07_Polynomial
-msgid "Now show all the differentiability conditions required by previous proof steps."
+msgid "Our current goal is: $$ \\uparrow 3 \\cdot x^{3 - 1} + \\left( 2x \\right)' + \\left( 4 \\right)' = 3 x^2 + 2. $$ To tackle the goal involving derivatives of products, use `rw [deriv_mul]` to apply the product rule. This will break down the derivative of $2x$ into terms involving the derivatives of $2$ and $x$, simplifying the expression."
 msgstr ""
 
 #: Game.Levels.Derivative.L07_Polynomial
-msgid "When using compound differentiability lemmas like 'const_mul', take note how to spell the lemma, some letters needs capitalisation."
+msgid "Our current goal is: $$ \\uparrow 3 \\cdot x^{3 - 1} + \\left( \\left( 2 \\right)' \\cdot x + 2 \\left( x \\right)' \\right) + \\left( 4 \\right)' = 3 x^2 + 2. $$ Use the rewrite tactic with `deriv_const` to simplify derivatives of constant functions. This allows you to replace derivatives of constants with zero, which simplifies the expression significantly."
+msgstr ""
+
+#: Game.Levels.Derivative.L07_Polynomial
+msgid "Our current goal is: $$ \\uparrow 3 \\cdot x^{3 - 1} + \\left( 0 \\cdot x + 2 \\left( x \\right)' \\right) + \\left( 4 \\right)' = 3 x^2 + 2. $$ To simplify the goal, use the `rw` tactic with `deriv_id''` to replace the derivative of the identity function with 1. This step helps eliminate the derivative term, making the equation easier to understand and solve."
+msgstr ""
+
+#: Game.Levels.Derivative.L07_Polynomial
+msgid "Our current goal is: $$ \\uparrow 3 \\cdot x^{3 - 1} + \\left( 0 \\cdot x + 2 \\cdot \\left( 1 \\right) \\right) + \\left( 4 \\right)' = 3 x^2 + 2. $$"
+msgstr ""
+
+#: Game.Levels.Derivative.L07_Polynomial
+msgid "To simplify the goal involving a constant function's derivative, apply `rw [deriv_const]`. This will replace the derivative of the constant function with zero, as the derivative of a constant is always zero."
+msgstr ""
+
+#: Game.Levels.Derivative.L07_Polynomial
+msgid "Our current goal is: $$ \\uparrow 3 \\cdot x^{3 - 1} + \\left( 0 \\cdot x + 2 \\cdot \\left( 1 \\right) \\right) + 0 = 3 x^2 + 2. $$ Take a closer look at our 'Goal' - numbers and variables scattered everywhere... it's quite a mess, isn't it? There's a magical tactic that can clean and 'simplify' this up for us - can you guess what it is?"
+msgstr ""
+
+#: Game.Levels.Derivative.L07_Polynomial
+msgid "Now show all the differentiability conditions required by previous proof steps. The goal is to prove that the constant function $2$ is differentiable at any point $x$. You can use the fact that constant functions are always differentiable by applying `exact differentiableAt_const 2`. This tactic directly shows the differentiability of the constant function at the given point."
+msgstr ""
+
+#: Game.Levels.Derivative.L07_Polynomial
+msgid "Use `exact differentiableAt_id'` to directly assert that the function $x \\mapsto x$ is differentiable at any point, including $x$. This tactic instantly resolves the goal by referring to a standard result about the differentiability of the identity function."
+msgstr ""
+
+#: Game.Levels.Derivative.L07_Polynomial
+msgid "In this goal, you need to show that the function $x^3$ is differentiable at $x$. Use the fact that power functions $x^n$ are differentiable everywhere for any natural number $n$. Apply `exact differentiableAt_pow 3` to conclude that $x^3$ is indeed differentiable at any real number $x$."
+msgstr ""
+
+#: Game.Levels.Derivative.L07_Polynomial
+msgid "When using compound differentiability lemmas like 'const_mul', take note how to spell the lemma, some letters needs capitalisation. To prove the differentiability of a constant multiplied by a function, use `apply DifferentiableAt.const_mul`. This tactic simplifies the problem to showing that the function itself is differentiable, which is often easier to prove."
+msgstr ""
+
+#: Game.Levels.Derivative.L07_Polynomial
+msgid "To show that the function $x^3 + 2x$ is differentiable at a point $x$, we can use the `DifferentiableAt.add` lemma. This tactic allows us to express the differentiability of a sum of functions in terms of the differentiability of the individual components. Apply this lemma to break down the goal into proving that each summand, $x^3$ and $2x$, is differentiable at $x$."
+msgstr ""
+
+#: Game.Levels.Derivative.L07_Polynomial
+msgid "To prove that the function \\( y \\mapsto y^3 \\) is differentiable at a point, you can use the `differentiableAt_pow` lemma. This lemma asserts that power functions are differentiable at any point, provided the exponent is a natural number. Here, apply `exact differentiableAt_pow 3` to directly solve the goal for the cube function."
+msgstr ""
+
+#: Game.Levels.Derivative.L07_Polynomial
+msgid "To show that the function $2y$ is differentiable at $x$, use the `apply` tactic with `DifferentiableAt.const_mul`. This leverages the fact that multiplying a differentiable function by a constant results in another differentiable function."
+msgstr ""
+
+#: Game.Levels.Derivative.L07_Polynomial
+msgid "In this goal, we need to show that the function $y \\mapsto y$ is differentiable at $x$. Use the `exact` tactic with `differentiableAt_id'`, which is a standard lemma stating that the identity function is differentiable everywhere, to directly solve this part of the goal."
+msgstr ""
+
+#: Game.Levels.Derivative.L07_Polynomial
+msgid "Now we can use `exact differentiableAt_const 4` to complete the goal."
 msgstr ""
 
 #: Game.Levels.Derivative.L08_Quotient1
@@ -359,99 +446,123 @@ msgid "Congratulations! We now have our final goal : `Denominator can't be ZERO`
 msgstr ""
 
 #: Game.Levels.Derivative.L09_SinSin
-msgid "The derivative of sin(sin(sin (x)))"
+msgid "The derivative of sin(sin(sin x))"
 msgstr ""
 
 #: Game.Levels.Derivative.L09_SinSin
-msgid "This level is about finding the derivative of the function $sin(sin(sin(x)))$. This level is done by Kun Yu."
+msgid "This level is about finding the derivative of the function $\\sin(\\sin(\\sin x))$. This level is done by Kun Yu."
 msgstr ""
 
 #: Game.Levels.Derivative.L09_SinSin
-msgid "This is an application of 'Composite Function Derivative', firstly you need to let lean figure out what is the composite function which means you need to set sin(sinx) as function g, which means that we need to turn the goal into : derivative of sin(sin(sin x)) = derivative of sin ∘ g"
+msgid "This is an application of 'Composite Function Derivative', firstly you need to let lean figure out what is the composite function which means you need to set $\\sin(\\sin x)$ as function $g$. Then we can turn the goal into : $derivative of $(\\sin(\\sin(\\sin x)))' = \\sin(g(x))$."
 msgstr ""
 
 #: Game.Levels.Derivative.L09_SinSin
-msgid "To make the sin(sin x) into the function g, you need to try tactic: set g := fun x => ..."
+msgid "To set $\\sin(\\sin x)$ to function $g$, use tactic : `set g := fun x => Real.sin ( Real.sin x )`"
 msgstr ""
 
 #: Game.Levels.Derivative.L09_SinSin
-msgid "Remind that sin in lean should be typed as Real.sin"
+msgid "In lean we use `Real.sin` in stead of `sin`."
 msgstr ""
 
 #: Game.Levels.Derivative.L09_SinSin
-msgid "To prove sin(sin(sin x)) = sin ∘ g, use the have and fun x tactic : have : (fun x => Real.sin (Real.sin (Real.sin x))) = Real.sin ∘ g"
+msgid "To progress towards proving the goal involving the derivative of nested sine functions, introduce a helper fact with `have` to establish that the function $ \\sin(\\sin(\\sin x)) $ can be expressed as $ \\sin \\circ g $, where $ g(x) = \\sin(\\sin x) $. This will allow you to simplify the derivative calculation by recognizing the composition of functions."
 msgstr ""
 
 #: Game.Levels.Derivative.L09_SinSin
-msgid "Notice that there is a tap between two sin : Real.sin ( Real.sin ( Real.sin x ) ))"
+msgid "Our current goal is $$ ( \\sin(\\sin(\\sin x)) )' = \\cos x \\cdot \\cos(\\sin x) \\cdot \\cos(\\sin(\\sin x)). $$ To tackle the goal involving the derivative of a composite sine function, apply the rewrite rule `this` to simplify the expression. This will convert $ (x \\mapsto \\sin(\\sin(\\sin x))) ^ \\prime $ into $ (\\sin \\circ g) ^ \\prime $, where $ g(x) = \\sin(\\sin x) $, making it more straightforward to differentiate using the chain rule."
 msgstr ""
 
 #: Game.Levels.Derivative.L09_SinSin
-msgid "Now the goal turn into proving: deriv (Real.sin ∘ g) x = Real.cos x * Real.cos (Real.sin x) * Real.cos (Real.sin (Real.sin x))"
+msgid "Our current goal is $$ ( \\sin(g(x)) )' = \\cos x \\cdot \\cos(\\sin x) \\cdot \\cos(\\sin(\\sin x)). $$ Now we want to prove : $\\sin(g(x)) ^ \\prime = g ^ \\prime * \\sin(g(x))$, try tactic `deriv.comp` to complete the goal."
 msgstr ""
 
 #: Game.Levels.Derivative.L09_SinSin
-msgid "Rewrite the assumption"
+msgid "Our current goal is $$ \\cos(g(x)) \\cdot g'(x) = \\cos x \\cdot \\cos(\\sin x) \\cdot \\cos(\\sin(\\sin x)). $$ To tackle the goal involving the derivative of the sine function, apply the rewrite tactic with `Real.deriv_sin`. This will transform the derivative of $\\sin$ into its cosine form, simplifying the left-hand side of the equation."
 msgstr ""
 
 #: Game.Levels.Derivative.L09_SinSin
-msgid "Now to prove : deriv (Real.sin ∘ g) = deriv (g) * deriv (Real.sin (g)), use the deriv.comp tactic"
+msgid "Our current goal is $$ \\cos(g(x)) \\cdot g'(x) = \\cos x \\cdot \\cos(\\sin x) \\cdot \\cos(\\sin(\\sin x)). $$ To tackle the goal involving the composition of sine functions, apply the rewrite rule `deriv_sinsinx`. This will replace the derivative of the nested sine function with the product of the cosines of the inner functions, simplifying the expression for further manipulation."
 msgstr ""
 
 #: Game.Levels.Derivative.L09_SinSin
-msgid "Now the goal are : Proving sin'(x)=cos'(x) and proving g'= cos(x)*cos(sin(x)); Use the Real.deriv_sin tactic"
+msgid "Our current goal is $$ \\cos(g(x)) \\cdot ( \\cos x \\cdot \\cos(\\sin x) ) = \\cos x \\cdot \\cos(\\sin x) \\cdot \\cos(\\sin(\\sin x)). $$ The remaining problem is just use commutativity of multiplication"
 msgstr ""
 
 #: Game.Levels.Derivative.L09_SinSin
-msgid "To prove g'= cos(x)*cos(sin(x)), the logic of proving is the same and now suppose we already have the tactic 'deriv_sinsinx'"
+msgid "Now the left two goal is to prove functions sinx and sin(sinx) are differentiable, and you can use the tactic `Real.differentiableAt_sin` and `differentiableAt_sinsinx x`"
 msgstr ""
 
 #: Game.Levels.Derivative.L09_SinSin
-msgid "The remaining problem is just use commutativity of multiplication"
+msgid "Notice that $g(x) = \\sin(\\sin x)$, use tactic `differentiableAt_sinsinx` to complete the last goal!"
 msgstr ""
 
 #: Game.Levels.Derivative.L09_SinSin
-msgid "Now the left two goal is to prove functions sinx and sin(sinx) are differentiable, and you can use the tactic 'Real.differentiableAt_sin' and 'sinsinx_differentiable x'"
+msgid "Compute the derivative of sinsin x"
+msgstr ""
+
+#: Game.Levels.Derivative.L09_SinSin
+msgid "Differentiability of sinsinx"
 msgstr ""
 
 #: Game.Levels.Derivative.L10_Quotient2
-msgid "derivative of frac{1}{(x+1/x)^2}"
+msgid "The derivative of 1 / (x + 1 / x)^2"
 msgstr ""
 
 #: Game.Levels.Derivative.L10_Quotient2
-msgid "This level is about finding the derivative of the function $\\frac{1}{(x + \\frac{1}{x})^2}$. This level is done by Pang Bo."
+msgid "This level is about finding the derivative of the function $1 / (x + 1 / x)^2$. This level is done by Pang Bo."
 msgstr ""
 
 #: Game.Levels.Derivative.L10_Quotient2
-msgid "Since we're differentiating a fraction, apply the quotient rule with `deriv_div`."
+msgid "Our current goal is : $$ ( \\frac{1}{( x + \\frac{1}{x} )^2} )' = -\\frac{2( 1 - \\frac{1}{x^2} )}{ ( x + \\frac{1}{x} )^3 }. $$ To tackle the goal, apply the `deriv_div` rule to differentiate the quotient. This will expand the derivative using the quotient rule, resulting in a more manageable expression to work with."
 msgstr ""
 
 #: Game.Levels.Derivative.L10_Quotient2
-msgid "The numerator is a constant (1), so differentiating it gives zero."
+msgid "Our current goal is : $$ \\frac{ ( 1 )' ( x + \\frac{1}{x} )^2 - 1 \\cdot (( x + \\frac{1}{x} )^2)' }{ ( x + \\frac{1}{x} )^4 } = -\\frac{2( 1 - \\frac{1}{x^2} ) }{ ( x + \\frac{1}{x} )^3 }. $$ Rewrite using `deriv_const` to simplify the derivative of a constant function. This will change the derivative of the constant term to zero, making the expression easier to handle."
 msgstr ""
 
 #: Game.Levels.Derivative.L10_Quotient2
-msgid "Apply the chain rule on the denominator, which is (x + 1/x)^2. Start by differentiating the outer square function."
+msgid "Our current goal is : $$ \\frac{ 0 \\cdot ( x + \\frac{1}{x} )^2 - 1 \\cdot (( x + \\frac{1}{x} )^2)' }{ ( x + \\frac{1}{x} )^4 } = -\\frac{2( 1 - \\frac{1}{x^2} ) }{ ( x + \\frac{1}{x} )^3 }. $$ Use the `rw [zero_mul]` tactic to simplify the expression by removing the term where the factor is zero. This helps in reducing the complexity of the expression, allowing you to focus on the remaining terms."
 msgstr ""
 
 #: Game.Levels.Derivative.L10_Quotient2
-msgid "Now, use the chain rule for the inner function (x + 1/x), starting with the sum rule."
+msgid "Our current goal is : $$ \\frac{ 0 - 1 \\cdot (( x + \\frac{1}{x} )^2)' }{ ( x + \\frac{1}{x} )^4 } = -\\frac{2( 1 - \\frac{1}{x^2} ) }{ ( x + \\frac{1}{x} )^3 }. $$ Use the `rw [zero_sub]` tactic to rewrite the expression by replacing `0 - a` with `-a`. This will simplify the left side of the equation, making it easier to manipulate and compare with the right side."
 msgstr ""
 
 #: Game.Levels.Derivative.L10_Quotient2
-msgid "Differentiate x to get 1."
+msgid "Our current goal is : $$ -\\frac{ 1 \\cdot (( x + \\frac{1}{x} )^2)' }{ ( x + \\frac{1}{x} )^4 } = -\\frac{2( 1 - \\frac{1}{x^2} ) }{ ( x + \\frac{1}{x} )^3 }. $$"
 msgstr ""
 
 #: Game.Levels.Derivative.L10_Quotient2
-msgid "The derivative of 1/x is -1/x^2. Simplify using `deriv_inv`."
+msgid "To approach the goal involving the derivative of a power function, use `rw [deriv_pow']` to rewrite the expression. This will apply the power rule for differentiation, transforming the derivative of $(x + \\frac{1}{x})^2$ into $2 \\cdot (x + \\frac{1}{x}) \\cdot$ the derivative of $(x + \\frac{1}{x})$, simplifying the process."
 msgstr ""
 
 #: Game.Levels.Derivative.L10_Quotient2
-msgid "Use the lemma `divEQ` to simplify the expression to the desired form."
+msgid "Our current goal is : $$ -\\frac{ 1 \\cdot ( 2 ( x + \\frac{1}{x} )^{2 - 1} ( x + \\frac{1}{x} )' ) }{ ( x + \\frac{1}{x} )^4 } = -\\frac{2( 1 - \\frac{1}{x^2} ) }{ ( x + \\frac{1}{x} )^3 }. $$"
 msgstr ""
 
 #: Game.Levels.Derivative.L10_Quotient2
-msgid "Simplify the expression further with algebraic tactics like `ring_nf`."
+msgid "The goal is to simplify the derivative of the expression $x + \\frac{1}{x}$. Use `rw [deriv_add]` to apply the derivative of a sum rule, which allows you to separate the derivative into the sum of derivatives of individual components: $\\text{deriv}(x) + \\text{deriv}(\\frac{1}{x})$."
+msgstr ""
+
+#: Game.Levels.Derivative.L10_Quotient2
+msgid "Our current goal is : $$ -\\frac{ 1 \\cdot ( 2 ( x + \\frac{1}{x} ) ( x' + ( \\frac{1}{x} )' ) ) }{ ( x + \\frac{1}{x} )^4 } = -\\frac{2( 1 - \\frac{1}{x^2} ) }{ ( x + \\frac{1}{x} )^3 }. $$"
+msgstr ""
+
+#: Game.Levels.Derivative.L10_Quotient2
+msgid "In this goal, we are working with derivatives and need to simplify the expression. Use `rw [deriv_id']` to replace `deriv (fun x => x) x` with its equivalent form `(fun x => 1) x`, which represents the derivative of the identity function. This simplification helps in progressing towards the target expression."
+msgstr ""
+
+#: Game.Levels.Derivative.L10_Quotient2
+msgid "Our current goal is : $$ -\\frac{ 1 \\cdot ( 2 ( x + \\frac{1}{x} ) ( 1 + (\\frac{1}{x})' ) ) }{ ( x + \\frac{1}{x} )^4 } = -\\frac{2( 1 - \\frac{1}{x^2} ) }{ ( x + \\frac{1}{x} )^3 }. $$ The derivative of 1/x is -1/x^2. Simplify using `deriv_inv`."
+msgstr ""
+
+#: Game.Levels.Derivative.L10_Quotient2
+msgid "To address the current goal, apply `simp` with the lemma `deriv_inv`. This simplifies the derivative of the reciprocal function, transforming $ \\frac{d}{dx} ( \\frac{1}{x} ) $ into a more manageable form."
+msgstr ""
+
+#: Game.Levels.Derivative.L10_Quotient2
+msgid "Our current goal is : $$ -\\frac{ 2 ( x + x^{-1} ) ( 1 - x^{-2} ) }{ ( x + x^{-1} )^4 } = -\\frac{ 2 ( 1 - x^{-2} ) }{ ( x + x^{-1} )^3 }. $$ Use the lemma `divEQ` to simplify the expression to the desired form."
 msgstr ""
 
 #: Game.Levels.Derivative.L10_Quotient2
@@ -463,11 +574,31 @@ msgid "Next, show that 1/x is differentiable by using `DifferentiableAt.inv` and
 msgstr ""
 
 #: Game.Levels.Derivative.L10_Quotient2
+msgid "To prove the differentiability of the inverse function $x^{-1}$ at a non-zero point $x$, use the `DifferentiableAt.inv` lemma. This lemma simplifies the goal to showing the differentiability of $x$ itself, which is straightforward."
+msgstr ""
+
+#: Game.Levels.Derivative.L10_Quotient2
+msgid "We have seen a similar goal before, try to use the tactic we have to solve the goal!"
+msgstr ""
+
+#: Game.Levels.Derivative.L10_Quotient2
+msgid "You can use the `exact` tactic here to directly use the hypothesis `hx : x ≠ 0` to prove the goal `x ≠ 0`. It matches the goal exactly, so no further manipulation is needed."
+msgstr ""
+
+#: Game.Levels.Derivative.L10_Quotient2
 msgid "Prove differentiability of the inner function (x + 1/x) by showing each part is differentiable."
 msgstr ""
 
 #: Game.Levels.Derivative.L10_Quotient2
-msgid "Handle differentiability of the constant function 1 with `differentiableAt_const`."
+msgid "To prove that the function $y \\mapsto \\frac{1}{y}$ is differentiable at a point, use the `DifferentiableAt.div` lemma. This lemma helps in establishing differentiability for a division, provided that the numerator and denominator are differentiable and the denominator is non-zero."
+msgstr ""
+
+#: Game.Levels.Derivative.L10_Quotient2
+msgid "To show that the constant function is differentiable at any point, use `exact differentiableAt_const 1`. This tactic directly applies the fact that a constant function is differentiable everywhere."
+msgstr ""
+
+#: Game.Levels.Derivative.L10_Quotient2
+msgid "To address the goal of proving differentiability of a constant function, use the tactic `exact differentiableAt_const 1`. This provides the required evidence that a constant function is differentiable at any point."
 msgstr ""
 
 #: Game.Levels.Derivative.L10_Quotient2
@@ -475,19 +606,59 @@ msgid "Show differentiability of the squared expression (x + 1/x)^2."
 msgstr ""
 
 #: Game.Levels.Derivative.L10_Quotient2
+msgid "To prove that the function $x + \\frac{1}{x}$ is differentiable at $x$, use the `DifferentiableAt.add` lemma. This lemma allows you to show that the sum of two differentiable functions is also differentiable. After applying this lemma, you will need to separately show the differentiability of each part of the sum, namely $x$ and $\\frac{1}{x}$."
+msgstr ""
+
+#: Game.Levels.Derivative.L10_Quotient2
+msgid "To prove that the identity function is differentiable at any point, use the `exact` tactic with the lemma `differentiableAt_id'`, which states that the identity function is always differentiable. This directly solves the goal without further computation."
+msgstr ""
+
+#: Game.Levels.Derivative.L10_Quotient2
+msgid "To tackle the goal of proving differentiability for the reciprocal function, use the tactic `apply DifferentiableAt.div`. This tactic applies the differentiability rule for division, which reduces the goal to proving differentiability for the numerator and denominator separately. You will now need to show that the numerator function is differentiable at the given point."
+msgstr ""
+
+#: Game.Levels.Derivative.L10_Quotient2
+msgid "To show that the function is differentiable at point $x$, use the fact that the identity function is differentiable everywhere. Apply `exact differentiableAt_id'` to confirm that the function is differentiable at $x$."
+msgstr ""
+
+#: Game.Levels.Derivative.L10_Quotient2
+msgid "The goal is to prove that $x \\neq 0$. Use the `exact` tactic with the hypothesis `hx`, as it directly provides the proof needed for this goal."
+msgstr ""
+
+#: Game.Levels.Derivative.L10_Quotient2
 msgid "Finally, use the hypothesis `h1` to complete the proof."
 msgstr ""
 
-#: Game.Levels.Derivative.L11_Quotient3
-msgid "Derivative of (x-1)^4/(x^2+2x)^5"
+#: Game.Levels.Derivative.L10_Quotient2
+msgid "Use this"
 msgstr ""
 
 #: Game.Levels.Derivative.L11_Quotient3
-msgid "This level is about finding the derivative of the function $\\frac\\{(x-1)^4}\\{(x^2+2x)^5}$. This level is done by Daniel Low."
+msgid "The derivative of (x - 1)^4 / (x^2 + 2x)^5"
 msgstr ""
 
 #: Game.Levels.Derivative.L11_Quotient3
-msgid "$\\frac{(x-1)^4}{(x^2+2x)^5}$We want to use function composition so first we define several functions, one each for (u^4), (x-1), (u^5), (x^2+2x)"
+msgid "This level is about finding the derivative of the function $(x - 1) ^ 4 / (x^2 + 2x) ^ 5$. This level is done by Daniel Low."
+msgstr ""
+
+#: Game.Levels.Derivative.L11_Quotient3
+msgid "We want to use function composition to do this derivative, so first we define several functions."
+msgstr ""
+
+#: Game.Levels.Derivative.L11_Quotient3
+msgid "To make the expression more manageable, use the `set` tactic to define a simpler function, `f₁`, which represents $u \\mapsto u^4$. This can help break down the problem into smaller parts, making it easier to work with derivatives or other transformations later. Try `set f₁ := (fun u : ℝ  => u^4)` to introduce the function we want."
+msgstr ""
+
+#: Game.Levels.Derivative.L11_Quotient3
+msgid "To simplify and organize our expressions, we can introduce a new function, $g_1(x) = x - 1$, using the `set` tactic. This will allow us to refer to this part of the expression more easily in subsequent steps."
+msgstr ""
+
+#: Game.Levels.Derivative.L11_Quotient3
+msgid "To manage the complexity of the expression, introduce a new function $f_2(u) = u^5$ using the `set` tactic. This will help keep your calculations organized as you work through the derivative problem."
+msgstr ""
+
+#: Game.Levels.Derivative.L11_Quotient3
+msgid "The tactic `set g₂ := (fun x => x ^ 2 + 2 * x)` is used to introduce a new function, `g₂`, for simplifying the expression in your goal. This can help make subsequent calculations more manageable and your code more readable by giving a name to a recurring subexpression, $(x^2 + 2x)$."
 msgstr ""
 
 #: Game.Levels.Derivative.L11_Quotient3
@@ -495,47 +666,59 @@ msgid "Prove some lemmas to show that (x-1)^4 is a composition of two functions,
 msgstr ""
 
 #: Game.Levels.Derivative.L11_Quotient3
-msgid "We also prove differentiability of (x^2 + 2*x) which will be used later"
+msgid "To facilitate the differentiation of the function, introduce an auxiliary result stating that $(x - 1)^4$ can be expressed as a composition $f_1 \\circ g_1$, where $f_1(u) = u^4$ and $g_1(x) = x - 1$. This step helps to clarify the structure of the function and sets the stage for applying derivative rules more easily. Use `have top : (fun x => (x-1)^4) = f₁ ∘ g₁ := by rfl` to establish this."
 msgstr ""
 
 #: Game.Levels.Derivative.L11_Quotient3
-msgid "First use DifferentiableAt.add since it's 2 functions added together, then differentiableAt_pow for the first half"
+msgid "We want to show that $ (x^2 + 2x)^5 $ can be expressed as a composition of two functions, $ f_2 $ and $ g_2 $. Use `have bottom : (fun x => (x^2 + 2*x)^5) = f₂ ∘ g₂ := by rfl` to introduce a new hypothesis named `bottom` that asserts this equality. This hypothesis is proved by using the `rfl` tactic, which confirms that both sides are indeed the same. This will help us apply the chain rule more conveniently in the differentiation process."
 msgstr ""
 
 #: Game.Levels.Derivative.L11_Quotient3
-msgid "Use DifferentiableAt.mul for 2*x part"
+msgid "Out current goal is : $$ ( \\frac{ (x - 1)^{4} }{ (x^{2} + 2 x )^{5} } )' = \\frac{ 4 (x - 1)^{3} (x^{2} + 2 x )^{5} - (x - 1)^{4} \\cdot 5 (x^{2} + 2 x )^{4} (2 x + 2) }{ ( (x^{2} + 2 x )^{5} )^{2} }.$$ Since we are dealing with a quotient, use `rw` to rewrite the statement with `deriv_div`."
 msgstr ""
 
 #: Game.Levels.Derivative.L11_Quotient3
-msgid "Since we are dealing with a quotient, use rw the statement with deriv_div"
+msgid "Out current goal is : $$ \\frac{ ( (x - 1)^{4} )' \\cdot (x^{2} + 2 x )^{5} - (x - 1)^{4} \\cdot ( (x^{2} + 2 x )^{5} )' }{ ( (x^{2} + 2 x )^{5} )^{2} } = \\frac{ 4 (x - 1)^{3} (x^{2} + 2 x )^{5} - (x - 1)^{4} \\cdot 5 (x^{2} + 2 x )^{4} (2 x + 2) }{ ( (x^{2} + 2 x )^{5} )^{2} }. $$ To simplify the current goal, apply the rewrite rules `top` and `bottom`. This will replace the expressions $(x - 1)^4$ and $(x^2 + 2x)^5$ with their respective compositions, $f_1 \\circ g_1$ and $f_2 \\circ g_2$. This transformation makes it easier to handle the derivatives involved by clearly identifying the chain rule applications."
 msgstr ""
 
 #: Game.Levels.Derivative.L11_Quotient3
-msgid "Use rw to replace (x-1)^4 and (x^2 + 2*x)^5 with the composition proven earlier"
+msgid "Out current goal is : $$ \\frac{ ( f_{1} \\circ g_{1} )' \\cdot (x^{2} + 2 x )^{5} - (x - 1)^{4} \\cdot ( f_{2} \\circ g_{2} )'}{ ( (x^{2} + 2 x )^{5} )^{2} } = \\frac{ 4 (x - 1)^{3} (x^{2} + 2 x )^{5} - (x - 1)^{4} \\cdot 5 (x^{2} + 2 x )^{4} (2 x + 2) }{ ( (x^{2} + 2 x )^{5} )^{2} }. $$ Now apply `deriv.comp` twice, which gives the derivative of a composite function"
 msgstr ""
 
 #: Game.Levels.Derivative.L11_Quotient3
-msgid "Now apply deriv.comp, which gives the derivative of a composite function"
+msgid "Out current goal is : $$ \\frac{ f_{1}' (g_{1}) \\cdot g_{1}' \\cdot (x^{2} + 2 x )^{5} - (x - 1)^{4} \\cdot f_{2}' (g_{2}) \\cdot g_{2}'}{ ( (x^{2} + 2 x )^{5} )^{2} } = \\frac{ 4 (x - 1)^{3} (x^{2} + 2 x )^{5} - (x - 1)^{4} \\cdot 5 (x^{2} + 2 x )^{4} (2 x + 2) }{ ( (x^{2} + 2 x )^{5} )^{2} }. $$ rw with `deriv_pow` twice to compute the derivatives of u^4 and u^5"
 msgstr ""
 
 #: Game.Levels.Derivative.L11_Quotient3
-msgid "rw with deriv_pow twice to compute the derivatives of u^4 and u^5"
+msgid "Out current goal is : $$ \\frac{ 4 \\cdot (g_{1})^{4 - 1} \\cdot g_{1}' \\cdot (x^{2} + 2 x )^{5} - (x - 1)^{4} \\cdot 5 \\cdot (g_{2})^{5 - 1} \\cdot g_{2}'}{ ( (x^{2} + 2 x )^{5} )^{2} } = \\frac{ 4 (x - 1)^{3} (x^{2} + 2 x )^{5} - (x - 1)^{4} \\cdot 5 (x^{2} + 2 x )^{4} (2 x + 2) }{ ( (x^{2} + 2 x )^{5} )^{2} }. $$ Now to rw deriv(x-1), use deriv_sub_const for functions with a constant subtracted away"
 msgstr ""
 
 #: Game.Levels.Derivative.L11_Quotient3
-msgid "Now to rw deriv(x-1), use deriv_sub_const for functions with a constant subtracted away"
+msgid "To simplify the expression involving derivatives, apply the `deriv_sub_const` tactic. This will help rewrite the derivative of a constant term, allowing you to focus on differentiating the variable component effectively."
 msgstr ""
 
 #: Game.Levels.Derivative.L11_Quotient3
-msgid "For deriv(x^2 + 2*x), use deriv_add, deriv_const_mul, deriv_id''"
+msgid "Out current goal is : $$ \\frac{ 4 \\cdot (g_{1})^{4 - 1} \\cdot x' \\cdot (x^{2} + 2 x )^{5} - (x - 1)^{4} \\cdot 5 \\cdot (g_{2})^{5 - 1} \\cdot g_{2}'}{ ( (x^{2} + 2 x )^{5} )^{2} } = \\frac{ 4 (x - 1)^{3} (x^{2} + 2 x )^{5} - (x - 1)^{4} \\cdot 5 (x^{2} + 2 x )^{4} (2 x + 2) }{ ( (x^{2} + 2 x )^{5} )^{2} }. $$ To simplify the expression involving derivatives, apply the `rw [deriv_id'']` tactic. This will replace $ (\\text{id}) ^ \\prime $ with the constant function $1$, aligning with the fact that the derivative of $x$ with respect to $x$ is $1$."
 msgstr ""
 
 #: Game.Levels.Derivative.L11_Quotient3
-msgid "Apply the `deriv_pow` rule to differentiate expressions of the form $x^n$. This will help simplify the derivative of $x^2$ within the given expression."
+msgid "Out current goal is : $$ \\frac{ 4 \\cdot (g_{1})^{4 - 1} \\cdot 1 \\cdot (x^{2} + 2 x )^{5} - (x - 1)^{4} \\cdot 5 \\cdot (g_{2})^{5 - 1} \\cdot g_{2}'}{ ( (x^{2} + 2 x )^{5} )^{2} } = \\frac{ 4 (x - 1)^{3} (x^{2} + 2 x )^{5} - (x - 1)^{4} \\cdot 5 (x^{2} + 2 x )^{4} (2 x + 2) }{ ( (x^{2} + 2 x )^{5} )^{2} }.$$ Our goal involves simplifying the expression for the derivative of a composite function. By applying the `rw [deriv_add]` tactic, we expand the derivative of $g₂$, which is $x^2 + 2x$, into the sum of the derivatives of its terms, specifically $ (x^2) ^ \\prime + (2x) ^ \\prime $. This step will help in matching the given expression to the form we want."
 msgstr ""
 
 #: Game.Levels.Derivative.L11_Quotient3
-msgid "use simp to reduce to the final answer"
+msgid "Out current goal is : $$ \\frac{\\uparrow 4 \\cdot (g_{1})^{4 - 1} \\cdot ( 1 ) \\cdot (x^{2} + 2 x )^{5}}{ ( (x^{2} + 2 x )^{5} )^{2} } - \\frac{ (x - 1)^{4} \\cdot \\uparrow 5 \\cdot (g_{2})^{5 - 1} \\cdot ( ( x^{2} )' + ( 2x )' ) }{ ( (x^{2} + 2 x )^{5} )^{2} } = \\frac{ 4(x - 1)^{3} (x^{2} + 2 x )^{5} - (x - 1)^{4} \\cdot 5(x^{2} + 2 x )^{4} (2 x + 2) }{ ( (x^{2} + 2 x )^{5} )^{2} }. $$ Rewrite the `deriv_pow` rule to differentiate expressions of the form $x^n$. This will help simplify the derivative of $x^2$ within the given expression."
+msgstr ""
+
+#: Game.Levels.Derivative.L11_Quotient3
+msgid "Out current goal is : $$ \\frac{\\uparrow 4 \\cdot (g_{1})^{4 - 1} \\cdot ( 1 ) \\cdot (x^{2} + 2 x )^{5}}{ ( (x^{2} + 2 x )^{5} )^{2} } - \\frac{ (x - 1)^{4} \\cdot \\uparrow 5 \\cdot (g_{2})^{5 - 1} \\cdot ( 2 x^{2 - 1} + ( 2x )' ) }{ ( (x^{2} + 2 x )^{5} )^{2} } = \\frac{ 4(x - 1)^{3} (x^{2} + 2 x )^{5} - (x - 1)^{4} \\cdot 5(x^{2} + 2 x )^{4} (2 x + 2) }{ ( (x^{2} + 2 x )^{5} )^{2} }. $$ In order to simplify our expression, we use the tactic `rw [deriv_const_mul]`. This rewrites the derivative of a constant multiple of a function by pulling the constant out of the derivative. Specifically, it helps us to manage terms where a constant is multiplied with a derivative, simplifying the expression for further manipulation."
+msgstr ""
+
+#: Game.Levels.Derivative.L11_Quotient3
+msgid "Out current goal is : $$ \\frac{\\uparrow 4 \\cdot (g_{1})^{4 - 1} \\cdot ( 1 ) \\cdot (x^{2} + 2 x )^{5}}{ ( (x^{2} + 2 x )^{5} )^{2} } - \\frac{ (x - 1)^{4} \\cdot \\uparrow 5 \\cdot (g_{2})^{5 - 1} \\cdot ( 2 x^{2 - 1} + 2 \\cdot x' ) }{ ( (x^{2} + 2 x )^{5} )^{2} } = \\frac{ 4(x - 1)^{3} (x^{2} + 2 x )^{5} - (x - 1)^{4} \\cdot 5(x^{2} + 2 x )^{4} (2 x + 2) }{ ( (x^{2} + 2 x )^{5} )^{2} }. $$ To simplify the derivative expression involving constant functions, apply `rw [deriv_id'']`. This will rewrite the derivative of the identity function to 1, transforming $(x)'$ into 1, which simplifies your expression."
+msgstr ""
+
+#: Game.Levels.Derivative.L11_Quotient3
+msgid "Out current goal is : $$ \\frac{\\uparrow 4 \\cdot (g_{1})^{4 - 1} \\cdot ( 1 ) \\cdot (x^{2} + 2 x )^{5}}{ ( (x^{2} + 2 x )^{5} )^{2} } - \\frac{ (x - 1)^{4} \\cdot \\uparrow 5 \\cdot (g_{2})^{5 - 1} \\cdot ( 2 x^{2 - 1} + 2 \\cdot ( 1 ) x ) }{ ( (x^{2} + 2 x )^{5} )^{2} } = \\frac{ 4(x - 1)^{3} (x^{2} + 2 x )^{5} - (x - 1)^{4} \\cdot 5(x^{2} + 2 x )^{4} (2 x + 2) }{ ( (x^{2} + 2 x )^{5} )^{2} }. $$ use `simp` to reduce to the final answer"
 msgstr ""
 
 #: Game.Levels.Derivative.L11_Quotient3
@@ -543,15 +726,23 @@ msgid "Now to prove the differentiability conditions"
 msgstr ""
 
 #: Game.Levels.Derivative.L11_Quotient3
-msgid "Use DifferentiableAt.const_mul for functions multiplied with a constant"
+msgid "To show that the identity function is differentiable at any point, use `exact differentiableAt_id`. This tactic directly applies the fact that the identity function, $f(x) = x$, is differentiable everywhere, including at the point in question."
 msgstr ""
 
 #: Game.Levels.Derivative.L11_Quotient3
-msgid "Remember this is just the function u^5 but evaluated at a different value instead of just x"
+msgid "Use the `exact` tactic with `differentiableAt_pow _` to show that the function $x^2$ is differentiable at $x$. The `differentiableAt_pow` lemma directly applies here, allowing you to conclude differentiability for power functions."
 msgstr ""
 
 #: Game.Levels.Derivative.L11_Quotient3
-msgid "Use the lemma we proved for differentiability of (x^2 + 2*x)"
+msgid "Use `DifferentiableAt.const_mul` for functions multiplied with a constant"
+msgstr ""
+
+#: Game.Levels.Derivative.L11_Quotient3
+msgid "To proceed with proving differentiability, you can use the `differentiableAt_pow` lemma by applying it to the function $f_2(u) = u^5$. This will help establish that $f_2$ is differentiable at the point $g_2(x) = x^2 + 2x$. After applying this lemma, you'll need to show that $g_2(x)$ itself is differentiable at $x$ to complete the proof."
+msgstr ""
+
+#: Game.Levels.Derivative.L11_Quotient3
+msgid "To establish the differentiability of the function $g_2(x) = x^2 + 2x$, apply a lemma `apply differentiableAt_g₂`. This applies the known differentiability of $g_2$ at any point $x$, allowing us to focus next on proving the differentiability of the composed function $f_1(g_1(x))$."
 msgstr ""
 
 #: Game.Levels.Derivative.L11_Quotient3
@@ -559,7 +750,15 @@ msgid "Same as before, this is just proving differentiability of function u^4 ev
 msgstr ""
 
 #: Game.Levels.Derivative.L11_Quotient3
-msgid "For this, we need to use DifferentiableAt.comp, which requires us to rewrite into a function composition again"
+msgid "To show that the function $g_1(x) = x - 1$ is differentiable at $x$, we can apply the `DifferentiableAt.sub_const` lemma. This tactic helps us establish differentiability by recognizing that subtracting a constant from a differentiable function, like the identity function here, preserves differentiability."
+msgstr ""
+
+#: Game.Levels.Derivative.L11_Quotient3
+msgid "To conclude that the identity function is differentiable at any point, use `exact differentiableAt_id`. This tactic directly applies the fact that the derivative of the identity function is well-defined everywhere."
+msgstr ""
+
+#: Game.Levels.Derivative.L11_Quotient3
+msgid "For this, we need to use DifferentiableAt.comp, which requires us to rewrite into a function composition again. Use `rw [top]` to rewrite the function."
 msgstr ""
 
 #: Game.Levels.Derivative.L11_Quotient3
@@ -567,7 +766,39 @@ msgid "Other than that, just have to prove that both functions in the compositio
 msgstr ""
 
 #: Game.Levels.Derivative.L11_Quotient3
-msgid "Finally, use our assumption that we do not divide by zero"
+msgid "To prove the differentiability of the composition $f₁ \\circ g₁$, use the `DifferentiableAt.comp` lemma. This allows you to decompose the problem into showing that both $f₁$ and $g₁$ are differentiable at the relevant points. You already have the differentiability of $g₁$, so focus on $f₁$."
+msgstr ""
+
+#: Game.Levels.Derivative.L11_Quotient3
+msgid "To prove that the function $f_1(g_1(x)) = (x-1)^4$ is differentiable at $x$, apply the `differentiableAt_pow` tactic. This tactic allows you to establish differentiability for expressions of the form $u^n$, where you need to ensure that the inner function $g₁(x)=x-1$ is differentiable at the given point."
+msgstr ""
+
+#: Game.Levels.Derivative.L11_Quotient3
+msgid "To prove that the function $g_1(x) = x - 1$ is differentiable at $x$, apply the `DifferentiableAt.sub_const` tactic. This tactic indicates that subtracting a constant from a differentiable function (in this case, the identity function) preserves differentiability."
+msgstr ""
+
+#: Game.Levels.Derivative.L11_Quotient3
+msgid "To show that the identity function is differentiable at any point, use `exact differentiableAt_id`. This tactic directly applies the fact that the identity function is differentiable everywhere, which addresses the goal of proving differentiability at a specific point."
+msgstr ""
+
+#: Game.Levels.Derivative.L11_Quotient3
+msgid "We want to show that the function \\( (x^2 + 2x)^5 \\) is differentiable at \\( x \\). By using the equation `bottom`, you can rewrite the expression as a composition of functions \\( f₂ \\) and \\( g₂ \\). This transformation can help us apply rules for differentiability of compositions, such as the chain rule."
+msgstr ""
+
+#: Game.Levels.Derivative.L11_Quotient3
+msgid "To prove the differentiability of a composition of functions, use the `DifferentiableAt.comp` lemma. This allows you to break down the differentiability of the composed function into proving the differentiability of each individual function at the relevant points."
+msgstr ""
+
+#: Game.Levels.Derivative.L11_Quotient3
+msgid "To prove that the function $f_2(x) = x^5$ is differentiable at $(x^2 + 2x)$, we can apply the `differentiableAt_pow` lemma. This lemma confirms that a power function is differentiable everywhere, which simplifies our task of showing differentiability at a particular point."
+msgstr ""
+
+#: Game.Levels.Derivative.L11_Quotient3
+msgid "To prove the differentiability of the function $g_2(x) = x^2 + 2x$, use `apply differentiableAt_g₂` is employed. This tactic leverages a predefined lemma or fact that confirms the differentiability of $g_2$ at any point $x$."
+msgstr ""
+
+#: Game.Levels.Derivative.L11_Quotient3
+msgid "Finally, use our assumption to show that we do not divide by zero by applying `hx1`."
 msgstr ""
 
 #: Game.Levels.Derivative.L11_Quotient3
@@ -584,6 +815,10 @@ msgstr ""
 
 #: Game.Levels.Derivative.L11_Quotient3
 msgid "Product Rule: $(c * g)'(x) =  c * g'(x))$"
+msgstr ""
+
+#: Game.Levels.Derivative.L11_Quotient3
+msgid "Differentiable for g₂"
 msgstr ""
 
 #: Game.Levels.Derivative
