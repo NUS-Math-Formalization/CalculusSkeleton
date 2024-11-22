@@ -20,7 +20,6 @@ macro "differentiability" : tactic => `(tactic|(
     apply Real.differentiableAt_exp |
     apply Real.differentiableAt_log |
     apply Real.differentiableAt_pow _ |
-
     assumption
   )))
 
@@ -40,7 +39,5 @@ macro "derivit" : tactic => `(tactic|(
     rw [Real.deriv_cos] |
     rw [← Function.comp_def] |
     rw [deriv.comp] |
-
-
     simp_all
   )))
